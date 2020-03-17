@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-airbnb",
+    "stylelint-config-styled-components"
+  ],
+  "plugins": ["stylelint-scss", "stylelint-order"],
+  "rules": {
+    "order/order": ["custom-properties", "declarations"],
+    "order/properties-alphabetical-order": true,
+    "scss/selector-no-redundant-nesting-selector": true,
+    "indentation": 2,
+    "string-quotes": "single",
+    "max-nesting-depth": 4,
+    "number-leading-zero": "always",
+    "rule-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"]
+      }
+    ],
+    "function-calc-no-invalid": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "function-calc-no-unspaced-operator": null,
+    "no-extra-semicolons": null
+  }
+}
