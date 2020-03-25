@@ -1,6 +1,6 @@
-# Contributing to flow-build/engine
+# Contributing to flow-build/admin
 
-We'd love for you to contribute to our source code and to flowbuild-core even better than it is
+We'd love for you to contribute to our source code and to flowbuild-admin even better than it is
 today!
 
 Check out the Developer's Guide on the [documentation](https://flow-build.gitpage.io) for setup instructions.
