@@ -1,9 +1,9 @@
 {
-  "name": "@flow-build/admin",
+  "name": "@flowbuild/admin",
   "version": "1.0.0",
   "author": "FDTE-DSD",
   "description": "cockpit graphics user interface maked to work with workflow",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "main": "index.js",
   "scripts": {
     "prestart": "npm run lint:fix",
