@@ -16,7 +16,7 @@
     "prettier": "prettier --write src/**/*.js src/**/*.jsx",
     "test": "cross-env NODE_ENV=test jest -u --passWithNoTests",
     "test:watch": "cross-env NODE_ENV=test jest --watch",
-    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage --passWithNoTests",
     "test:coverage:watch": "cross-env NODE_ENV=test jest --watch --coverage",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "commit": "git-cz"
