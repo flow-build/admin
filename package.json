@@ -19,7 +19,8 @@
     "test:coverage": "cross-env NODE_ENV=test jest --coverage --passWithNoTests",
     "test:coverage:watch": "cross-env NODE_ENV=test jest --watch --coverage",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "semantic-release"
   },
   "lint-staged": {
     "*.{js,jsx}": [
