@@ -1,6 +1,6 @@
 {
   "name": "@flowbuild/admin",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "author": "FDTE-DSD",
   "description": "cockpit graphics user interface maked to work with workflow",
   "license": "Apache-2.0",
@@ -19,7 +19,9 @@
     "test:coverage": "cross-env NODE_ENV=test jest --coverage --passWithNoTests",
     "test:coverage:watch": "cross-env NODE_ENV=test jest --watch --coverage",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "get-version": "echo $npm_package_version",
+    "release": "semantic-release"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -112,7 +114,12 @@
     "webpack-bundle-analyzer": "^3.5.1",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.1",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "semantic-release": "^17.0.4",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/npm": "^7.0.5",
+    "conventional-changelog-conventionalcommits": "^4.2.3"
   },
   "dependencies": {
     "react": "^16.9.0",
@@ -137,9 +144,16 @@
     "styled-components": "^4.4.0",
     "text-mask-addons": "^3.8.0"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flow-build/admin.git"
   }
 }
