@@ -1,6 +1,6 @@
 {
   "name": "@flowbuild/admin",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "FDTE-DSD",
   "description": "cockpit graphics user interface maked to work with workflow",
   "license": "Apache-2.0",
