@@ -92,6 +92,14 @@ module.exports = {
           name: 'images/[hash]-[name].[ext]'
         }
       }]
+    },
+    {
+      test: /\.s[ac]ss$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader',
+      ],
     }
     ],
   },
