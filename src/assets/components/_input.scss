@@ -1,0 +1,35 @@
+$main-color: #7f8c8d;
+$main-border-color: #3498db;
+
+.input-content {
+    width: 100%;
+    padding: .7rem;
+    border-radius: 1rem;
+    border: .12rem solid $main-color;
+    z-index: 1;
+
+    &:focus {
+        outline: none;
+        border-color: $main-border-color;
+    }
+
+    &.input-content-icon {
+        padding-left: 3rem; 
+    }
+
+}
+
+.input-div {
+  position: relative;
+  width: 20rem;
+  display: block;
+  margin: 1rem auto;
+  text-align: center;
+  z-index: 2;
+}
+
+.input-icon {
+  position: absolute;
+  top: .6rem;
+  left: 1rem;
+}

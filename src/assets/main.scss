@@ -1,3 +1,16 @@
-// BOOTSTRAP IMPORT
-//VENDORS IMPORT
+//BOOTSTRAP IMPORT
 @import './vendors/bootstrap.scss';
+//BUTTON IMPORT
+@import '../assets/components/button.scss';
+//CENTER-STORYBOOK IMPORT
+@import '../assets/components/centerStorybook.scss';
+//INPUT IMPORT
+@import '../assets/components/input.scss';
+// LOGO IMPORT
+@import '../assets/components/logo.scss';
+// HEADERBAR IMPORT
+@import '../assets/components/headerBar.scss';
+// SIDEBAR IMPORT
+@import '../assets/components/sideBar.scss';
+// SIDEBARITEM IMPORT
+@import '../assets/components/sideBarItem.scss';

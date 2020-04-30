@@ -1,0 +1,43 @@
+$main-color: #3498db;
+$main-text-color: #fff;
+$color-red: #e74c3c;
+
+.btn {
+   text-transform: uppercase;
+   text-decoration: none;
+   padding: 1.2rem 3rem;
+   display: inline-block;
+   border-radius: 10rem;
+   transition: all .2s;
+   position: relative;
+   background-color: $main-color;
+   color: $main-text-color;
+
+   
+   &:hover {
+      transform: translateY(-.3rem);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+      background-color: darken($main-color, 10%);
+   }
+
+   &:active {
+      transform: translateY(-.1rem);
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+   }
+
+
+   &--red {
+      background-color: $color-red;
+   }
+  
+   &--red:hover {
+      background-color: darken($color-red, 10%);
+   }
+
+   &--disabled {
+      pointer-events: none;
+      cursor: default;
+      background-color: #bdc3c7;
+      color: #2c3e50;
+   }
+}

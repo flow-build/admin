@@ -1,0 +1,10 @@
+.logo {
+    width: auto;
+    float: left;
+    background-color: #3498db;
+
+    & img {
+        height: inherit;
+        width: inherit;
+    }
+}

@@ -1,0 +1,24 @@
+$main-color-sideBar-item: #34495e;
+
+.sideBarItem {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+
+    &:hover {
+        background-color: lighten($main-color-sideBar-item, 65%);
+        border-radius: 1rem;
+        cursor: pointer;
+    }
+
+    & p {
+        font-weight: 500;
+        margin: .5rem .5rem;
+        font-size: 1.2rem;
+        color: $main-color-sideBar-item;
+    }
+
+    & div {
+        display: flex;
+    }
+}
