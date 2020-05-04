@@ -1,17 +1,13 @@
 import React from 'react';
-import Logo from '../../src/components/Logo/index';
-import CenterStorybook from '../../src/components/CenterStorybook/index';
+import Logo from '../../src/components/Logo';
 
 export default {
     component: Logo,
-    title: 'Logo',
-    excludeStories: /.*Data$/
+    title: 'Logo'
 };
 
 export const Default = () => {
     return (
-        <CenterStorybook>
-            <Logo styleName="logo"></Logo>
-        </CenterStorybook>
+        <Logo />
     );
 };

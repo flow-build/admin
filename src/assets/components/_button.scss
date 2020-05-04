@@ -1,7 +1,3 @@
-$main-color: #3498db;
-$main-text-color: #fff;
-$color-red: #e74c3c;
-
 .btn {
    text-transform: uppercase;
    text-decoration: none;
@@ -9,9 +5,9 @@ $color-red: #e74c3c;
    display: inline-block;
    border-radius: 10rem;
    transition: all .2s;
-   position: relative;
    background-color: $main-color;
-   color: $main-text-color;
+   color: #fff;
+   border: none;
 
    
    &:hover {
@@ -28,16 +24,16 @@ $color-red: #e74c3c;
 
    &--red {
       background-color: $color-red;
+
+      &:hover {
+         background-color: darken($color-red, 10%);
+      }
    }
   
-   &--red:hover {
-      background-color: darken($color-red, 10%);
-   }
-
    &--disabled {
       pointer-events: none;
       cursor: default;
-      background-color: #bdc3c7;
-      color: #2c3e50;
+      background-color: $color-grey-2;
+      color: $color-grey-5;
    }
 }

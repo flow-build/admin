@@ -1,56 +1,42 @@
 import React from 'react';
-import SideBarItem from '../../src/components/SideBar/SideBarItem/index';
-import CenterStorybook from '../../src/components/CenterStorybook/index'
+import SideBarItem from '../../src/components/SideBar/SideBarItem';
 
 export default {
     component: SideBarItem,
-    title: 'SideBarItem',
-    excludeStories: /.*Data$/
+    title: 'SideBarItem'
 };
 
 export const Dashboard = () => {
     return (
-        <CenterStorybook>
-            <SideBarItem icon="Dashboard" name="Dashboard"/>
-        </CenterStorybook>
+        <SideBarItem icon="Dashboard" name="Dashboard"/>
     );
 };
 
 export const Blueprint = () => {
     return (
-        <CenterStorybook>
-            <SideBarItem icon="Blueprint" name="Blueprint Manager"/>
-        </CenterStorybook>
+        <SideBarItem icon="Blueprint" name="Blueprint Manager"/>
     );
 };
 
 export const Workflow = () => {
     return (
-        <CenterStorybook>
-            <SideBarItem icon="Workflow" name="Workflow Monitoring"/>
-        </CenterStorybook>
+        <SideBarItem icon="Workflow" name="Workflow Monitoring"/>
     );
 };
 
 export const Insights = () => {
     return (
-        <CenterStorybook>
-            <SideBarItem icon="Insights" name="Insights"/>
-        </CenterStorybook>
+        <SideBarItem icon="Insights" name="Insights"/>
     );
 };
 
 export const Toolbox = () => {
     return (
-        <CenterStorybook>
-            <SideBarItem icon="Toolbox" name="Toolbox"/>
-        </CenterStorybook>
+        <SideBarItem icon="Toolbox" name="Toolbox"/>
     );
 };
 export const Settings = () => {
     return (
-        <CenterStorybook>
-            <SideBarItem icon="Settings" name="Settings"/>
-        </CenterStorybook>
+        <SideBarItem icon="Settings" name="Settings"/>
     );
 };

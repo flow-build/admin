@@ -1,34 +1,26 @@
 import React from 'react';
-import Input from '../../src/components/Input/index';
-import CenterStorybook from '../../src/components/CenterStorybook/index';
+import Input from '../../src/components/Input';
 
 export default {
     component: Input,
-    title: 'Input',
-    excludeStories: /.*Data$/
+    title: 'Input'
 };
 
 export const Default = () => {
     return (
-        <CenterStorybook>
-            <Input styleName="input-content" type="text" placeholder="text"></Input>
-        </CenterStorybook>
+        <Input type="text" placeholder="text"></Input>
     );
 };
 
 export const Username = () => {
     return (
-        <CenterStorybook>
-            <Input styleName="input-content input-content-icon" type="text" placeholder="Username" icon="user"></Input>
-        </CenterStorybook>
+        <Input type="text" placeholder="Username" icon="user"></Input>
     );
 };
 
 export const Password = () => {
     return (
-        <CenterStorybook>
-            <Input styleName="input-content input-content-icon" type="password" placeholder="Password" icon="password"></Input>
-        </CenterStorybook>
+        <Input type="password" placeholder="Password" icon="password"></Input>
     );
 };
 

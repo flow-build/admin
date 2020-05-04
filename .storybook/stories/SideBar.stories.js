@@ -1,10 +1,9 @@
 import React from 'react';
-import SideBar from '../../src/components/SideBar/index';
+import SideBar from '../../src/components/SideBar';
 
 export default {
     component: SideBar,
-    title: 'SideBar',
-    excludeStories: /.*Data$/
+    title: 'SideBar'
 };
 
 export const Default = () => {

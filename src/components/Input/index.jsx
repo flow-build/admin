@@ -5,30 +5,28 @@ import MdPerson from 'react-ionicons/lib/MdPerson';
 import PropTypes from 'prop-types';
 
 
-const Input = (props) => {
-  const { placeholder } = props;
-  const { styleName } = props;
-  const { type } = props;
-  const { icon } = props;
+const Input = ({ placeholder, type, icon }) => {
+  const classNameIcon = 'input-icon';
   let ionIcon = null;
+  let className = 'input-content';
   if (icon) {
+    className = `${className} input-content-icon`;
     if (icon === 'user') {
-      ionIcon = <MdPerson className="input-icon" />;
+      ionIcon = <MdPerson className={classNameIcon} />;
     } else if (icon === 'password') {
-      ionIcon = <MdLock className="input-icon" />;
+      ionIcon = <MdLock className={classNameIcon} />;
     }
   }
   return (
     <div className="input-div">
       {ionIcon}
-      <input type={type} className={styleName} placeholder={placeholder} />
+      <input type={type} className={className} placeholder={placeholder} />
     </div>
   );
 };
 
 Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
-  styleName: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   icon: PropTypes.string,
 };

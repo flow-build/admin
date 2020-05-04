@@ -1,16 +1,14 @@
-//BOOTSTRAP IMPORT
+//@ABSTRACT
+@import './abstracts/mixins.scss';
+@import './abstracts/variables.scss';
+//@BASE
+@import './base//base.scss';
+//@COMPONENTS
 @import './vendors/bootstrap.scss';
-//BUTTON IMPORT
-@import '../assets/components/button.scss';
-//CENTER-STORYBOOK IMPORT
-@import '../assets/components/centerStorybook.scss';
-//INPUT IMPORT
-@import '../assets/components/input.scss';
-// LOGO IMPORT
-@import '../assets/components/logo.scss';
-// HEADERBAR IMPORT
-@import '../assets/components/headerBar.scss';
-// SIDEBAR IMPORT
-@import '../assets/components/sideBar.scss';
-// SIDEBARITEM IMPORT
-@import '../assets/components/sideBarItem.scss';
+@import './components/button.scss';
+@import './components/centerStorybook.scss';
+@import './components/input.scss';
+@import './components/logo.scss';
+@import './components/headerBar.scss';
+@import './components/sideBar.scss';
+@import './components/sideBarItem.scss';

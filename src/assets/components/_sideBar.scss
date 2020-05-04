@@ -1,14 +1,11 @@
-$main-color-sidebar: #ecf0f1;
-
 .sideBar {
-    position: absolute;
-    width: 16rem;
-    height: 100vh;
-    left: 0;
-    top: 0;
-    background-color: lighten($main-color-sidebar, 2%);
+    display: flex;
+    flex: 0 0 14%;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; //remover quando montar as pagina
+    background-color: lighten($color-grey-1, 2%);
     padding: 1rem;
-    overflow-y: hidden;
 
     &-user {
         width: 100%;
@@ -16,6 +13,6 @@ $main-color-sidebar: #ecf0f1;
         font-weight: 500;
         font-size: 1.3rem;
         letter-spacing: .1rem;
-        border-bottom: .1rem solid darken($main-color-sidebar, 20%);
+        border-bottom: .1rem solid darken($color-grey-1, 20%);
     }
 }

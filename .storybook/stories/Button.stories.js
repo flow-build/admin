@@ -1,33 +1,30 @@
 import React from 'react';
-import Buttom from '../../src/components/Buttom/index';
-import CenterStorybook from '../../src/components/CenterStorybook/index';
+import Button from '../../src/components/Button';
 
 export default {
-    component: Buttom,
+    component: Button,
     title: 'Button',
     excludeStories: /.*Data$/
 };
 
+const actionData = () => {
+    console.log('clicked');
+}
+
 export const Default = () => {
     return (
-        <CenterStorybook>
-            <Buttom styleName="btn">text</Buttom>
-        </CenterStorybook>
+        <Button title="text" onClick={actionData} />
     );
 };
 
 export const Red = () => {
     return(
-        <CenterStorybook>
-            <Buttom styleName="btn btn--red">text</Buttom>
-        </CenterStorybook>
+        <Button color="red" title="text" onClick={actionData} />
     );
 };
 
 export const Disabled = () => {
     return(
-        <CenterStorybook>
-            <Buttom styleName="btn btn--disabled">text</Buttom>
-        </CenterStorybook>
+        <Button disabled title="text" onClick={actionData} />
     );
 };

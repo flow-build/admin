@@ -1,7 +1,6 @@
 .logo {
     width: auto;
-    float: left;
-    background-color: #3498db;
+    background-color: $main-color;
 
     & img {
         height: inherit;

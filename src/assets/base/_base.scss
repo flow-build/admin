@@ -1,0 +1,31 @@
+// BASIC RESET
+h1, h2, h3, h4, h5, h6,
+p, ul, li, ol,
+*,
+*::after,
+*::before {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    @include respond(desktop-extra-large) {
+        // width > 1920px
+        font-size: 87.5%; // 1rem = 14px
+    }
+    @include respond(desktop-large) {
+        // 1440 <= width <= 1919px
+        font-size: 75%; // 1rem = 12px
+    }
+    @include respond(desktop-medium) {
+        // 1200px <= width <= 1439px
+        font-size: 62.5%; // 1rem = 10px
+    }
+    @include respond(desktop) {
+        // 992px - 1199px
+        font-size: 56.25%; // 1rem = 9px
+    }
+}
+
