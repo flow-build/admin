@@ -6,20 +6,20 @@ import fdteLogo from '../../assets/img/logo-fdte.png';
 
 
 const Logo = ({
-  heightLogo, className,
+  height, className,
 }) => (
-  <div className={`logo ${className}`} style={{ height: heightLogo }}>
+  <div className={`logo ${className}`} style={{ height: `${height}rem` }}>
     <img src={fdteLogo} alt="FDTE" />
   </div>
 );
 
 Logo.propTypes = {
-  heightLogo: PropTypes.string,
+  height: PropTypes.string,
   className: PropTypes.string,
 };
 
 Logo.defaultProps = {
-  heightLogo: '3rem',
+  height: '3',
   className: '',
 };
 

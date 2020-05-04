@@ -18,7 +18,7 @@ const Input = ({ placeholder, type, icon }) => {
     }
   }
   return (
-    <div className="input-div">
+    <div className="input-container">
       {ionIcon}
       <input type={type} className={className} placeholder={placeholder} />
     </div>
