@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 
 const Input = ({
-  placeholder, type, icon, setValue, value,
+  placeholder, type, icon, onChange, value,
 }) => {
   const classNameIcon = 'input-icon';
   let ionIcon = null;
@@ -22,7 +22,7 @@ const Input = ({
   return (
     <div className="input-container">
       {ionIcon}
-      <input type={type} className={className} placeholder={placeholder} onChange={(e) => setValue(e.target.value)} value={value} />
+      <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} />
     </div>
   );
 };
@@ -31,7 +31,7 @@ Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   icon: PropTypes.string,
-  setValue: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
 };
 
