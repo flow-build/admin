@@ -5,7 +5,9 @@ import MdPerson from 'react-ionicons/lib/MdPerson';
 import PropTypes from 'prop-types';
 
 
-const Input = ({ placeholder, type, icon }) => {
+const Input = ({
+  placeholder, type, icon, setValue, value,
+}) => {
   const classNameIcon = 'input-icon';
   let ionIcon = null;
   let className = 'input-content';
@@ -20,7 +22,7 @@ const Input = ({ placeholder, type, icon }) => {
   return (
     <div className="input-container">
       {ionIcon}
-      <input type={type} className={className} placeholder={placeholder} />
+      <input type={type} className={className} placeholder={placeholder} onChange={(e) => setValue(e.target.value)} value={value} />
     </div>
   );
 };
@@ -29,6 +31,8 @@ Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   icon: PropTypes.string,
+  setValue: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 Input.defaultProps = {

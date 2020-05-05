@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Input from '../../src/components/Input';
 
 export default {
@@ -7,25 +7,24 @@ export default {
     excludeStories: /.*Data$/
 };
 
-const actionData = () => {
-    console.log('clicked');
-}
-
 export const Default = () => {
+    const [value, setValue] = useState('');
     return (
-        <Input type="text" placeholder="text" value="text" onChange={actionData}></Input>
+        <Input type="text" placeholder="text" value={value} setValue={setValue}></Input>
     );
 };
 
 export const Username = () => {
+    const [value, setValue] = useState('');
     return (
-        <Input type="text" placeholder="Username" icon="user" value="text" onChange={actionData}></Input>
+        <Input type="text" placeholder="Username" icon="user" value={value} setValue={setValue}></Input>
     );
 };
 
 export const Password = () => {
+    const [value, setValue] = useState('');
     return (
-        <Input type="password" placeholder="Password" icon="password" value="text" onChange={actionData}></Input>
+        <Input type="password" placeholder="Password" icon="password" value={value} setValue={setValue}></Input>
     );
 };
 
