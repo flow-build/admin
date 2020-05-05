@@ -1,6 +1,7 @@
-.centerStorybook {
+.center-storybook {
     display: flex;
     align-items: center;
     justify-content: center;
     height: -webkit-fill-available;
+    background-color: $color-grey-1;
 }

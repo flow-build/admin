@@ -1,0 +1,96 @@
+.workflow {
+
+  &-container {
+    font-size: 1.3rem;
+    background-color: $color-white;
+    border-radius: 1rem;
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    padding: 1rem;
+    width: 25%;
+  }
+
+  &-version {
+    text-align: center;
+    background-color: $color-grey-1;
+    border-radius: 50%;
+    width: 3.5rem;
+    padding: 1rem;
+    color: $color-grey-4;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+
+  &-name {
+    font-weight: 700;
+    color: $color-grey-4;
+    font-size: 1.7rem;
+  }
+
+  &-content {
+    display: flex;
+    justify-content: right;
+    padding: 1rem;
+  }
+
+  &-status {
+    margin-left: 3rem;
+    
+    & ul {
+      display: flex;
+      list-style: none;
+
+      & li {
+        display: flex;
+        align-items: center;
+        margin: .8rem;
+        font-weight: 700;
+        color: $color-grey-4;
+
+        & svg {
+          width: 2rem;
+          height: 2rem;
+          margin-right: .2rem;
+        }
+        
+      }
+    }
+  }
+
+  &-description {
+    color: $color-grey-4;
+    word-wrap: break-word;
+    padding: 1rem .5rem;
+    text-align: center;
+  }
+
+  &-bottom {
+    border-top: 1px solid $color-grey-2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+
+    & p {
+      font-weight: 700;
+      color: $color-grey-4;
+      margin-left: .3rem;
+    }
+  }
+}
+
+.icon-done {
+  fill: $color-grey-4;
+}
+
+.icon-play {
+  fill: $color-green;
+}
+
+.icon-warning {
+  fill: $color-yellow;
+}
+
+.icon-close {
+  fill: $color-red;
+}

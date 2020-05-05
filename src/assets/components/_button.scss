@@ -6,19 +6,20 @@
    border-radius: 10rem;
    transition: all .2s;
    background-color: $main-color;
-   color: #fff;
+   color: $color-white;
    border: none;
+   cursor: pointer;
 
    
    &:hover {
       transform: translateY(-.3rem);
-      box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+      box-shadow: 0 1rem 2rem rgba($color-black, .2);
       background-color: darken($main-color, 10%);
    }
 
    &:active {
       transform: translateY(-.1rem);
-      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+      box-shadow: 0 .5rem 1rem rgba($color-black, .2);
    }
 
 
@@ -31,9 +32,14 @@
    }
   
    &--disabled {
-      pointer-events: none;
-      cursor: default;
+      cursor: not-allowed;
       background-color: $color-grey-2;
       color: $color-grey-5;
+
+      &:hover {
+         transform: none;
+         background-color: darken($color-grey-2, 10%);
+         box-shadow: none;
+      }
    }
 }

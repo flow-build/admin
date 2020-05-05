@@ -6,7 +6,9 @@ const Button = ({
   className, title, color, disabled, onClick,
 }) => (
 
-  <button className={`btn btn--${color} ${disabled && 'btn--disabled'} ${className}`} onClick={onClick}>{title}</button>
+  <button className={`btn btn--${color} ${disabled && 'btn--disabled'} ${className}`} onClick={onClick} disabled={disabled}>
+    {title}
+  </button>
 
 );
 

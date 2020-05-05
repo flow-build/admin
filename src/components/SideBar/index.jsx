@@ -3,9 +3,9 @@ import MdContact from 'react-ionicons/lib/MdContact';
 
 
 const SideBar = () => (
-  <div className="sideBar">
-    <div className="sideBar-user">
-      <MdContact color="#b1c2c6" fontSize="5rem" />
+  <div className="sidebar">
+    <div className="sidebar-user">
+      <MdContact className="sidebar-icon" />
       <p>User</p>
       {/* SIDEBARITEM */}
     </div>

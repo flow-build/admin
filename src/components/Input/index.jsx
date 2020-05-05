@@ -5,27 +5,26 @@ import MdPerson from 'react-ionicons/lib/MdPerson';
 import PropTypes from 'prop-types';
 
 
+let className = 'input-content';
+
+export const getSelectedIcon = (icon) => {
+  const classNameIcon = 'input-icon';
+  if (icon) className = `${className} input-content-icon`;
+  const icons = {
+    user: <MdPerson className={classNameIcon} />,
+    password: <MdLock className={classNameIcon} />,
+  };
+  return icons[icon];
+};
+
 const Input = ({
   placeholder, type, icon, onChange, value,
-}) => {
-  const classNameIcon = 'input-icon';
-  let ionIcon = null;
-  let className = 'input-content';
-  if (icon) {
-    className = `${className} input-content-icon`;
-    if (icon === 'user') {
-      ionIcon = <MdPerson className={classNameIcon} />;
-    } else if (icon === 'password') {
-      ionIcon = <MdLock className={classNameIcon} />;
-    }
-  }
-  return (
-    <div className="input-container">
-      {ionIcon}
-      <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} />
-    </div>
-  );
-};
+}) => (
+  <div className="input-container">
+    {getSelectedIcon(icon)}
+    <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} />
+  </div>
+);
 
 Input.propTypes = {
   placeholder: PropTypes.string.isRequired,

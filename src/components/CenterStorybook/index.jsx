@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const CenterStorybook = (props) => {
   const { children } = props;
   return (
-    <div className="centerStorybook">
+    <div className="center-storybook">
       {children}
     </div>
   );

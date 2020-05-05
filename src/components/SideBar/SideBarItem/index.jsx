@@ -9,48 +9,29 @@ import MdSettings from 'react-ionicons/lib/MdSettings';
 import PropTypes from 'prop-types';
 
 
-const SideBarItem = (props) => {
-  const { icon } = props;
-  const { name } = props;
-  let ionIcon = null;
-  const colorAndFontIcon = {
-    color: '#34495e',
-    fontSize: '2.3rem',
+export const getSelectedIcon = (icon) => {
+  const classNameIcon = 'icon';
+  const icons = {
+    Dashboard: <MdApps className={classNameIcon} />,
+    Blueprint: <MdCrop className={classNameIcon} />,
+    Workflow: <MdDesktop className={classNameIcon} />,
+    Insights: <MdPodium className={classNameIcon} />,
+    Toolbox: <MdBuild className={classNameIcon} />,
+    Settings: <MdSettings className={classNameIcon} />,
   };
-  if (icon) {
-    switch (icon) {
-      case 'Dashboard':
-        ionIcon = <MdApps {...colorAndFontIcon} />;
-        break;
-      case 'Blueprint':
-        ionIcon = <MdCrop {...colorAndFontIcon} />;
-        break;
-      case 'Workflow':
-        ionIcon = <MdDesktop {...colorAndFontIcon} />;
-        break;
-      case 'Insights':
-        ionIcon = <MdPodium {...colorAndFontIcon} />;
-        break;
-      case 'Toolbox':
-        ionIcon = <MdBuild {...colorAndFontIcon} />;
-        break;
-      case 'Settings':
-        ionIcon = <MdSettings {...colorAndFontIcon} />;
-        break;
-      default:
-        ionIcon = null;
-        break;
-    }
-  }
-  return (
-    <div className="sideBarItem">
-      <div>
-        {ionIcon}
-        <p>{name}</p>
-      </div>
-    </div>
-  );
+  return icons[icon];
 };
+
+const SideBarItem = ({
+  icon, name,
+}) => (
+  <div className="sidebar-item">
+    <div>
+      {getSelectedIcon(icon)}
+      <p>{name}</p>
+    </div>
+  </div>
+);
 
 SideBarItem.propTypes = {
   icon: PropTypes.string.isRequired,

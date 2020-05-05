@@ -5,8 +5,8 @@ import Logo from '../Logo/index';
 
 
 const HeaderBar = () => (
-  <header className="headerBar">
-    <Logo styleName="logo" heightImg="2.5rem" />
+  <header className="header-bar">
+    <Logo className="logo" heightImg="2.5rem" />
     <MdLogOut className="logout" color="#fff" fontSize="2rem" />
   </header>
 );
