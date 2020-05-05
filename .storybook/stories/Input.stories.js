@@ -16,14 +16,14 @@ export const Default = () => {
 export const Username = () => {
     const [value, setValue] = useState('');
     return (
-        <Input type="text" placeholder="Username" icon="user" value={value} onChange={setValue}></Input>
+        <Input type="text" placeholder="Username" icon="User" value={value} onChange={setValue}></Input>
     );
 };
 
 export const Password = () => {
     const [value, setValue] = useState('');
     return (
-        <Input type="password" placeholder="Password" icon="password" value={value} onChange={setValue}></Input>
+        <Input type="password" placeholder="Password" icon="Password" value={value} onChange={setValue}></Input>
     );
 };
 

@@ -18,15 +18,7 @@ const Process = ({
       <th>Ultima Atualização</th>
     </tr>
     {listProcessItem.map((processItem) => (
-      <ProcessItem
-        id={processItem.id}
-        date={processItem.date}
-        status={processItem.status}
-        step={processItem.step}
-        node={processItem.node}
-        next={processItem.next}
-        lastUpdate={processItem.lastUpdate}
-      />
+      <ProcessItem {...processItem} />
     ))}
   </table>
 );

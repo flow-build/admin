@@ -1,11 +1,8 @@
 import React from 'react';
-import MdCheckmarkCircle from 'react-ionicons/lib/MdCheckmarkCircle';
-import MdCloseCircle from 'react-ionicons/lib/MdCloseCircle';
-import MdPlay from 'react-ionicons/lib/MdPlay';
-import MdWarning from 'react-ionicons/lib/MdWarning';
 
 import PropTypes from 'prop-types';
 
+import IconUtil from '../../utils/iconUtil';
 import Button from '../Button';
 
 
@@ -14,7 +11,7 @@ function actionData() {
 }
 
 const Workflow = ({
-  name, version, description, process, value1, value2, value3, value4,
+  name, version, description, process, listStatus,
 }) => (
   <div className="workflow-container">
     <div className="workflow-content">
@@ -28,22 +25,11 @@ const Workflow = ({
       </div>
       <div className="workflow-status">
         <ul>
-          <li>
-            <MdCheckmarkCircle className="icon-done" />
-            {value1}
-          </li>
-          <li>
-            <MdPlay className="icon-play" />
-            {value2}
-          </li>
-          <li>
-            <MdWarning className="icon-warning" />
-            {value3}
-          </li>
-          <li>
-            <MdCloseCircle className="icon-close" />
-            {value4}
-          </li>
+          {listStatus.map((status) => (
+            <li>
+              {IconUtil(status.icon)} {status.value}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -66,10 +52,9 @@ Workflow.propTypes = {
   version: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   process: PropTypes.string.isRequired,
-  value1: PropTypes.string.isRequired,
-  value2: PropTypes.string.isRequired,
-  value3: PropTypes.string.isRequired,
-  value4: PropTypes.string.isRequired,
+  listStatus: PropTypes.arrayOf(PropTypes.oneOfType(
+    [PropTypes.string, PropTypes.string],
+  )).isRequired,
 };
 
 export default Workflow;

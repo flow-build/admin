@@ -1,21 +1,9 @@
 import React from 'react';
-import MdCheckmarkCircle from 'react-ionicons/lib/MdCheckmarkCircle';
-import MdCloseCircle from 'react-ionicons/lib/MdCloseCircle';
-import MdPlay from 'react-ionicons/lib/MdPlay';
-import MdWarning from 'react-ionicons/lib/MdWarning';
-
 
 import PropTypes from 'prop-types';
 
-export const getSelectedIcon = (status) => {
-  const icons = {
-    Finalizado: <MdCheckmarkCircle className="icon-done" />,
-    Andamento: <MdPlay className="icon-play" />,
-    Atencao: <MdWarning className="icon-warning" />,
-    Erro: <MdCloseCircle className="icon-close" />,
-  };
-  return icons[status];
-};
+import IconUtil from '../../../utils/iconUtil';
+
 
 const ProcessItem = ({
   id, date, status, step, node, next, lastUpdate,
@@ -25,7 +13,7 @@ const ProcessItem = ({
     <td>{date}</td>
     <td>
       <div className="align-status">
-        {status} {getSelectedIcon(status)}
+        {status} {IconUtil(status)}
       </div>
     </td>
     <td>{step}</td>

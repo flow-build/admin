@@ -1,30 +1,22 @@
 import React from 'react';
-import MdLock from 'react-ionicons/lib/MdLock';
-import MdPerson from 'react-ionicons/lib/MdPerson';
 
 import PropTypes from 'prop-types';
 
+import IconUtil from '../../utils/iconUtil';
 
-let className = 'input-content';
-
-export const getSelectedIcon = (icon) => {
-  const classNameIcon = 'input-icon';
-  if (icon) className = `${className} input-content-icon`;
-  const icons = {
-    user: <MdPerson className={classNameIcon} />,
-    password: <MdLock className={classNameIcon} />,
-  };
-  return icons[icon];
-};
 
 const Input = ({
   placeholder, type, icon, onChange, value,
-}) => (
-  <div className="input-container">
-    {getSelectedIcon(icon)}
-    <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} />
-  </div>
-);
+}) => {
+  let className = 'input-content';
+  if (icon) className = `${className} input-content-icon`;
+  return (
+    <div className="input-container">
+      {IconUtil(icon)}
+      <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} />
+    </div>
+  );
+};
 
 Input.propTypes = {
   placeholder: PropTypes.string.isRequired,

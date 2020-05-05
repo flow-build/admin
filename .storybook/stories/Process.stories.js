@@ -6,7 +6,7 @@ export default {
     title: 'Process'
 };
 
-const processItem = [
+const processList = [
   {
     id: '#545646',
     date: '03/08/2019',
@@ -56,7 +56,7 @@ const processItem = [
 
 export const Default = () => {
     return (
-        <Process listProcessItem={processItem} />
+        <Process listProcessItem={processList} />
     );
 };
 
