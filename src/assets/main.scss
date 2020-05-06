@@ -1,3 +1,20 @@
-// BOOTSTRAP IMPORT
-//VENDORS IMPORT
+//@ABSTRACT
+@import './abstracts/mixins.scss';
+@import './abstracts/variables.scss';
+//@BASE
+@import './base//base.scss';
+//@COMPONENTS
+@import './vendors/bootstrap.scss';
+@import './components/button.scss';
+@import './components/centerStorybook.scss';
+@import './components/input.scss';
+@import './components/logo.scss';
+@import './components/headerBar.scss';
+@import './components/sideBar.scss';
+@import './components/sideBarItem.scss';
+@import './components/workflow.scss';
+@import './components/process.scss';
+@import './components/backdrop.scss';
+//@VENDORS
+@import './vendors/spinnerLoader.scss';
 @import './vendors/bootstrap.scss';

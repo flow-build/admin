@@ -1,0 +1,31 @@
+.sidebar-item {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $color-grey-2;
+        border-radius: 1rem;
+    }
+
+    & p {
+        font-weight: 500;
+        font-size: 1.3rem;
+        color: $color-grey-4;
+        margin-left: .3rem;
+    }
+
+    & div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+.icon {
+    fill: $color-grey-4;
+    height: 3rem;
+    width: 3rem;
+}

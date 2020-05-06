@@ -1,0 +1,36 @@
+.table {
+  width: 100%;
+  font-size: 1.4rem;
+  border: 1px solid $color-grey-2;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  color: $color-grey-4;
+
+  & td, th {
+    padding: 1rem;
+  }
+
+  & th {
+    text-align: left;
+  }
+
+  & tr:nth-child(even) {
+    background-color: lighten($main-color, 30%);
+  }
+
+  .align-status {
+    display: flex;
+    align-items: center;
+
+    & svg {
+      margin-left: .2rem;
+    }
+  }
+
+  .id-link {
+    font-weight: 700;
+    color: darken($main-color, 15%);
+    cursor: pointer;
+  }
+
+}
