@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import IconUtil from '../../../utils/iconUtil';
+import iconUtil from '../../../utils/iconUtil';
 
 
 const ProcessItem = ({
@@ -13,7 +13,7 @@ const ProcessItem = ({
     <td>{date}</td>
     <td>
       <div className="align-status">
-        {status} {IconUtil(status)}
+        {status} {iconUtil(status)}
       </div>
     </td>
     <td>{step}</td>

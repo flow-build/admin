@@ -2,14 +2,14 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import IconUtil from '../../../utils/iconUtil';
+import iconUtil from '../../../utils/iconUtil';
 
 const SideBarItem = ({
   icon, name,
 }) => (
   <div className="sidebar-item">
     <div>
-      {IconUtil(icon)}
+      {iconUtil(icon)}
       <p>{name}</p>
     </div>
   </div>

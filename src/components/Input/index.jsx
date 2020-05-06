@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import IconUtil from '../../utils/iconUtil';
+import iconUtil from '../../utils/iconUtil';
 
 
 const Input = ({
@@ -12,7 +12,7 @@ const Input = ({
   if (icon) className = `${className} input-content-icon`;
   return (
     <div className="input-container">
-      {IconUtil(icon)}
+      {iconUtil(icon)}
       <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} />
     </div>
   );
