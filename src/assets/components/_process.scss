@@ -6,15 +6,15 @@
   padding: 1rem;
   color: $color-grey-4;
 
-  & td, th {
+  td, th {
     padding: 1rem;
   }
 
-  & th {
+  th {
     text-align: left;
   }
 
-  & tr:nth-child(even) {
+  tr:nth-child(even) {
     background-color: lighten($main-color, 30%);
   }
 
@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
 
-    & svg {
+    svg {
       margin-left: .2rem;
     }
   }

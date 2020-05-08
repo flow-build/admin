@@ -1,10 +1,9 @@
-import MainPage from '@pages/main';
-
+import DashboardPage from '../pages/dashboard/DashboardPage';
 
 export default [
   {
-    path: '/',
-    label: 'Main',
-    component: MainPage,
+    path: '/dashboard',
+    label: 'Dashboard',
+    component: DashboardPage,
   },
 ];

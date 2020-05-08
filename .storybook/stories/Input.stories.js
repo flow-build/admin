@@ -9,14 +9,14 @@ export default {
 export const Default = () => {
     const [value, setValue] = useState('');
     return (
-        <Input type="text" placeholder="" value={value} onChange={setValue}></Input>
+        <Input elementType="input" type="text" placeholder="" value={value} onChange={setValue}></Input>
     );
 };
 
 export const Username = () => {
     const [value, setValue] = useState('');
     return (
-        <Input type="text" placeholder="Username" icon="User" value={value} onChange={setValue}></Input>
+        <Input elementType="input" type="text" placeholder="Username" icon="User" value={value} onChange={setValue}></Input>
     );
 };
 
@@ -26,4 +26,27 @@ export const Password = () => {
         <Input type="password" placeholder="Password" icon="Password" value={value} onChange={setValue}></Input>
     );
 };
+
+export const Search = () => {
+    const [value, setValue] = useState('');
+    return (
+        <Input elementType="input" icon="Search" placeholder="" value={value} onChange={setValue}></Input>
+    );
+};
+
+export const Textarea = () => {
+    const [value, setValue] = useState('');
+    return (
+        <Input elementType="textarea" placeholder="" value={value} onChange={setValue}></Input>
+    );
+};
+
+export const Select = () => {
+    const [value, setValue] = useState('');
+    const selectOption = ['1', '2', '3', '4', '5'];
+    return (
+        <Input selectOption={selectOption} elementType="select" placeholder="" value={value} onChange={setValue}></Input>
+    );
+};
+
 

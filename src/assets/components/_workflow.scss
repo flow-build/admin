@@ -4,7 +4,7 @@
     font-size: 1.3rem;
     background-color: $color-white;
     border-radius: 1rem;
-    box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    box-shadow: $main-box-shadow;
     padding: 1rem;
     width: 25%;
   }

@@ -10,22 +10,28 @@ p, ul, li, ol,
     box-sizing: border-box;
 }
 
+input,
+textarea,
+select {
+    font-size: 1.2rem;
+}
+
 html {
     @include respond(desktop-extra-large) {
         // width > 1920px
-        font-size: 87.5%; // 1rem = 14px
+        font-size: 75%; // 1rem = 12px
     }
     @include respond(desktop-large) {
         // 1440 <= width <= 1919px
-        font-size: 75%; // 1rem = 12px
+        font-size: 70%; // 1rem = px
     }
     @include respond(desktop-medium) {
         // 1200px <= width <= 1439px
-        font-size: 62.5%; // 1rem = 10px
+        font-size: 65%; // 1rem = 9px
     }
     @include respond(desktop) {
         // 992px - 1199px
-        font-size: 56.25%; // 1rem = 9px
+        font-size: 60%; // 1rem = 9px
     }
 }
 

@@ -1,0 +1,23 @@
+.date-range {
+  display: flex;
+  justify-content: center;
+  align-items: center
+  margin 1rem;
+  padding: 1rem;
+
+  &-label {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: .5rem;
+      color: $color-grey-4;
+      font-weight: 700;
+    }
+  }
+}
+
+.date-range .datepicker-cockpit {
+  margin-right: 2rem;
+}
