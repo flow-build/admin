@@ -7,13 +7,18 @@ export default {
 };
 
 export const Default = () => {
-  const testArray = ['item1', 'item2', 'item3', 'item4']
+  const [initialArray, setInitialArray] = useState(['item1', 'item2', 'item3', 'item4']);
+  const [filteredArray, setFilteredAraray] = useState([]);
+  let displayArray = [];
+  filteredArray.length > 0 ? displayArray = [...filteredArray] : displayArray = [...initialArray];
   return (
     <>
-      <Search />
+      <Search initialArray={initialArray} setFilteredArray={setFilteredAraray}/>
       <div style={{margin: '1rem'}}>
-        {testArray.map(test => (
-          <p style={{margin: '1rem'}}>{test}</p>
+        {displayArray.map(item => (
+          <div style={{margim: '1rem'}}>
+            <p>{item} </p>
+          </div>
         ))}
       </div>
     </>
