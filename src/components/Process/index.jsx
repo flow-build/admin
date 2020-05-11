@@ -9,7 +9,7 @@ const Process = ({
 }) => (
   <table className="table">
     <tr>
-      <th>Id</th>
+      <th>ID</th>
       <th>Data Criação</th>
       <th>Status</th>
       <th>Passo Atual</th>

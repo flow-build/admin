@@ -1,0 +1,39 @@
+.modal {
+  width: 40%;
+  padding: 1rem;
+  position: relative;
+  background-color: $color-grey-1;
+  border-radius: 1.5rem;
+  box-shadow: $main-box-shadow;
+  z-index: 4;
+
+  &-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .08rem;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+  }
+
+  .error {
+    color: $color-red;
+  }
+
+  .register {
+    color: $main-color;
+  }
+
+  &-exit {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+
+    div {
+      margin-left: auto;
+    }
+
+    svg {
+      cursor: pointer;
+    }
+  }
+}

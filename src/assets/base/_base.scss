@@ -10,14 +10,18 @@ p, ul, li, ol,
     box-sizing: border-box;
 }
 
+body {
+    background-color: lighten($color-grey-1, 1%);
+}
+
 html {
     @include respond(desktop-extra-large) {
         // width > 1920px
-        font-size: 87.5%; // 1rem = 14px
+        font-size: 75%; // 1rem = 12px
     }
     @include respond(desktop-large) {
         // 1440 <= width <= 1919px
-        font-size: 75%; // 1rem = 12px
+        font-size: 68.75%; // 1rem = 11px
     }
     @include respond(desktop-medium) {
         // 1200px <= width <= 1439px

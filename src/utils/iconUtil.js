@@ -9,6 +9,7 @@ import MdLock from 'react-ionicons/lib/MdLock';
 import MdPerson from 'react-ionicons/lib/MdPerson';
 import MdPlay from 'react-ionicons/lib/MdPlay';
 import MdPodium from 'react-ionicons/lib/MdPodium';
+import MdSearch from 'react-ionicons/lib/MdSearch';
 import MdSettings from 'react-ionicons/lib/MdSettings';
 import MdWarning from 'react-ionicons/lib/MdWarning';
 
@@ -23,6 +24,7 @@ const getSelectedIcon = (icon) => {
     Settings: <MdSettings className={classNameIcon} />,
     User: <MdPerson className="input-icon" />,
     Password: <MdLock className="input-icon" />,
+    Search: <MdSearch className="input-icon" />,
     Finalizado: <MdCheckmarkCircle className={`${classNameIcon}-done`} />,
     Andamento: <MdPlay className={`${classNameIcon}-play`} />,
     Atencao: <MdWarning className={`${classNameIcon}-warning`} />,

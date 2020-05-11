@@ -15,6 +15,13 @@
 @import './components/workflow.scss';
 @import './components/process.scss';
 @import './components/backdrop.scss';
+@import './components/modal.scss';
+@import './components/modalError.scss';
+@import './components/modalState.scss';
+@import './components//dateRange.scss';
 //@VENDORS
 @import './vendors/spinnerLoader.scss';
 @import './vendors/bootstrap.scss';
+@import './vendors/datepicker.scss';
+//@PAGES
+@import './pages/login.scss';

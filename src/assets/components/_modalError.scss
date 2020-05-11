@@ -1,0 +1,16 @@
+.modal-error {
+
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: .5rem;
+    position: relative;
+  }
+
+  &-message {
+    font-size: 1.3rem;
+    color: $color-grey-5
+  }
+}
