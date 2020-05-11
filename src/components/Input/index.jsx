@@ -21,9 +21,9 @@ const Input = ({
     case ('select'):
       inputElement = (
         <select className={className} onChange={(e) => onChange(e.target.value)} value={value}>
-          {options.map((id) => (
-            <option value={id} key={id}>
-              {id}
+          {options.map((option) => (
+            <option value={option} key={option}>
+              {option}
             </option>
           ))}
         </select>
