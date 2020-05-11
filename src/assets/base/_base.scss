@@ -16,6 +16,10 @@ select {
     font-size: 1.2rem;
 }
 
+body {
+    background-color: lighten($color-grey-1, 1%);
+}
+
 html {
     @include respond(desktop-extra-large) {
         // width > 1920px
@@ -23,15 +27,15 @@ html {
     }
     @include respond(desktop-large) {
         // 1440 <= width <= 1919px
-        font-size: 70%; // 1rem = px
+        font-size: 68.75%; // 1rem = 11px
     }
     @include respond(desktop-medium) {
         // 1200px <= width <= 1439px
-        font-size: 65%; // 1rem = 9px
+        font-size: 62.5%; // 1rem = 10px
     }
     @include respond(desktop) {
         // 992px - 1199px
-        font-size: 60%; // 1rem = 9px
+        font-size: 56.25%; // 1rem = 9px
     }
 }
 

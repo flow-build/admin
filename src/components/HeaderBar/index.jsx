@@ -9,9 +9,7 @@ const HeaderBar = () => {
   return (
     <header className="header-bar">
       <Logo className="logo" height="3.5" />
-      {isAuth ? (
-        <MdLogOut className="logout" />
-      ) : null}
+      {isAuth && <MdLogOut className="logout" />}
     </header>
   );
 };

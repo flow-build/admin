@@ -43,9 +43,9 @@ export const Textarea = () => {
 
 export const Select = () => {
     const [value, setValue] = useState('');
-    const selectOption = ['1', '2', '3', '4', '5'];
+    const options = ['1', '2', '3', '4', '5'];
     return (
-        <Input selectOption={selectOption} elementType="select" placeholder="" value={value} onChange={setValue}></Input>
+        <Input options={options} elementType="select" placeholder="" value={value} onChange={setValue}></Input>
     );
 };
 

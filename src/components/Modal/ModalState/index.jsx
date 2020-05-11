@@ -34,7 +34,7 @@ const ModalState = ({
           </label>
           <label>
             ID Nó:
-            <Input elementType="select" selectOption={nodeIds} placeholder="ID Nó" value={nodeId} onChange={setNodeId} />
+            <Input elementType="select" options={nodeIds} placeholder="ID Nó" value={nodeId} onChange={setNodeId} />
           </label>
           <label>
             Bag:

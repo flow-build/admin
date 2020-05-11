@@ -9,7 +9,7 @@ const Modal = ({ children, title, type }) => { //eslint-disable-line
   return (
     <>
       <Backdrop show={show} onClick={setShow} />
-      {show ? (
+      {show && (
         <div className="modal">
           <div className="modal-exit">
             <p className={`modal-title ${type}`}>{title}</p>
@@ -19,7 +19,7 @@ const Modal = ({ children, title, type }) => { //eslint-disable-line
           </div>
           {children}
         </div>
-      ) : null}
+      )}
     </>
   );
 };

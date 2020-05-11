@@ -6,7 +6,7 @@ import iconUtil from '../../utils/iconUtil';
 
 
 const Input = ({
-  placeholder, type, icon, onChange, value, elementType, selectOption,
+  placeholder, type, icon, onChange, value, elementType, options,
 }) => {
   let className = 'input-content';
   let inputElement = null;
@@ -21,7 +21,7 @@ const Input = ({
     case ('select'):
       inputElement = (
         <select className={className} onChange={(e) => onChange(e.target.value)} value={value}>
-          {selectOption.map((id) => (
+          {options.map((id) => (
             <option value={id} key={id}>
               {id}
             </option>
@@ -41,19 +41,20 @@ const Input = ({
 };
 
 Input.propTypes = {
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   type: PropTypes.string.isRequired,
   elementType: PropTypes.string.isRequired,
   icon: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  selectOption: PropTypes.arrayOf(PropTypes.oneOfType(
+  options: PropTypes.arrayOf(PropTypes.oneOfType(
     [PropTypes.string],
   )).isRequired,
 };
 
 Input.defaultProps = {
   icon: '',
+  placeholder: '',
 };
 
 export default Input;
