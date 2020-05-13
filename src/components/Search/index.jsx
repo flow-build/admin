@@ -5,32 +5,27 @@ import PropTypes from 'prop-types';
 import Input from '../Input';
 
 const Search = ({
-  initialArray, setFilteredArray,
+  initialArray, filteredArray, setFilteredArray,
 }) => {
   const [value, setValue] = useState('');
-  let newFilteredArray = [];
   useEffect(() => {
-    newFilteredArray = [];
-    if (!value) {
-      setFilteredArray(newFilteredArray);
-      return;
-    }
-    initialArray.forEach((itemInArray) => {
-      if (itemInArray.toLowerCase().trim().match(`${value.toLowerCase().trim()}`)) {
-        newFilteredArray.push(itemInArray);
-        setFilteredArray(newFilteredArray);
-      }
-    });
+    if (filteredArray.length === 0) setFilteredArray(initialArray);
   }, [value]);
+  const filterSearch = (valueInput) => {
+    const trimLower = (str) => str.trim().toLowerCase();
+    setFilteredArray(initialArray.filter((item) => trimLower(item).match(new RegExp(trimLower(valueInput), 'g'))));
+    setValue(valueInput);
+  };
   return (
     <div>
-      <Input elementType="input" icon="Search" placeholder="Filtre os workflows" value={value} onChange={setValue} />
+      <Input elementType="input" icon="Search" placeholder="Filtre os workflows" value={value} onChange={filterSearch} />
     </div>
   );
 };
 
 Search.propTypes = {
   initialArray: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filteredArray: PropTypes.arrayOf(PropTypes.string).isRequired,
   setFilteredArray: PropTypes.func.isRequired,
 };
 
