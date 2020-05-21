@@ -1,8 +1,8 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
 
 const CenterStorybook = (props) => {
+  // eslint-disable-next-line react/prop-types
   const { children } = props;
   return (
     <div className="center-storybook">
@@ -11,8 +11,5 @@ const CenterStorybook = (props) => {
   );
 };
 
-CenterStorybook.propTypes = {
-  children: PropTypes.string.isRequired,
-};
 
 export default CenterStorybook;

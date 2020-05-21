@@ -5,23 +5,16 @@ import PropTypes from 'prop-types';
 import MyDatePicker from '../MyDatepicker';
 
 const DateRange = ({
-  initialDateArray, setUpdatedDateArray,
+  initialDateArray, setUpdatedDateArray, updatedDateArray,
 }) => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-  let newDateArray = [];
   useEffect(() => {
-    newDateArray = [];
-    if (!startDate && !endDate) {
-      setUpdatedDateArray(newDateArray);
+    if (updatedDateArray.length === 0) {
+      setUpdatedDateArray(initialDateArray);
       return;
     }
-    initialDateArray.forEach((dateInArray) => {
-      if (dateInArray >= startDate && dateInArray <= endDate) {
-        newDateArray.push(dateInArray);
-        setUpdatedDateArray(newDateArray);
-      }
-    });
+    setUpdatedDateArray(initialDateArray.filter((dateInArray) => dateInArray >= startDate && dateInArray <= endDate));
   }, [startDate, endDate]);
   return (
     <div className="date-range">
@@ -40,6 +33,7 @@ const DateRange = ({
 
 DateRange.propTypes = {
   initialDateArray: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
+  updatedDateArray: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
   setUpdatedDateArray: PropTypes.func.isRequired,
 };
 

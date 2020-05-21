@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import IconUtil from '../../utils/iconUtil';
 import Backdrop from '../Backdrop';
 
 
-const Modal = ({ children, title, type }) => { //eslint-disable-line
-  const [show, setShow] = useState(true);
+const Modal = ({ children, title, type, show, setShow, childrenModal }) => { //eslint-disable-line
   return (
     <>
       <Backdrop show={show} onClick={setShow} />
-      {show && (
-        <div className="modal">
-          <div className="modal-exit">
-            <p className={`modal-title ${type}`}>{title}</p>
-            <div onClick={() => setShow(false)}>  {/*eslint-disable-line*/}
-              {IconUtil('Erro')}
+      {show ? (
+        <>
+          <div className="modal">
+            <div className="modal-exit">
+              <p className={`modal-title title-${type}`}>{title}</p>
+              <div onClick={() => setShow(false)}>  {/*eslint-disable-line*/}
+                {IconUtil('Erro')}
+              </div>
             </div>
+            {children}
           </div>
-          {children}
-        </div>
-      )}
+          {childrenModal}
+        </>
+      ) : children}
     </>
   );
 };

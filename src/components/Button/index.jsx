@@ -16,7 +16,7 @@ Button.propTypes = {
   title: PropTypes.string.isRequired,
   color: PropTypes.string,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   className: PropTypes.string,
 };
 
@@ -24,6 +24,7 @@ Button.defaultProps = {
   color: '',
   disabled: false,
   className: '',
+  onClick: null,
 };
 
 export default Button;

@@ -6,17 +6,21 @@ import iconUtil from '../../utils/iconUtil';
 
 
 const Input = ({
-  placeholder, type, icon, onChange, value, elementType, options,
+  placeholder, type, icon, onChange, value, elementType, options, error, onFocus,
 }) => {
   let className = 'input-content';
   let inputElement = null;
   if (icon) className = `${className} input-content-icon`;
+  if (error) className = `${className} error`;
   switch (elementType) {
     case ('input'):
-      inputElement = <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} />;
+      inputElement = <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} onFocus={onFocus} />;
       break;
     case ('textarea'):
-      inputElement = <textarea className={className} onChange={(e) => onChange(e.target.value)} value={value} />;
+      inputElement = <textarea className={className} onChange={(e) => onChange(e.target.value)} value={value} onFocus={onFocus} />;
+      break;
+    case ('radio'):
+      inputElement = <input type={elementType} onChange={onChange} name="radioButton" />;
       break;
     case ('select'):
       inputElement = (
@@ -30,7 +34,7 @@ const Input = ({
       );
       break;
     default:
-      inputElement = <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} />;
+      inputElement = <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} onFocus={onFocus} />;
   }
   return (
     <div className="input-container">
@@ -42,19 +46,24 @@ const Input = ({
 
 Input.propTypes = {
   placeholder: PropTypes.string,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   elementType: PropTypes.string.isRequired,
   icon: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.oneOfType(
-    [PropTypes.string],
-  )).isRequired,
+  value: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.string),
+  error: PropTypes.bool,
+  onFocus: PropTypes.func,
 };
 
 Input.defaultProps = {
   icon: '',
   placeholder: '',
+  error: false,
+  onFocus: null,
+  options: [],
+  type: '',
+  value: '',
 };
 
 export default Input;

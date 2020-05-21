@@ -1,10 +1,12 @@
 .modal {
-  width: 40%;
+  width: 50%;
+  top: 15%;
+  left: 25%;
   padding: 1rem;
-  position: relative;
-  background-color: $color-grey-1;
+  position: absolute;
+  background-color: #ecf0f1;
   border-radius: 1.5rem;
-  box-shadow: $main-box-shadow;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   z-index: 4;
 
   &-title {
@@ -15,11 +17,11 @@
     margin-left: auto;
   }
 
-  .error {
+  .title-error {
     color: $color-red;
   }
 
-  .register {
+  .title-register {
     color: $main-color;
   }
 

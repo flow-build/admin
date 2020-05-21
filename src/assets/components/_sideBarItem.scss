@@ -1,19 +1,19 @@
 .sidebar-item {
-    display: block;
-    width: 100%;
+    display: flex;
+    align-items: center;
     padding: 1rem;
     cursor: pointer;
-
-    &:hover {
-        background-color: $color-grey-2;
+    text-decoration: none;
+    font-weight: 700;
+    color: $color-grey-4;
+    word-break: break-all;
+    
+    &:hover,
+    &-active {
+        background-color: $color-grey-1;
         border-radius: 1rem;
     }
 
-    & p {
-        font-weight: 700;
-        color: $color-grey-4;
-        margin-left: .3rem;
-    }
 
     & div {
         display: flex;
@@ -24,6 +24,7 @@
 
 
 .icon {
+    margin-right: 1rem;
     fill: $color-grey-4;
     height: 2.5rem;
     width: 2.5rem;
