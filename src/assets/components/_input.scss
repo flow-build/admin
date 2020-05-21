@@ -1,0 +1,33 @@
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-content {
+    width: 100%;
+    padding: .7rem;
+    border-radius: 1rem;
+    border: .12rem solid $color-grey-3;
+    z-index: 1;
+
+    &:focus {
+        outline: none;
+        border-color: $main-color;
+    }
+
+    &.input-content-icon {
+        margin-left: -2.5rem;
+        padding-left: 3rem; 
+    }
+
+}
+
+.error {
+  border: .12rem solid $color-red;
+}
+
+.input-icon {
+  fill: $color-grey-3;
+  z-index: 2;
+}

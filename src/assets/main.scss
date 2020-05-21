@@ -1,3 +1,41 @@
+<<<<<<< Updated upstream
 // BOOTSTRAP IMPORT
 //VENDORS IMPORT
 @import './vendors/bootstrap.scss';
+=======
+//@ABSTRACT
+@import './abstracts/mixins.scss';
+@import './abstracts/variables.scss';
+//@BASE
+@import './base//base.scss';
+//@COMPONENTS
+@import './components/button.scss';
+@import './components/centerStorybook.scss';
+@import './components/input.scss';
+@import './components/logo.scss';
+@import './components/headerBar.scss';
+@import './components/sideBar.scss';
+@import './components/sideBarItem.scss';
+@import './components/workflow.scss';
+@import './components/process.scss';
+@import './components/backdrop.scss';
+@import './components/modal.scss';
+@import './components/modalError.scss';
+@import './components/modalState.scss';
+@import './components/dateRange.scss';
+@import './components/jsonRender.scss';
+//@LATOUTS
+@import './layouts/forms.scss';
+//@PAGES
+@import './pages/login.scss';
+@import './pages/home.scss';
+@import './pages/workflow.scss';
+@import './pages/processes.scss';
+@import './pages/process.scss';
+//@VENDORS
+@import './vendors/spinnerLoader.scss';
+@import './vendors/bootstrap.scss';
+@import './vendors/datepicker.scss';
+//@NOTIFICATION
+@import 'react-notifications-component/dist/scss/notification.scss';
+>>>>>>> Stashed changes

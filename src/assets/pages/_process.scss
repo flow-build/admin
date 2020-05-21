@@ -1,0 +1,27 @@
+.process-page {
+
+  &-container {
+    height: 94vh;
+    padding: 2rem;
+  }
+
+  &-json {
+    width: 30%;
+    margin-left: 2rem;
+    margin-top: 2rem;
+  }
+
+  &-content {
+    display: flex;
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &-table {
+    margin-top: 2rem;
+  }
+  
+}
