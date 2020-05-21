@@ -6,8 +6,7 @@
     border-radius: 1rem;
     box-shadow: $main-box-shadow;
     padding: 1rem;
-    flex: 0 0 30%;
-    margin: 1%;
+    width: 25%;
   }
 
   &-version {
@@ -31,10 +30,6 @@
     display: flex;
     justify-content: right;
     padding: 1rem;
-
-    div {
-      width: 5rem;
-    }
   }
 
   &-status {

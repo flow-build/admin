@@ -3,6 +3,7 @@
   .react-datepicker,
   .react-datepicker__day-name {
     font-size: 1.1rem;
+    border-radius: 2rem;
   }
 
   .react-datepicker__day--selected {
@@ -11,6 +12,7 @@
 
   .react-datepicker__header {
     background-color: lighten($main-color, 30%);
+    border-radius: 2rem;
   }
 
   .react-datepicker__current-month,
@@ -25,9 +27,5 @@
 
   .react-datepicker__navigation--previous {
     border-right-color: $color-white;
-  }
-
-  .react-datepicker__input-container input {  
-    font-size: 1rem;
   }
 }
