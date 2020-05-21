@@ -1,0 +1,37 @@
+.workflow-page {
+
+  &-container {
+    width: 100%;
+  }
+
+  &-title {
+    margin-right: auto;
+    font-weight: 100;
+    color: $color-grey-5;
+    font-size: 3rem;
+    margin-left: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: solid 1px $color-grey-5;
+  }
+
+
+  &-date-range {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 1rem;
+  }
+
+  &-filter {
+    margin-right: auto;
+    margin-left: 2rem;
+    margin-top: 2rem;
+  }
+
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+}
+
