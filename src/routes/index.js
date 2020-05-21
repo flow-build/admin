@@ -1,13 +1,3 @@
-<<<<<<< Updated upstream
-import MainPage from '@pages/main';
-
-
-export default [
-  {
-    path: '/',
-    label: 'Main',
-    component: MainPage,
-=======
 import AppPage from '../pages/appPage';
 import BlueprintManager from '../pages/blueprintManager';
 import Insights from '../pages/insights';
@@ -57,6 +47,5 @@ export default [
     path: '/app/settings',
     label: 'Settings',
     component: Settings,
->>>>>>> Stashed changes
   },
 ];

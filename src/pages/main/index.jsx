@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-import React from 'react';
-
-const MainPage = () => (
-  <div>
-    Main Page Works!
-  </div>
-);
-=======
 import React, { useState } from 'react';
 import { Route, useHistory } from 'react-router-dom';
 
@@ -36,6 +27,5 @@ const MainPage = () => {
     </>
   );
 };
->>>>>>> Stashed changes
 
 export default MainPage;

@@ -1,25 +1,23 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
 import iconUtil from '../../../utils/iconUtil';
 
-
 const SideBarItem = ({
-  icon, name, to,
+  icon, name,
 }) => (
-  <NavLink to={to} activeClassName="sidebar-item-active" className="sidebar-item" exact>
-    {iconUtil(icon)}
-    {name}
-  </NavLink>
+  <div className="sidebar-item">
+    <div>
+      {iconUtil(icon)}
+      <p>{name}</p>
+    </div>
+  </div>
 );
 
 SideBarItem.propTypes = {
   icon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
 };
-
 
 export default SideBarItem;
