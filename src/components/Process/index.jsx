@@ -1,32 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
+import Pagination from '../../utils/pagination';
 import ProcessItem from './ProcessItem';
 
 const Process = ({
-  listProcessItem, processCheck, processAction,
-}) => (
-  <table className="table">
-    <thead>
-      <tr>
-        {processCheck && <th>#</th>}
-        <th>ID</th>
-        <th>Data Criação</th>
-        <th>Status</th>
-        <th>Passo Atual</th>
-        <th>Nó</th>
-        <th>Próximo Nó</th>
-        <th>Última Atualização</th>
-      </tr>
-    </thead>
-    <tbody>
-      {listProcessItem.map((processItem) => (
-        <ProcessItem key={processItem.id} {...processItem} processCheck={processCheck} radioAction={() => processAction(processItem)} />
-      ))}
-    </tbody>
-  </table>
-);
+  listProcessItem, processCheck, processAction, total,
+}) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [resultsPerPage] = useState(10);
+  const indexOfLastPost = currentPage * resultsPerPage;
+  const indexOfFirstPost = indexOfLastPost - resultsPerPage;
+  const currentProcess = listProcessItem.slice(indexOfFirstPost, indexOfLastPost);
+  const paginate = (pageNumber, event) => {
+    event.preventDefault();
+    setCurrentPage(pageNumber);
+  };
+  return (
+    <>
+      <table className="table">
+        <thead>
+          <tr>
+            {processCheck && <th>#</th>}
+            <th>ID</th>
+            <th>Data Criação</th>
+            <th>Status</th>
+            <th>Passo Atual</th>
+            <th>Nó</th>
+            <th>Próximo Nó</th>
+            <th>Última Atualização</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentProcess.map((processItem) => (
+            <ProcessItem key={processItem.id} {...processItem} processCheck={processCheck} radioAction={() => processAction(processItem)} />
+          ))}
+        </tbody>
+      </table>
+      <Pagination
+        resultsPerPage={resultsPerPage}
+        totalResults={total}
+        paginate={paginate}
+      />
+    </>
+  );
+};
 
 Process.propTypes = {
   listProcessItem: PropTypes.arrayOf(PropTypes.shape(
@@ -34,6 +53,7 @@ Process.propTypes = {
   )).isRequired,
   processCheck: PropTypes.bool,
   processAction: PropTypes.func,
+  total: PropTypes.number.isRequired,
 };
 
 Process.defaultProps = {

@@ -24,7 +24,7 @@ export default [
     component: WorkflowMonitoring,
   },
   {
-    path: '/app/processes/',
+    path: '/app/processes/:workflowId',
     label: 'Processes',
     component: Processes,
   },
