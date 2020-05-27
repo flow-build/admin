@@ -18,7 +18,7 @@
     text-align: center;
     background-color: $color-grey-1;
     border-radius: 50%;
-    width: 5rem;
+    width: 6rem;
     padding: 1rem;
   }
 
@@ -52,6 +52,7 @@
     &-content {
       height: 19rem;
       overflow-y: scroll;
+      width: 35rem;
     }
   }
 

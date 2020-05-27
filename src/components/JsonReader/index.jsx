@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import ReactJson from 'react-json-view';
-
-import PropTypes from 'prop-types';
 
 import IconUtil, { convertIcon } from '../../utils/iconUtil';
 

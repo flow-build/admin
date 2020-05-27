@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import App from './app';
 import { tokenSelector, setAuthHeader } from './redux/axios';
 import authReducer from './redux/reducers/auth';
+import genericReducer from './redux/reducers/genericReducer';
 import processesReducer from './redux/reducers/processes';
 import workflowReducer from './redux/reducers/workflow';
 import './index.scss';
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   workflow: workflowReducer,
   processes: processesReducer,
+  generic: genericReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(

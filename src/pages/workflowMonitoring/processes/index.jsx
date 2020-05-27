@@ -14,14 +14,14 @@ const ProcessesPage = ({
   match,
 }) => {
   const dispatch = useDispatch();
+  const paramWorkflowId = match.params.workflowId;
   const processesSelector = useSelector((state) => state.processes.processes);
-  const getProcessesStart = (workflowId) => actions.getProcessesStart(workflowId);
   const initialDateArray = [new Date('3/12/2020'), new Date('7/27/2020')];
   const [updatedDateArray, setUpdatedDateArray] = useState([]);
-  const loading = useSelector((state) => state.processes.loading);
+  const loading = useSelector((state) => state.generic.loading);
   const totalProcess = useSelector((state) => state.processes.length);
   useEffect(() => {
-    dispatch(getProcessesStart(match.params.workflowId));
+    dispatch(actions.getProcessesStart(paramWorkflowId));
   }, [dispatch]);
   return (
     <div className="processes-container">
@@ -31,7 +31,7 @@ const ProcessesPage = ({
         <>
           <div className="processes-filter">
             <DateRange initialDateArray={initialDateArray} setUpdatedDateArray={setUpdatedDateArray} updatedDateArray={updatedDateArray} />
-            <Button title="atualizar" onClick={getProcessesStart(match.params.workflowId)} />
+            <Button title="atualizar" onClick={() => dispatch(actions.getProcessesStart(paramWorkflowId))} />
           </div>
           <div className="processes-table">
             <p className="processes-page-title">Processos</p>

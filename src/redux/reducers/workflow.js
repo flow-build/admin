@@ -4,7 +4,6 @@ import { updateObject } from '../utility';
 
 const initialState = {
   workflows: [],
-  loading: true,
 };
 
 const getWorkflows = (state, action) => {
@@ -12,7 +11,7 @@ const getWorkflows = (state, action) => {
   newWorkflows = Object.keys(action.workflows).map((key) => {
     return [key, action.workflows[key]];
   });
-  return updateObject(state, { workflows: newWorkflows, loading: false });
+  return updateObject(state, { workflows: newWorkflows });
 };
 
 const reducer = (state = initialState, action) => {

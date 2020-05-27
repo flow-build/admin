@@ -5,6 +5,13 @@
     padding: 2rem;
   }
 
+  &-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
   &-json {
     width: 30%;
     margin-left: 2rem;

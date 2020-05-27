@@ -18,7 +18,7 @@ const WorkflowMonitoringPage = () => {
   const [updatedDateArray, setUpdatedDateArray] = useState([]);
   const [filteredArray, setFilteredArray] = useState([]);
   const [initialArray, setInitialArray] = useState([]);
-  const loading = useSelector((state) => state.workflow.loading);
+  const loading = useSelector((state) => state.generic.loading);
   const history = useHistory();
   const redirectProcesses = (workflowId) => {
     history.push(`/app/processes/${workflowId}`);

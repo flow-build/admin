@@ -5,7 +5,6 @@ import { updateObject } from '../utility';
 const initialState = {
   processes: [],
   length: 0,
-  loading: true,
 };
 
 const getProcesses = (state, action) => {
@@ -19,9 +18,11 @@ const getProcesses = (state, action) => {
       nodeId: process.state.node_id,
       nextNodeId: process.state.next_node_id,
       lastUpdated: process.state.created_at,
+      bag: process.state.bag,
+      result: process.state.result,
     };
   });
-  return updateObject(state, { processes: newProcesses, length: newProcesses.length, loading: false });
+  return updateObject(state, { processes: newProcesses, length: newProcesses.length });
 };
 
 const reducer = (state = initialState, action) => {
