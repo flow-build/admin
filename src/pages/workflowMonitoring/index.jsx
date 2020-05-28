@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import Button from '../../components/Button';
 import DateRange from '../../components/DateRange';
 import Search from '../../components/Search';
 import SpinnerLoader from '../../components/SpinnerLoader';
@@ -72,6 +73,7 @@ const WorkflowMonitoringPage = () => {
               ))} */}
             </div>
             <DateRange initialDateArray={initialDateArray} setUpdatedDateArray={setUpdatedDateArray} updatedDateArray={updatedDateArray} />
+            <Button title="Atualizar" onClick={() => dispatch(actions.getWorkflowsStart())} />
           </div>
           <div className="workflow-page-list">
             {workflowsSelector.map((workflow, index) => mountWorkflows(workflow, index))}

@@ -9,7 +9,7 @@ const Process = ({
   listProcessItem, processCheck, processAction, total,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage] = useState(10);
+  const [resultsPerPage] = useState(processCheck ? 14 : 10);
   const indexOfLastPost = currentPage * resultsPerPage;
   const indexOfFirstPost = indexOfLastPost - resultsPerPage;
   const currentProcess = listProcessItem.slice(indexOfFirstPost, indexOfLastPost);
@@ -29,12 +29,12 @@ const Process = ({
             <th>Passo Atual</th>
             <th>Nó</th>
             <th>Próximo Nó</th>
-            <th>Última Atualização</th>
+            {!processCheck && <th>Última Atualização</th>}
           </tr>
         </thead>
         <tbody>
           {currentProcess.map((processItem) => (
-            <ProcessItem key={processItem.id} {...processItem} processCheck={processCheck} radioAction={() => processAction(processItem)} />
+            <ProcessItem key={processItem.id} {...processItem} processCheck={processCheck} action={() => processAction(processItem)} />
           ))}
         </tbody>
       </table>

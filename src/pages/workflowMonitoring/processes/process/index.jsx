@@ -1,17 +1,24 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import Button from '../../../components/Button';
-import JsonReader from '../../../components/JsonReader';
-import ModalState from '../../../components/Modal/ModalState';
-import Process from '../../../components/Process';
-import SpinnerLoader from '../../../components/SpinnerLoader';
+import Button from '../../../../components/Button';
+import JsonReader from '../../../../components/JsonReader';
+import ModalState from '../../../../components/Modal/ModalState';
+import Process from '../../../../components/Process';
+import SpinnerLoader from '../../../../components/SpinnerLoader';
+import * as actions from '../../../../redux/actions';
+import iconUtil from '../../../../utils/iconUtil';
 
-const ProcessPage = () => {
-  const processesSelector = useSelector((state) => state.processes.processes);
+const ProcessPage = ({
+  match,
+}) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const statesSelector = useSelector((state) => state.states.states);
   const loading = useSelector((state) => state.generic.loading);
-  const totalProcess = useSelector((state) => state.processes.length);
+  const totalProcess = useSelector((state) => state.states.length);
   const nodeIds = ['1', '2', '3', '4', '5'];
   const [show, setShow] = useState(false);
   const [processObject, setProcessObject] = useState({
@@ -21,6 +28,9 @@ const ProcessPage = () => {
     bag: {},
     result: {},
   });
+  useEffect(() => {
+    dispatch(actions.getStatesStart(match.params.processId));
+  }, [dispatch]);
   const createProcess = () => {
     setShow(true);
   };
@@ -47,13 +57,19 @@ const ProcessPage = () => {
         <ModalState nodeIds={nodeIds} show={show} setShow={setShow}>
           <div className="process-page-container">
             <div className="process-page-actions">
+              {iconUtil('Back', history.goBack)}
               <Button title="Criar novo processo a partir de " onClick={createProcess} />
               <Button title="Editar estado do processo" onClick={editProcess} />
               <Button title="Abortar processo" onClick={abortProcess} color="red" />
             </div>
             <div className="process-page-content">
               <div className="processes-table">
-                <Process listProcessItem={processesSelector} total={totalProcess} processAction={(processitem) => readProcess(processitem)} processCheck />
+                <Process
+                  listProcessItem={statesSelector}
+                  total={totalProcess}
+                  processAction={(processitem) => readProcess(processitem)}
+                  processCheck
+                />
               </div>
               <div className="process-page-json">
                 <JsonReader processObject={processObject} />
@@ -65,5 +81,6 @@ const ProcessPage = () => {
     </div>
   );
 };
+
 
 export default ProcessPage;

@@ -4,8 +4,8 @@ import Insights from '../pages/insights';
 import Settings from '../pages/settings';
 import Toolbox from '../pages/toolbox';
 import WorkflowMonitoring from '../pages/workflowMonitoring';
-import Process from '../pages/workflowMonitoring/process';
 import Processes from '../pages/workflowMonitoring/processes';
+import Process from '../pages/workflowMonitoring/processes/process';
 
 export default [
   {
@@ -29,7 +29,7 @@ export default [
     component: Processes,
   },
   {
-    path: '/app/process/',
+    path: '/app/process/:processId',
     label: 'Process',
     component: Process,
   },

@@ -16,7 +16,7 @@ const JsonReader = ({
       </div>
       <div className="json-create-status">
         <p>{processObject.createdAt}</p>
-        <p className="json-status-paragraph">{IconUtil(statusName)} {statusName} </p>
+        <p className="json-status-paragraph">{IconUtil(statusName)} {processObject.status} </p>
       </div>
       <div className="json-reader">
         <p>Bag:</p>

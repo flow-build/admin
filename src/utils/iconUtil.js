@@ -1,11 +1,13 @@
 import React from 'react';
 import MdApps from 'react-ionicons/lib/MdApps';
+import MdArrowRoundBack from 'react-ionicons/lib/MdArrowRoundBack';
 import MdBuild from 'react-ionicons/lib/MdBuild';
 import MdCheckmarkCircle from 'react-ionicons/lib/MdCheckmarkCircle';
 import MdCloseCircle from 'react-ionicons/lib/MdCloseCircle';
 import MdCrop from 'react-ionicons/lib/MdCrop';
 import MdDesktop from 'react-ionicons/lib/MdDesktop';
 import MdLock from 'react-ionicons/lib/MdLock';
+import MdLogOut from 'react-ionicons/lib/MdLogOut';
 import MdPerson from 'react-ionicons/lib/MdPerson';
 import MdPlay from 'react-ionicons/lib/MdPlay';
 import MdPodium from 'react-ionicons/lib/MdPodium';
@@ -13,7 +15,7 @@ import MdSearch from 'react-ionicons/lib/MdSearch';
 import MdSettings from 'react-ionicons/lib/MdSettings';
 import MdWarning from 'react-ionicons/lib/MdWarning';
 
-const getSelectedIcon = (icon) => {
+const getSelectedIcon = (icon, onClick) => {
   const classNameIcon = 'icon';
   const icons = {
     Dashboard: <MdApps className={classNameIcon} />,
@@ -22,6 +24,9 @@ const getSelectedIcon = (icon) => {
     Insights: <MdPodium className={classNameIcon} />,
     Toolbox: <MdBuild className={classNameIcon} />,
     Settings: <MdSettings className={classNameIcon} />,
+    Back: <MdArrowRoundBack className={classNameIcon} onClick={onClick} />,
+    Logout: <MdLogOut className="icon" />,
+    LogoutHeader: <MdLogOut className="logout" onClick={onClick} />,
     User: <MdPerson className="input-icon" />,
     Password: <MdLock className="input-icon" />,
     Search: <MdSearch className="input-icon" />,
@@ -33,6 +38,7 @@ const getSelectedIcon = (icon) => {
   };
   return icons[icon];
 };
+
 
 export const convertIcon = (status) => {
   let statusName = '';

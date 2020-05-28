@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
-import { Route, useHistory } from 'react-router-dom';
-
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 import HeaderBar from '../../components/HeaderBar';
+import SpinnerLoader from '../../components/SpinnerLoader';
 import LoginPage from '../login';
 import SidebarPage from '../sidebar';
 
 const MainPage = () => {
-  const [isAuth, setIsAuth] = useState(false);
-  const history = useHistory();
-  const redirectHome = (auth) => {
-    setIsAuth(auth);
-    history.push('/app');
-  };
+  const token = useSelector((state) => state.auth.token);
+  const loading = useSelector((state) => state.generic.loading);
   return (
     <>
       <HeaderBar />
-      {!isAuth ? (
-        <Route
-          path="/login"
-          render={() => <LoginPage setIsAuth={(auth) => redirectHome(auth)} />}
-        />
+      {!token ? (
+        <>
+          {loading ? (
+            <SpinnerLoader fontSize="1" />
+          ) : (
+            <Route
+              path={['/login', '/']}
+              component={LoginPage}
+            />
+          )}
+        </>
       ) : (
         <SidebarPage />
       )}

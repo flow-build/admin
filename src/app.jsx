@@ -1,12 +1,18 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import ReactNotification from 'react-notifications-component';
-import { Router, Route, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Router, Route } from 'react-router-dom';
 
 import history from '@utils/history';
 
 import MainPage from './pages/main';
+import * as actions from './redux/actions';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actions.authCheckState());
+  }, [dispatch]);
   return (
     <>
       <ReactNotification />
@@ -16,7 +22,6 @@ function App() {
             path="/"
             component={MainPage}
           />
-          <Redirect to="/login" />
         </Suspense>
       </Router>
     </>

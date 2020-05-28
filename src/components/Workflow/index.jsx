@@ -20,12 +20,9 @@ const Workflow = ({
   return (
     <div className="workflow-container">
       <div className="workflow-content">
-        <div>
+        <div className="workflow-header">
           <p className="workflow-version" title="Versão">
             {version}
-          </p>
-          <p className="workflow-name">
-            {name}
           </p>
         </div>
         <div className="workflow-status">
@@ -36,6 +33,9 @@ const Workflow = ({
           </ul>
         </div>
       </div>
+      <p className="workflow-name">
+        {name}
+      </p>
       <div className="workflow-description">
         <p>
           {description}

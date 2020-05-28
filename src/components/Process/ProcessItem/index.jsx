@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { differenceInDays, differenceInHours, differenceInMinutes } from 'date-fns';
+import {
+  differenceInDays, differenceInHours, differenceInMinutes, format,
+} from 'date-fns';
 import PropTypes from 'prop-types';
 
 import iconUtil, { convertIcon } from '../../../utils/iconUtil';
@@ -11,12 +13,18 @@ import Input from '../../Input';
 
 
 const ProcessItem = ({
-  id, createdAt, status, stepNumber, nodeId, nextNodeId, lastUpdated, processCheck, radioAction,
+  id, createdAt, status, stepNumber, nodeId, nextNodeId, lastUpdated, processCheck, action,
 }) => {
   const history = useHistory();
   const statusName = convertIcon(status);
+  const [checked, setChecked] = useState(false);
+  const formatedDate = format(new Date(createdAt), 'dd/MM/yyyy HH:mm:ss');
   const redirectProcess = () => {
-    history.push('/app/process/');
+    history.push(`/app/process/${id}`);
+  };
+  const selectRow = () => {
+    setChecked(!checked);
+    action();
   };
   let lastUpdatedFormatted = differenceInDays(new Date(lastUpdated), new Date(createdAt));
   switch (lastUpdatedFormatted) {
@@ -33,23 +41,25 @@ const ProcessItem = ({
     default: lastUpdatedFormatted = `Há ${lastUpdatedFormatted} dias atrás`;
   }
   return (
-    <tr>
+    <tr className="table-row" onClick={selectRow}>
       {processCheck && (
         <td>
-          <Input elementType="radio" onChange={radioAction} />
+          <Input elementType="radio" onChange={selectRow} checked={checked} />
         </td>
       )}
       <td className="id-link" onClick={redirectProcess}>{id}</td>
-      <td>{createdAt}</td>
+      <td>{formatedDate}</td>
       <td>
         <div className="align-status">
-          {statusName} {iconUtil(statusName)}
+          {iconUtil(statusName)} {status}
         </div>
       </td>
       <td>{stepNumber}</td>
       <td>{nodeId}</td>
       <td>{nextNodeId}</td>
-      <td>{lastUpdatedFormatted}</td>
+      {!processCheck && (
+        <td>{lastUpdatedFormatted}</td>
+      )}
     </tr>
   );
 };
@@ -61,14 +71,15 @@ ProcessItem.propTypes = {
   stepNumber: PropTypes.number.isRequired,
   nodeId: PropTypes.string.isRequired,
   nextNodeId: PropTypes.string.isRequired,
-  lastUpdated: PropTypes.string.isRequired,
+  lastUpdated: PropTypes.string,
   processCheck: PropTypes.bool,
-  radioAction: PropTypes.func,
+  action: PropTypes.func,
 };
 
 ProcessItem.defaultProps = {
   processCheck: false,
-  radioAction: null,
+  action: null,
+  lastUpdated: '',
 };
 
 export default ProcessItem;

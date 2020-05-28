@@ -6,7 +6,7 @@ import iconUtil from '../../utils/iconUtil';
 
 
 const Input = ({
-  placeholder, type, icon, onChange, value, elementType, options, error, onFocus,
+  placeholder, type, icon, onChange, value, elementType, options, error, onFocus, checked,
 }) => {
   let className = 'input-content';
   let inputElement = null;
@@ -20,7 +20,7 @@ const Input = ({
       inputElement = <textarea className={className} onChange={(e) => onChange(e.target.value)} value={value} onFocus={onFocus} />;
       break;
     case ('radio'):
-      inputElement = <input type={elementType} onChange={onChange} name="radioButton" />;
+      inputElement = <input type={elementType} onChange={onChange} name="radioButton" checked={checked} />;
       break;
     case ('select'):
       inputElement = (
@@ -54,6 +54,7 @@ Input.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string),
   error: PropTypes.bool,
   onFocus: PropTypes.func,
+  checked: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -64,6 +65,7 @@ Input.defaultProps = {
   options: [],
   type: '',
   value: '',
+  checked: false,
 };
 
 export default Input;

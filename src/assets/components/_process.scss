@@ -21,14 +21,18 @@
   .align-status {
     display: flex;
     align-items: center;
+    text-transform: capitalize;
 
     svg {
       margin-left: .2rem;
     }
   }
 
+  &-row {
+    cursor: pointer;
+  }
+
   .id-link {
-    font-weight: 700;
     color: darken($main-color, 15%);
     cursor: pointer;
   }

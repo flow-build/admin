@@ -6,7 +6,7 @@
     border-radius: 1rem;
     box-shadow: $main-box-shadow;
     padding: 1rem;
-    flex: 0 0 30%;
+    flex: 1 0 30%;
     margin: 1%;
   }
 
@@ -25,20 +25,21 @@
     font-weight: 700;
     color: $color-grey-4;
     font-size: 1.7rem;
+    padding-left: 1rem;
+  }
+
+  &-header {
+    width: 1rem;
   }
 
   &-content {
     display: flex;
     justify-content: right;
     padding: 1rem;
-
-    div {
-      width: 5rem;
-    }
   }
 
   &-status {
-    margin-left: 3rem;
+    margin-left: auto;
     
     & ul {
       display: flex;
