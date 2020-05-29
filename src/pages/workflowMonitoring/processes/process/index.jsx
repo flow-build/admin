@@ -50,9 +50,11 @@ const ProcessPage = ({
     });
   };
   return (
-    <div className="process-page-loading">
+    <div style={{ width: '100%' }}>
       {loading ? (
-        <SpinnerLoader fontSize="1" />
+        <div className="process-page-loading">
+          <SpinnerLoader fontSize="1" />
+        </div>
       ) : (
         <ModalState nodeIds={nodeIds} show={show} setShow={setShow}>
           <div className="process-page-container">
@@ -77,7 +79,7 @@ const ProcessPage = ({
             </div>
           </div>
         </ModalState>
-      )};
+      )}
     </div>
   );
 };

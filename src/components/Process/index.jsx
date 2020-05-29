@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
-import Pagination from '../../utils/pagination';
+import Pagination from './Pagination';
 import ProcessItem from './ProcessItem';
 
 const Process = ({
   listProcessItem, processCheck, processAction, total,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage] = useState(processCheck ? 14 : 10);
-  const indexOfLastPost = currentPage * resultsPerPage;
-  const indexOfFirstPost = indexOfLastPost - resultsPerPage;
-  const currentProcess = listProcessItem.slice(indexOfFirstPost, indexOfLastPost);
+  const [resultsPerPage] = useState(processCheck ? 12 : 10);
+  const indexOfLast = currentPage * resultsPerPage;
+  const indexOfFirst = indexOfLast - resultsPerPage;
+  const currentProcess = listProcessItem.slice(indexOfFirst, indexOfLast);
   const paginate = (pageNumber, event) => {
     event.preventDefault();
     setCurrentPage(pageNumber);
@@ -22,7 +22,6 @@ const Process = ({
       <table className="table">
         <thead>
           <tr>
-            {processCheck && <th>#</th>}
             <th>ID</th>
             <th>Data Criação</th>
             <th>Status</th>

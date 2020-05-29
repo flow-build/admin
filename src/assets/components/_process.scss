@@ -11,11 +11,15 @@
   }
 
   th {
-    text-align: left;
+    text-align: left
   }
 
   tr:nth-child(even) {
     background-color: lighten($main-color, 30%);
+  }
+
+  tr:hover {
+    background-color: darken($color-white, 15%);
   }
 
   .align-status {
