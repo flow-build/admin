@@ -9,11 +9,13 @@ const Search = ({
 }) => {
   const [value, setValue] = useState('');
   useEffect(() => {
-    if (filteredArray.length === 0) setFilteredArray(initialArray);
+    if (filteredArray.length === 0 || value.length === 0) setFilteredArray(initialArray);
   }, [value]);
   const filterSearch = (valueInput) => {
-    const trimLower = (str) => str.trim().toLowerCase();
-    setFilteredArray(initialArray.filter((item) => trimLower(item).match(new RegExp(trimLower(valueInput), 'g'))));
+    if (valueInput.length >= 3) {
+      const trimLower = (str) => str.trim().toLowerCase();
+      setFilteredArray(initialArray.filter((item) => trimLower(item).match(new RegExp(trimLower(valueInput), 'g'))));
+    }
     setValue(valueInput);
   };
   return (

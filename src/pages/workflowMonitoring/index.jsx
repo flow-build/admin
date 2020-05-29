@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
@@ -17,8 +18,8 @@ const WorkflowMonitoringPage = () => {
   const workflowsSelector = useSelector((state) => state.workflow.workflows);
   const initialDateArray = [new Date('3/12/2020'), new Date('7/27/2020')];
   const [updatedDateArray, setUpdatedDateArray] = useState([]);
-  const [filteredArray, setFilteredArray] = useState([]);
-  const [initialArray, setInitialArray] = useState([]);
+  const [filteredWorkflowNames, setFilteredWorkflowArray] = useState([]);
+  const workflowNames = useSelector((state) => state.workflow.workflowNames);
   const loading = useSelector((state) => state.generic.loading);
   const history = useHistory();
   const redirectProcesses = (workflowId) => {
@@ -31,31 +32,34 @@ const WorkflowMonitoringPage = () => {
     const listStatus = [
       {
         icon: 'Finalizado',
-        value: workflow[1].finished ? workflow[1].finished : 0,
+        value: workflow.finished,
       },
       {
         icon: 'Andamento',
-        value: workflow[1].waiting ? workflow[1].waiting : workflow[1].running ? workflow[1].running : 0,
+        value: workflow.waiting !== 0 ? workflow.waiting : workflow.running,
       },
       {
         icon: 'Atencao',
-        value: workflow[1].unstarted ? workflow[1].unstarted : workflow[1].aborted ? workflow[1].aborted : 0,
+        value: workflow.unstarted !== 0 ? workflow.unstarted : workflow.aborted,
       },
       {
         icon: 'Erro',
-        value: workflow[1].error ? workflow[1].error : 0,
+        value: workflow.error,
       },
     ];
-    return (
-      <Workflow
-        key={index}
-        name={workflow[1].workflow_name}
-        version={workflow[1].workflow_version}
-        description={workflow[1].workflow_description}
-        clickHandler={() => redirectProcesses(workflow[0])}
-        listStatus={listStatus}
-      />
-    );
+    if (filteredWorkflowNames.indexOf(workflow.workflow_name) > -1) {
+      return (
+        <Workflow
+          key={index}
+          name={workflow.workflow_name}
+          version={workflow.workflow_version}
+          description={workflow.workflow_description}
+          clickHandler={() => redirectProcesses(workflow.workflow_id)}
+          listStatus={listStatus}
+        />
+      );
+    }
+    return null;
   };
   return (
     <div className="workflow-page-container">
@@ -65,18 +69,13 @@ const WorkflowMonitoringPage = () => {
         <>
           <div className="workflow-page-date-range">
             <div className="workflow-page-filter">
-              <Search initialArray={initialArray} setFilteredArray={setFilteredArray} filteredArray={filteredArray} />
-              {/* {filteredArray.length > 0 && filteredArray.map((item, index) => (
-                <div style={{ margim: '1rem' }} key={index}>
-                  <p>{item} </p>
-                </div>
-              ))} */}
+              <Search initialArray={workflowNames} setFilteredArray={setFilteredWorkflowArray} filteredArray={filteredWorkflowNames} />
             </div>
             <DateRange initialDateArray={initialDateArray} setUpdatedDateArray={setUpdatedDateArray} updatedDateArray={updatedDateArray} />
             <Button title="Atualizar" onClick={() => dispatch(actions.getWorkflowsStart())} />
           </div>
           <div className="workflow-page-list">
-            {workflowsSelector.map((workflow, index) => mountWorkflows(workflow, index))}
+            {filteredWorkflowNames.length > 0 && workflowsSelector.map((workflow, index) => mountWorkflows(workflow, index))}
           </div>
         </>
       )}
