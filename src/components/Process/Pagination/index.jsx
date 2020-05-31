@@ -24,7 +24,7 @@ const Pagination = ({
     <nav>
       <ul className="pagination">
         <li className="page-item">
-          <button className="page-link" onClick={prevPage} aria-label="Previous">
+          <button className="page-link button-pagination" onClick={prevPage} aria-label="Previous">
             <span>Previous</span>
           </button>
         </li>
@@ -36,7 +36,7 @@ const Pagination = ({
           </li>
         ))}
         <li className="page-item">
-          <button className="page-link" onClick={nextPage} aria-label="Next">
+          <button className="page-link button-pagination" onClick={nextPage} aria-label="Next">
             <span>Next</span>
           </button>
         </li>

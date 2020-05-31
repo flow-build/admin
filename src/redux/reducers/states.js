@@ -5,7 +5,10 @@ import { updateObject } from '../utility';
 const initialState = {
   states: [],
   length: 0,
+  stateNodes: [],
 };
+
+const abortProcess = (state) => updateObject(state, {});
 
 const getStates = (state, action) => {
   let newStates = [];
@@ -24,9 +27,20 @@ const getStates = (state, action) => {
   return updateObject(state, { states: newStates, length: newStates.length });
 };
 
+const getBlueprintWorkflow = (state, action) => {
+  let newNodes = [];
+  newNodes = action.nodes.map((node) => {
+    return node.id;
+  });
+  return updateObject(state, { stateNodes: newNodes });
+};
+
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_STATES: return getStates(state, action);
+    case actionTypes.ABORT_PROCESS: return abortProcess(state);
+    case actionTypes.GET_BLUEPRINT_WORKFLOW: return getBlueprintWorkflow(state, action);
     default: return state;
   }
 };

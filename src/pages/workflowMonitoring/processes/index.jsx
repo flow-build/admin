@@ -35,7 +35,7 @@ const ProcessesPage = ({
           </div>
           <div className="processes-table">
             <p className="processes-page-title">Processos</p>
-            <Process listProcessItem={processesSelector} total={totalProcess} />
+            <Process listProcessItem={processesSelector} total={totalProcess} workflowId={match.params.workflowId} />
           </div>
         </>
       )}

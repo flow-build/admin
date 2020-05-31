@@ -16,15 +16,17 @@ const ProcessPage = ({
 }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [buttonCheckAction, setButtonCheckAction] = useState('');
   const statesSelector = useSelector((state) => state.states.states);
   const loading = useSelector((state) => state.generic.loading);
   const totalProcess = useSelector((state) => state.states.length);
-  const nodeIds = ['1', '2', '3', '4', '5'];
   const [show, setShow] = useState(false);
   const [processObject, setProcessObject] = useState({
+    id: '',
     stepNumber: 0,
     createdAt: '',
     status: '',
+    nodeId: '',
     bag: {},
     result: {},
   });
@@ -32,16 +34,26 @@ const ProcessPage = ({
     dispatch(actions.getStatesStart(match.params.processId));
   }, [dispatch]);
   const createProcess = () => {
+    setButtonCheckAction('create');
     setShow(true);
   };
   const editProcess = () => {
+    setButtonCheckAction('edit');
     setShow(true);
   };
   const abortProcess = () => {
-    alert('abortProcess');
+    if (!match.params.processId) {
+      alert('Selecione um processo por favor');
+      return;
+    }
+    dispatch(actions.abortProcessStart(match.params.processId));
+    history.goBack();
+    alert('Processo excluído com sucesso!');
   };
   const readProcess = (processItem) => {
     setProcessObject({
+      id: processItem.id,
+      nodeId: processItem.nodeId,
       stepNumber: processItem.stepNumber,
       createdAt: processItem.createdAt,
       status: processItem.status,
@@ -56,7 +68,13 @@ const ProcessPage = ({
           <SpinnerLoader fontSize="1" />
         </div>
       ) : (
-        <ModalState nodeIds={nodeIds} show={show} setShow={setShow}>
+        <ModalState
+          show={show}
+          setShow={setShow}
+          processObject={processObject}
+          workflowIdParam={match.params.workflowId}
+          buttonCheckAction={buttonCheckAction}
+        >
           <div className="process-page-container">
             <div className="process-page-actions">
               {iconUtil('Back', history.goBack)}

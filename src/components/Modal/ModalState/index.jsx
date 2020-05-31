@@ -1,26 +1,44 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
-
-
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import ReactJson from 'react-json-view';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '../../Button';
 import Input from '../../Input';
+import * as actions from '../../../redux/actions';
 
 import Modal from '..';
 
-const actionData = () => {
+const createProcess = () => {
+  console.log('clicked');
+};
+const editProcess = () => {
+  console.log('clicked');
+};
+const setState = () => {
   console.log('clicked');
 };
 
 const ModalState = ({
-  nodeIds, children, show, setShow, //eslint-disable-line
+  children, show, setShow, processObject, workflowIdParam, buttonCheckAction,
 }) => {
+  const dispatch = useDispatch();
+  const nodeIds = useSelector((state) => state.states.stateNodes);
   const [workflowId, setWorkflowId] = useState('');
   const [processId, setProcessId] = useState('');
   const [nodeId, setNodeId] = useState('');
-  const [bag, setBag] = useState('');
-  const [result, setResult] = useState('');
+  const [bag, setBag] = useState({});
+  const [result, setResult] = useState({});
+  useEffect(() => {
+    dispatch(actions.getBlueprintWorkflowStart(workflowIdParam));
+    setWorkflowId(workflowIdParam);
+    setProcessId(processObject.id);
+    setNodeId(processObject.nodeId);
+    setBag(processObject.bag);
+    setResult(processObject.result);
+  }, [processObject]);
   return (
     <Modal title="Cadastro State" type="register" show={show} setShow={setShow} childrenModal={children}>
       {show ? (
@@ -41,14 +59,19 @@ const ModalState = ({
               </label>
               <label>
                 Bag:
-                <Input elementType="textarea" placeholder="Bag" value={bag} onChange={setBag} />
+                <div className="json-reader-content" style={{ marginTop: '.5rem' }}>
+                  <ReactJson src={bag} displayDataTypes={false} onAdd={(add) => {}} onEdit={(edit) => {}} onDelete={(del) => {}} />
+                </div>
               </label>
               <label>
                 Result:
-                <Input elementType="textarea" placeholder="Result" value={result} onChange={setResult} />
+                <div className="json-reader-content" style={{ marginTop: '.5rem' }}>
+                  <ReactJson src={result} displayDataTypes={false} onAdd={(add) => {}} onEdit={(edit) => {}} onDelete={(del) => {}} />
+                </div>
               </label>
               <div className="modal-state-button">
-                <Button title="Cadastrar" onClick={actionData} />
+                <Button title={buttonCheckAction === 'edit' ? 'Editar Processo' : 'Criar Novo Processo'} onClick={buttonCheckAction === 'edit' ? createProcess : editProcess} />
+                <Button title="Set State" onClick={setState} />
               </div>
             </form>
           </div>
@@ -56,10 +79,6 @@ const ModalState = ({
       ) : children}
     </Modal>
   );
-};
-
-ModalState.propTypes = {
-  nodeIds: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ModalState;

@@ -13,8 +13,12 @@
   &-button {
     margin-top: 2rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+  }
+
+  button {
+    margin-right: 1rem;
   }
 
 }

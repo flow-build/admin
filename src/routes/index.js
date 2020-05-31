@@ -29,7 +29,7 @@ export default [
     component: Processes,
   },
   {
-    path: '/app/process/:processId',
+    path: '/app/process/:workflowId/:processId',
     label: 'Process',
     component: Process,
   },

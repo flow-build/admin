@@ -6,7 +6,7 @@ import Pagination from './Pagination';
 import ProcessItem from './ProcessItem';
 
 const Process = ({
-  listProcessItem, processCheck, processAction, total,
+  listProcessItem, processCheck, processAction, total, workflowId,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage] = useState(processCheck ? 12 : 10);
@@ -33,7 +33,13 @@ const Process = ({
         </thead>
         <tbody>
           {currentProcess.map((processItem) => (
-            <ProcessItem key={processItem.id} {...processItem} processCheck={processCheck} action={() => processAction(processItem)} />
+            <ProcessItem
+              key={processItem.id}
+              {...processItem}
+              processCheck={processCheck}
+              action={() => processAction(processItem)}
+              workflowId={workflowId}
+            />
           ))}
         </tbody>
       </table>
@@ -53,11 +59,13 @@ Process.propTypes = {
   processCheck: PropTypes.bool,
   processAction: PropTypes.func,
   total: PropTypes.number.isRequired,
+  workflowId: PropTypes.string,
 };
 
 Process.defaultProps = {
   processCheck: false,
   processAction: null,
+  workflowId: '',
 };
 
 export default Process;
