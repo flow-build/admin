@@ -6,7 +6,7 @@ import Pagination from './Pagination';
 import ProcessItem from './ProcessItem';
 
 const Process = ({
-  listProcessItem, processCheck, processAction, total, workflowId,
+  listProcessItem, processCheck, processAction, total, workflowId, workflowName,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage] = useState(processCheck ? 12 : 10);
@@ -39,6 +39,7 @@ const Process = ({
               processCheck={processCheck}
               action={() => processAction(processItem)}
               workflowId={workflowId}
+              workflowName={workflowName}
             />
           ))}
         </tbody>
@@ -60,12 +61,14 @@ Process.propTypes = {
   processAction: PropTypes.func,
   total: PropTypes.number.isRequired,
   workflowId: PropTypes.string,
+  workflowName: PropTypes.string,
 };
 
 Process.defaultProps = {
   processCheck: false,
   processAction: null,
   workflowId: '',
+  workflowName: '',
 };
 
 export default Process;

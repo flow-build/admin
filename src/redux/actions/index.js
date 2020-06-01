@@ -13,4 +13,5 @@ export {
   getBlueprintWorkflowStart,
   getStatesStart,
   abortProcessStart,
+  createNewProcessStart,
 } from './states';

@@ -24,12 +24,12 @@ export default [
     component: WorkflowMonitoring,
   },
   {
-    path: '/app/processes/:workflowId',
+    path: '/app/processes/:workflowName/:workflowId',
     label: 'Processes',
     component: Processes,
   },
   {
-    path: '/app/process/:workflowId/:processId',
+    path: '/app/process/:workflowName/:workflowId/:processId',
     label: 'Process',
     component: Process,
   },

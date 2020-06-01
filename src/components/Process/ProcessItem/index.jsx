@@ -9,13 +9,13 @@ import PropTypes from 'prop-types';
 import iconUtil, { convertIcon } from '../../../utils/iconUtil';
 
 const ProcessItem = ({
-  id, createdAt, status, stepNumber, nodeId, nextNodeId, lastUpdated, processCheck, action, workflowId,
+  id, createdAt, status, stepNumber, nodeId, nextNodeId, lastUpdated, processCheck, action, workflowId, workflowName,
 }) => {
   const history = useHistory();
   const statusName = convertIcon(status);
   const formatedDate = format(new Date(createdAt), 'dd/MM/yyyy HH:mm:ss');
   const redirectProcess = () => {
-    history.push(`/app/process/${workflowId}/${id}`);
+    history.push(`/app/process/${workflowName}/${workflowId}/${id}`);
   };
   let lastUpdatedFormatted = differenceInDays(new Date(), new Date(lastUpdated));
   switch (lastUpdatedFormatted) {
@@ -61,6 +61,7 @@ ProcessItem.propTypes = {
   processCheck: PropTypes.bool,
   action: PropTypes.func,
   workflowId: PropTypes.string,
+  workflowName: PropTypes.string,
 };
 
 ProcessItem.defaultProps = {
@@ -69,6 +70,7 @@ ProcessItem.defaultProps = {
   lastUpdated: '',
   workflowId: '',
   nextNodeId: '',
+  workflowName: '',
 };
 
 export default ProcessItem;

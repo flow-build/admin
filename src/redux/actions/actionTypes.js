@@ -8,3 +8,4 @@ export const ABORT_PROCESS = 'ABORT_PROCESS';
 export const GET_JSON_RENDER = 'GET_JSON_RENDER';
 export const LOADING_START = 'LOADING_START';
 export const LOADING_END = 'LOADING_END';
+export const CREATE_NEW_PROCESS = 'CREATE_NEW_PROCESS';

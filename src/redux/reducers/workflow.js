@@ -20,9 +20,11 @@ const getWorkflows = (state, action) => {
       waiting: action.workflows[key].waiting ? action.workflows[key].waiting : 0,
       unstarted: action.workflows[key].unstarted ? action.workflows[key].unstarted : 0,
       aborted: action.workflows[key].aborted ? action.workflows[key].aborted : 0,
+      pending: action.workflows[key].pending ? action.workflows[key].pending : 0,
       finished: action.workflows[key].finished ? action.workflows[key].finished : 0,
       running: action.workflows[key].running ? action.workflows[key].running : 0,
       error: action.workflows[key].error ? action.workflows[key].error : 0,
+      interrupted: action.workflows[key].interrupted ? action.workflows[key].interrupted : 0,
     };
   });
   return updateObject(state, { workflows: newWorkflows, workflowNames: newWorkflowNames });

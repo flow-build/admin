@@ -33,6 +33,9 @@ const Input = ({
         </select>
       );
       break;
+    case ('disabled'):
+      inputElement = <input type={type} className={className} placeholder={placeholder} disabled />;
+      break;
     default:
       inputElement = <input type={type} className={className} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} value={value} onFocus={onFocus} />;
   }

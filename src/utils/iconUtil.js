@@ -48,6 +48,7 @@ export const convertIcon = (status) => {
       statusName = 'Andamento';
       break;
     case ('error'):
+    case ('interrupted'):
       statusName = 'Erro';
       break;
     case ('finished'):
@@ -55,6 +56,7 @@ export const convertIcon = (status) => {
       break;
     case ('aborted'):
     case ('unstarted'):
+    case ('pending'):
       statusName = 'Atencao';
       break;
     default: statusName = '';

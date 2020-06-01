@@ -33,12 +33,12 @@ const ProcessPage = ({
   useEffect(() => {
     dispatch(actions.getStatesStart(match.params.processId));
   }, [dispatch]);
-  const createProcess = () => {
-    setButtonCheckAction('create');
-    setShow(true);
-  };
-  const editProcess = () => {
-    setButtonCheckAction('edit');
+  const changeProcess = (action) => {
+    if (!processObject.status) {
+      alert('Por favor selecione um processo');
+      return;
+    }
+    setButtonCheckAction(action);
     setShow(true);
   };
   const abortProcess = () => {
@@ -73,13 +73,14 @@ const ProcessPage = ({
           setShow={setShow}
           processObject={processObject}
           workflowIdParam={match.params.workflowId}
+          workflowNameParam={match.params.workflowName}
           buttonCheckAction={buttonCheckAction}
         >
           <div className="process-page-container">
             <div className="process-page-actions">
               {iconUtil('Back', history.goBack)}
-              <Button title="Criar novo processo a partir de " onClick={createProcess} />
-              <Button title="Editar estado do processo" onClick={editProcess} />
+              <Button title="Criar novo processo a partir de " onClick={() => changeProcess('create')} />
+              <Button title="Editar estado do processo" onClick={() => changeProcess('edit')} />
               <Button title="Abortar processo" onClick={abortProcess} color="red" />
             </div>
             <div className="process-page-content">

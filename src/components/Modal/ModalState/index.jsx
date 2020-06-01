@@ -1,8 +1,10 @@
+/* eslint-disable no-unneeded-ternary */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import ReactJson from 'react-json-view';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '../../Button';
@@ -11,20 +13,12 @@ import * as actions from '../../../redux/actions';
 
 import Modal from '..';
 
-const createProcess = () => {
-  console.log('clicked');
-};
-const editProcess = () => {
-  console.log('clicked');
-};
-const setState = () => {
-  console.log('clicked');
-};
 
 const ModalState = ({
-  children, show, setShow, processObject, workflowIdParam, buttonCheckAction,
+  children, show, setShow, processObject, workflowIdParam, buttonCheckAction, workflowNameParam,
 }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const nodeIds = useSelector((state) => state.states.stateNodes);
   const [workflowId, setWorkflowId] = useState('');
   const [processId, setProcessId] = useState('');
@@ -34,24 +28,37 @@ const ModalState = ({
   useEffect(() => {
     dispatch(actions.getBlueprintWorkflowStart(workflowIdParam));
     setWorkflowId(workflowIdParam);
-    setProcessId(processObject.id);
+    setProcessId(buttonCheckAction === 'edit' ? processObject.id : '');
     setNodeId(processObject.nodeId);
     setBag(processObject.bag);
     setResult(processObject.result);
-  }, [processObject]);
+  }, [processObject, buttonCheckAction]);
+  const createProcess = (event) => {
+    event.preventDefault();
+    const process = {
+      next_node_id: nodeId,
+      bag: bag ? bag : {},
+      result: result ? result : {},
+    };
+    dispatch(actions.createNewProcessStart(workflowNameParam, process));
+    history.goBack();
+  };
+  const editProcess = () => {
+    console.log('clicked');
+  };
   return (
-    <Modal title="Cadastro State" type="register" show={show} setShow={setShow} childrenModal={children}>
+    <Modal title={buttonCheckAction === 'edit' ? 'Editar Estado' : 'Cadastrar Processo'} type="register" show={show} setShow={setShow} childrenModal={children}>
       {show ? (
         <>
           <div className="modal-state">
-            <form>
+            <form onSubmit={createProcess}>
               <label>
                 ID Worflow:
                 <Input elementType="input" type="text" placeholder="ID Workflow" value={workflowId} onChange={setWorkflowId} />
               </label>
               <label>
                 ID Processo:
-                <Input elementType="input" type="text" placeholder="ID Processo" value={processId} onChange={setProcessId} />
+                <Input elementType={buttonCheckAction === 'edit' ? 'input' : 'disabled'} type="text" placeholder="ID Processo" value={processId} onChange={setProcessId} />
               </label>
               <label>
                 ID Nó:
@@ -70,8 +77,9 @@ const ModalState = ({
                 </div>
               </label>
               <div className="modal-state-button">
-                <Button title={buttonCheckAction === 'edit' ? 'Editar Processo' : 'Criar Novo Processo'} onClick={buttonCheckAction === 'edit' ? createProcess : editProcess} />
-                <Button title="Set State" onClick={setState} />
+                <Button
+                  title={buttonCheckAction === 'edit' ? 'Editar Processo' : 'Criar Novo Processo'}
+                />
               </div>
             </form>
           </div>

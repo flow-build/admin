@@ -44,7 +44,7 @@ const LoginPage = () => {
       );
     } else {
       onAuth();
-      history.push('/app');
+      history.push('/app/wfm');
     }
   };
   return (

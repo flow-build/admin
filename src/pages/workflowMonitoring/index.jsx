@@ -22,8 +22,8 @@ const WorkflowMonitoringPage = () => {
   const workflowNames = useSelector((state) => state.workflow.workflowNames);
   const loading = useSelector((state) => state.generic.loading);
   const history = useHistory();
-  const redirectProcesses = (workflowId) => {
-    history.push(`/app/processes/${workflowId}`);
+  const redirectProcesses = (workflowId, workflowName) => {
+    history.push(`/app/processes/${workflowName}/${workflowId}`);
   };
   useEffect(() => {
     dispatch(actions.getWorkflowsStart());
@@ -40,11 +40,11 @@ const WorkflowMonitoringPage = () => {
       },
       {
         icon: 'Atencao',
-        value: workflow.unstarted !== 0 ? workflow.unstarted : workflow.aborted,
+        value: workflow.unstarted !== 0 ? workflow.unstarted : workflow.aborted !== 0 ? workflow.aborted : workflow.pending,
       },
       {
         icon: 'Erro',
-        value: workflow.error,
+        value: workflow.error !== 0 ? workflow.error : workflow.interrupted,
       },
     ];
     if (filteredWorkflowNames.indexOf(workflow.workflow_name) > -1) {
@@ -54,7 +54,7 @@ const WorkflowMonitoringPage = () => {
           name={workflow.workflow_name}
           version={workflow.workflow_version}
           description={workflow.workflow_description}
-          clickHandler={() => redirectProcesses(workflow.workflow_id)}
+          clickHandler={() => redirectProcesses(workflow.workflow_id, workflow.workflow_name)}
           listStatus={listStatus}
         />
       );
