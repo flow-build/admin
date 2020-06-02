@@ -52,7 +52,7 @@ const ProcessPage = ({
   };
   const readProcess = (processItem) => {
     setProcessObject({
-      id: processItem.id,
+      id: match.params.processId,
       nodeId: processItem.nodeId,
       nextNodeId: processItem.nextNodeId,
       stepNumber: processItem.stepNumber,
