@@ -36,15 +36,15 @@ const WorkflowMonitoringPage = () => {
       },
       {
         icon: 'Andamento',
-        value: workflow.waiting !== 0 ? workflow.waiting : workflow.running,
+        value: workflow.waiting + workflow.running,
       },
       {
         icon: 'Atencao',
-        value: workflow.unstarted !== 0 ? workflow.unstarted : workflow.aborted !== 0 ? workflow.aborted : workflow.pending,
+        value: workflow.unstarted + workflow.aborted + workflow.pending,
       },
       {
         icon: 'Erro',
-        value: workflow.error !== 0 ? workflow.error : workflow.interrupted,
+        value: workflow.error + workflow.interrupted,
       },
     ];
     if (filteredWorkflowNames.indexOf(workflow.workflow_name) > -1) {

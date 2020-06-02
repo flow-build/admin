@@ -33,25 +33,22 @@ const ModalState = ({
     setBag(processObject.bag);
     setResult(processObject.result);
   }, [processObject, buttonCheckAction]);
-  const createProcess = (event) => {
+  const changeProcess = (event) => {
     event.preventDefault();
     const process = {
       next_node_id: nodeId,
       bag: bag ? bag : {},
       result: result ? result : {},
     };
-    dispatch(actions.createNewProcessStart(workflowNameParam, process));
+    dispatch(buttonCheckAction === 'edit' ? actions.setStateProcessStart(processObject.id, process) : actions.createNewProcessStart(workflowNameParam, process));
     history.goBack();
-  };
-  const editProcess = () => {
-    console.log('clicked');
   };
   return (
     <Modal title={buttonCheckAction === 'edit' ? 'Editar Estado' : 'Cadastrar Processo'} type="register" show={show} setShow={setShow} childrenModal={children}>
       {show ? (
         <>
           <div className="modal-state">
-            <form onSubmit={createProcess}>
+            <form onSubmit={changeProcess}>
               <label>
                 ID Worflow:
                 <Input elementType="input" type="text" placeholder="ID Workflow" value={workflowId} onChange={setWorkflowId} />

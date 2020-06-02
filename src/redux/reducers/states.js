@@ -12,6 +12,8 @@ const abortProcess = (state) => updateObject(state, {});
 
 const createNewProcess = (state) => updateObject(state, {});
 
+const setProcessState = (state) => updateObject(state, {});
+
 const getStates = (state, action) => {
   let newStates = [];
   newStates = action.states.map((states) => {
@@ -44,6 +46,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ABORT_PROCESS: return abortProcess(state);
     case actionTypes.GET_BLUEPRINT_WORKFLOW: return getBlueprintWorkflow(state, action);
     case actionTypes.CREATE_NEW_PROCESS: return createNewProcess(state, action);
+    case actionTypes.SET_STATE_PROCESS_START: return setProcessState(state);
     default: return state;
   }
 };

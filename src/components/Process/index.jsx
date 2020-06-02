@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
@@ -12,6 +13,7 @@ const Process = ({
   const [resultsPerPage] = useState(processCheck ? 12 : 10);
   const indexOfLast = currentPage * resultsPerPage;
   const indexOfFirst = indexOfLast - resultsPerPage;
+  // const orderedProcessItem = [].concat(listProcessItem).sort((processOne, processTwo) => processOne.lastUpdated > processTwo.lastUpdated ? 1 : -1);
   const currentProcess = listProcessItem.slice(indexOfFirst, indexOfLast);
   const paginate = (pageNumber, event) => {
     event.preventDefault();
@@ -32,7 +34,7 @@ const Process = ({
           </tr>
         </thead>
         <tbody>
-          {currentProcess.map((processItem) => (
+          {currentProcess.sort((firstProcess, secondProcess) => firstProcess.lastUpdated - secondProcess.lastUpdated).map((processItem) => (
             <ProcessItem
               key={processItem.id}
               {...processItem}

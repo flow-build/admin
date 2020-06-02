@@ -14,4 +14,5 @@ export {
   getStatesStart,
   abortProcessStart,
   createNewProcessStart,
+  setStateProcessStart,
 } from './states';

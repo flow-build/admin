@@ -54,6 +54,7 @@ const ProcessPage = ({
     setProcessObject({
       id: processItem.id,
       nodeId: processItem.nodeId,
+      nextNodeId: processItem.nextNodeId,
       stepNumber: processItem.stepNumber,
       createdAt: processItem.createdAt,
       status: processItem.status,

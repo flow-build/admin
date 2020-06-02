@@ -25,6 +25,7 @@ export const auth = () => {
 
 export const logout = () => {
   return (dispatch) => {
+    console.log('chamou no logout');
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     dispatch(logoutStart());
@@ -35,7 +36,7 @@ export const authCheckState = () => {
   return (dispatch) => {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expirationDate');
-    if (!token || expirationDate < new Date()) {
+    if (new Date(expirationDate).getTime() < new Date().getTime()) {
       dispatch(logout());
     } else {
       dispatch(authStart(token));
