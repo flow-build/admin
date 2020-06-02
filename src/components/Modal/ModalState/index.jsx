@@ -40,6 +40,7 @@ const ModalState = ({
       bag: bag ? bag : {},
       result: result ? result : {},
     };
+    console.log('result', result);
     dispatch(buttonCheckAction === 'edit' ? actions.setStateProcessStart(processObject.id, process) : actions.createNewProcessStart(workflowNameParam, process));
     history.goBack();
   };
@@ -64,13 +65,25 @@ const ModalState = ({
               <label>
                 Bag:
                 <div className="json-reader-content" style={{ marginTop: '.5rem' }}>
-                  <ReactJson src={bag} displayDataTypes={false} onAdd={(add) => {}} onEdit={(edit) => {}} onDelete={(del) => {}} />
+                  <ReactJson
+                    src={bag}
+                    displayDataTypes={false}
+                    onAdd={(add) => { setBag(add.updated_src); }}
+                    onEdit={(edit) => { setBag(edit.updated_src); }}
+                    onDelete={(del) => { setBag(del.updated_src); }}
+                  />
                 </div>
               </label>
               <label>
                 Result:
                 <div className="json-reader-content" style={{ marginTop: '.5rem' }}>
-                  <ReactJson src={result} displayDataTypes={false} onAdd={(add) => {}} onEdit={(edit) => {}} onDelete={(del) => {}} />
+                  <ReactJson
+                    src={result}
+                    displayDataTypes={false}
+                    onAdd={(add) => { setResult(add.updated_src); }}
+                    onEdit={(edit) => { setResult(edit.updated_src); }}
+                    onDelete={(del) => { setResult(del.updated_src); }}
+                  />
                 </div>
               </label>
               <div className="modal-state-button">

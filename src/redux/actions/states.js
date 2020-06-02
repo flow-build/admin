@@ -67,8 +67,9 @@ export const setStateProcessStart = (processId, process) => {
         logout();
         return;
       }
+      axiosInstance.post(`/cockpit/processes/${processId}/state/run`).catch((err) => console.log(err));
       dispatch(setStateProcessSuccess());
-    }).catch((err) => {
+    }).then(() => {}).catch((err) => {
       console.log(err);
     });
   };
