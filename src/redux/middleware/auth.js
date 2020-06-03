@@ -1,34 +1,27 @@
 /* eslint-disable arrow-body-style */
+import * as action from '../actions';
 import axiosInstance from '../axios';
-import { updateObject } from '../utility';
-import * as actionTypes from './actionTypes';
-
-const authStart = (token) => updateObject({ type: actionTypes.AUTH_START, token });
-const logoutStart = () => updateObject({ type: actionTypes.LOGOUT_START });
-const loadingStart = () => updateObject({ type: actionTypes.LOADING_START });
-const loadingEnd = () => updateObject({ type: actionTypes.LOADING_END });
 
 export const auth = () => {
   return async (dispatch) => {
-    dispatch(loadingStart());
+    dispatch(action.loadingStart());
     await axiosInstance.get('/anonymousToken').then((response) => {
       localStorage.setItem('token', response.data.jwtToken);
       localStorage.setItem('expirationDate', new Date(response.data.payload.exp * 1000));
-      dispatch(authStart(response.data.jwtToken));
+      dispatch(action.authUser(response.data.jwtToken));
     }).catch((err) => {
       console.log(err);
     }).finally(() => {
-      dispatch(loadingEnd());
+      dispatch(action.loadingEnd());
     });
   };
 };
 
 export const logout = () => {
   return (dispatch) => {
-    console.log('chamou no logout');
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
-    dispatch(logoutStart());
+    dispatch(action.logoutUser());
   };
 };
 
@@ -39,7 +32,7 @@ export const authCheckState = () => {
     if (new Date(expirationDate).getTime() < new Date().getTime()) {
       dispatch(logout());
     } else {
-      dispatch(authStart(token));
+      dispatch(action.authUser(token));
     }
   };
 };

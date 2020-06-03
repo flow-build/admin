@@ -8,7 +8,7 @@ import JsonReader from '../../../../components/JsonReader';
 import ModalState from '../../../../components/Modal/ModalState';
 import Process from '../../../../components/Process';
 import SpinnerLoader from '../../../../components/SpinnerLoader';
-import * as actions from '../../../../redux/actions';
+import * as actions from '../../../../redux/middleware/states';
 import iconUtil from '../../../../utils/iconUtil';
 
 const ProcessPage = ({
@@ -31,7 +31,7 @@ const ProcessPage = ({
     result: {},
   });
   useEffect(() => {
-    dispatch(actions.getStatesStart(match.params.processId));
+    dispatch(actions.getState(match.params.processId));
   }, [dispatch]);
   const changeProcess = (action) => {
     if (!processObject.status) {
@@ -46,7 +46,7 @@ const ProcessPage = ({
       alert('Selecione um processo por favor');
       return;
     }
-    dispatch(actions.abortProcessStart(match.params.processId));
+    dispatch(actions.abortProcess(match.params.processId));
     history.goBack();
     alert('Processo excluído com sucesso!');
   };

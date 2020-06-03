@@ -1,9 +1,8 @@
 /* eslint-disable arrow-body-style */
 import * as actionTypes from './actionTypes';
 
-export const getWorkflows = (workflows) => {
+export const abortProcess = () => {
   return {
-    type: actionTypes.GET_WORKFLOWS,
-    workflows,
+    type: actionTypes.ABORT_PROCESS,
   };
 };

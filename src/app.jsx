@@ -6,12 +6,12 @@ import { Router, Route } from 'react-router-dom';
 import history from '@utils/history';
 
 import MainPage from './pages/main';
-import * as actions from './redux/actions';
+import { authCheckState } from './redux/middleware/auth';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actions.authCheckState());
+    dispatch(authCheckState());
   }, [dispatch]);
   return (
     <>

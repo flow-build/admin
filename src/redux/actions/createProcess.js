@@ -1,9 +1,8 @@
 /* eslint-disable arrow-body-style */
 import * as actionTypes from './actionTypes';
 
-export const getWorkflows = (workflows) => {
+export const createProcess = () => {
   return {
-    type: actionTypes.GET_WORKFLOWS,
-    workflows,
+    type: actionTypes.CREATE_NEW_PROCESS,
   };
 };

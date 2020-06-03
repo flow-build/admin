@@ -10,7 +10,7 @@ import DateRange from '../../components/DateRange';
 import Search from '../../components/Search';
 import SpinnerLoader from '../../components/SpinnerLoader';
 import Workflow from '../../components/Workflow';
-import * as actions from '../../redux/actions';
+import { getWorkflows } from '../../redux/middleware/workflow';
 
 
 const WorkflowMonitoringPage = () => {
@@ -26,7 +26,7 @@ const WorkflowMonitoringPage = () => {
     history.push(`/app/processes/${workflowName}/${workflowId}`);
   };
   useEffect(() => {
-    dispatch(actions.getWorkflowsStart());
+    dispatch(getWorkflows());
   }, [dispatch]);
   const mountWorkflows = (workflow, index) => {
     const listStatus = [
@@ -72,7 +72,7 @@ const WorkflowMonitoringPage = () => {
               <Search initialArray={workflowNames} setFilteredArray={setFilteredWorkflowArray} filteredArray={filteredWorkflowNames} />
             </div>
             <DateRange initialDateArray={initialDateArray} setUpdatedDateArray={setUpdatedDateArray} updatedDateArray={updatedDateArray} />
-            <Button title="Atualizar" onClick={() => dispatch(actions.getWorkflowsStart())} />
+            <Button title="Atualizar" onClick={() => dispatch(getWorkflows())} />
           </div>
           <div className="workflow-page-list">
             {filteredWorkflowNames.length > 0 && workflowsSelector.map((workflow, index) => mountWorkflows(workflow, index))}

@@ -1,18 +1,31 @@
 export {
-  auth,
-  authCheckState,
-  logout,
-} from './auth';
+  authUser,
+} from './authUser';
 export {
-  getWorkflowsStart,
+  logoutUser,
+} from './logoutUser';
+export {
+  loadingStart,
+  loadingEnd,
+} from './loading';
+export {
+  getWorkflows,
 } from './workflow';
 export {
-  getProcessesStart,
+  getProcesses,
 } from './processes';
 export {
-  getBlueprintWorkflowStart,
-  getStatesStart,
-  abortProcessStart,
-  createNewProcessStart,
-  setStateProcessStart,
-} from './states';
+  setState,
+} from './setState';
+export {
+  abortProcess,
+} from './abortProcess';
+export {
+  getBlueprint,
+} from './blueprint';
+export {
+  createProcess,
+} from './createProcess';
+export {
+  getState,
+} from './getState';

@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '../../Button';
 import Input from '../../Input';
-import * as actions from '../../../redux/actions';
+import * as actions from '../../../redux/middleware/states';
 
 import Modal from '..';
 
@@ -26,7 +26,7 @@ const ModalState = ({
   const [bag, setBag] = useState({});
   const [result, setResult] = useState({});
   useEffect(() => {
-    dispatch(actions.getBlueprintWorkflowStart(workflowIdParam));
+    dispatch(actions.getBlueprint(workflowIdParam));
     setWorkflowId(workflowIdParam);
     setProcessId(buttonCheckAction === 'edit' ? processObject.id : '');
     setNodeId(processObject.nodeId);
@@ -41,7 +41,7 @@ const ModalState = ({
       result: result ? result : {},
     };
     console.log('result', result);
-    dispatch(buttonCheckAction === 'edit' ? actions.setStateProcessStart(processObject.id, process) : actions.createNewProcessStart(workflowNameParam, process));
+    dispatch(buttonCheckAction === 'edit' ? actions.setState(processObject.id, process) : actions.createProcess(workflowNameParam, process));
     history.goBack();
   };
   return (

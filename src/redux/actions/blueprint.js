@@ -1,9 +1,9 @@
 /* eslint-disable arrow-body-style */
 import * as actionTypes from './actionTypes';
 
-export const getWorkflows = (workflows) => {
+export const getBlueprint = (nodes) => {
   return {
-    type: actionTypes.GET_WORKFLOWS,
-    workflows,
+    type: actionTypes.GET_BLUEPRINT_WORKFLOW,
+    nodes,
   };
 };

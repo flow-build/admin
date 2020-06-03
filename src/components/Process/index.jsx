@@ -13,8 +13,17 @@ const Process = ({
   const [resultsPerPage] = useState(processCheck ? 12 : 10);
   const indexOfLast = currentPage * resultsPerPage;
   const indexOfFirst = indexOfLast - resultsPerPage;
-  // const orderedProcessItem = [].concat(listProcessItem).sort((processOne, processTwo) => processOne.lastUpdated > processTwo.lastUpdated ? 1 : -1);
-  const currentProcess = listProcessItem.slice(indexOfFirst, indexOfLast);
+  const orderedProcessItem = [].concat(listProcessItem).sort((processOne, processTwo) => {
+    if (processOne.lastUpdated) {
+      if (processOne.lastUpdated < processTwo.lastUpdated) {
+        return 1;
+      }
+    } else if (processOne.createdAt < processTwo.createdAt) {
+      return 1;
+    }
+    return -1;
+  });
+  const currentProcess = orderedProcessItem.slice(indexOfFirst, indexOfLast);
   const paginate = (pageNumber, event) => {
     event.preventDefault();
     setCurrentPage(pageNumber);

@@ -5,14 +5,14 @@ import { useHistory } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import * as actions from '../../redux/actions';
+import * as authMiddleware from '../../redux/middleware/auth';
 import notification from '../../utils/notification';
 
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const onAuth = () => dispatch(actions.auth());
+  const onAuth = () => dispatch(authMiddleware.auth());
   const [userValue, setUserValue] = useState('');
   const [passValue, setPassValue] = useState('');
   const [error, setError] = useState(false);

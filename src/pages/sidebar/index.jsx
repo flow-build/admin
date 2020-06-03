@@ -6,7 +6,7 @@ import { Route, useHistory } from 'react-router-dom';
 
 import Sidebar from '../../components/SideBar';
 import SidebarItem from '../../components/SideBar/SideBarItem';
-import * as actions from '../../redux/actions';
+import { logout } from '../../redux/middleware/auth';
 import routes from '../../routes';
 
 
@@ -14,7 +14,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const logoutUser = () => {
-    dispatch(actions.logout());
+    dispatch(logout());
     history.push('/login');
   };
   return (

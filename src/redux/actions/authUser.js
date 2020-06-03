@@ -1,9 +1,9 @@
 /* eslint-disable arrow-body-style */
 import * as actionTypes from './actionTypes';
 
-export const getWorkflows = (workflows) => {
+export const authUser = (token) => {
   return {
-    type: actionTypes.GET_WORKFLOWS,
-    workflows,
+    type: actionTypes.AUTH_START,
+    token,
   };
 };

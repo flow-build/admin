@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import * as actions from '../../redux/actions';
+import { logout } from '../../redux/middleware/auth';
 import iconUtil from '../../utils/iconUtil';
 import Logo from '../Logo/index';
 
@@ -12,7 +12,7 @@ const HeaderBar = () => {
   const history = useHistory();
   const token = useSelector((state) => state.auth.token);
   const logoutUser = () => {
-    dispatch(actions.logout());
+    dispatch(logout());
     history.push('/login');
   };
   return (
