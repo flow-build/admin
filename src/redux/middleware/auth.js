@@ -1,4 +1,5 @@
 /* eslint-disable arrow-body-style */
+import notification from '../../utils/notification';
 import * as action from '../actions';
 import axiosInstance from '../axios';
 
@@ -10,7 +11,14 @@ export const auth = () => {
       localStorage.setItem('expirationDate', new Date(response.data.payload.exp * 1000));
       dispatch(action.authUser(response.data.jwtToken));
     }).catch((err) => {
-      console.log(err);
+      if (err.response) {
+        notification(
+          'Erro ao realizar o a solicitação ao servidor',
+          err.message,
+          'danger',
+          4000,
+        );
+      }
     }).finally(() => {
       dispatch(action.loadingEnd());
     });

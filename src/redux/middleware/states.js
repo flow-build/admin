@@ -1,4 +1,5 @@
 /* eslint-disable arrow-body-style */
+import notification from '../../utils/notification';
 import * as action from '../actions';
 import axiosInstance from '../axios';
 
@@ -12,7 +13,14 @@ export const getState = (processId) => {
       }
       dispatch(action.getState(response.data));
     }).catch((err) => {
-      console.log(err);
+      if (err.response) {
+        notification(
+          'Erro ao realizar a solicitação ao servidor',
+          err.message,
+          'danger',
+          4000,
+        );
+      }
     }).finally(() => {
       dispatch(action.loadingEnd());
     });
@@ -29,7 +37,14 @@ export const abortProcess = (processId) => {
       }
       dispatch(action.abortProcess());
     }).catch((err) => {
-      console.log(err);
+      if (err.response) {
+        notification(
+          'Erro ao realizar a solicitação ao servidor',
+          err.message,
+          'danger',
+          4000,
+        );
+      }
     }).finally(() => {
       dispatch(action.loadingEnd());
     });
@@ -45,7 +60,14 @@ export const getBlueprint = (workflowId) => {
       }
       dispatch(action.getBlueprint(response.data.blueprint_spec.nodes));
     }).catch((err) => {
-      console.log(err);
+      if (err.response) {
+        notification(
+          'Erro ao realizar a solicitação ao servidor',
+          err.message,
+          'danger',
+          4000,
+        );
+      }
     });
   };
 };
@@ -58,10 +80,22 @@ export const setState = (processId, process) => {
         action.logoutUser();
         return;
       }
-      axiosInstance.post(`/cockpit/processes/${processId}/state/run`).catch((err) => console.log(err));
+      axiosInstance.post(`/cockpit/processes/${processId}/state/run`).catch((err) => notification(
+        'Erro ao realizar a solicitação ao servidor',
+        err.message,
+        'danger',
+        4000,
+      ));
       dispatch(action.setState());
     }).catch((err) => {
-      console.log(err);
+      if (err.response) {
+        notification(
+          'Erro ao realizar a solicitação ao servidor',
+          err.message,
+          'danger',
+          4000,
+        );
+      }
     }).finally(() => {
       dispatch(action.loadingEnd());
     });
@@ -77,11 +111,28 @@ export const createProcess = (newWorkflowName, process) => {
           action.logoutUser();
           return;
         }
-        await axiosInstance.post(`/cockpit/processes/${response.data.process_id}/state`, process).catch((err) => console.log(err));
-        await axiosInstance.post(`/cockpit/processes/${response.data.process_id}/state/run`).catch((err) => console.log(err));
+        await axiosInstance.post(`/cockpit/processes/${response.data.process_id}/state`, process).catch((err) => notification(
+          'Erro ao realizar a solicitação ao servidor',
+          err.message,
+          'danger',
+          4000,
+        ));
+        await axiosInstance.post(`/cockpit/processes/${response.data.process_id}/state/run`).catch((err) => notification(
+          'Erro ao realizar a solicitação ao servidor',
+          err.message,
+          'danger',
+          4000,
+        ));
         dispatch(action.createProcess());
       }).catch((err) => {
-        console.log(err);
+        if (err.response) {
+          notification(
+            'Erro ao realizar a solicitação ao servidor',
+            err.message,
+            'danger',
+            4000,
+          );
+        }
       }).finally(() => {
         dispatch(action.loadingEnd());
       });

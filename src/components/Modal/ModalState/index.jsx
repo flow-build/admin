@@ -40,7 +40,6 @@ const ModalState = ({
       bag: bag ? bag : {},
       result: result ? result : {},
     };
-    console.log('result', result);
     dispatch(buttonCheckAction === 'edit' ? actions.setState(processObject.id, process) : actions.createProcess(workflowNameParam, process));
     history.goBack();
   };
