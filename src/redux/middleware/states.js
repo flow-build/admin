@@ -7,13 +7,11 @@ export const getState = (processId) => {
   return async (dispatch) => {
     dispatch(action.loadingStart());
     await axiosInstance.get(`/processes/${processId}/history`).then((response) => {
-      if (response.status === 401) {
-        action.logoutUser();
-        return;
-      }
       dispatch(action.getState(response.data));
     }).catch((err) => {
-      if (err.response) {
+      if (err.response.status === 401) {
+        action.logoutUser();
+      } else if (err.response) {
         notification(
           'Erro ao realizar a solicitação ao servidor',
           err.message,
@@ -30,14 +28,12 @@ export const getState = (processId) => {
 export const abortProcess = (processId) => {
   return async (dispatch) => {
     dispatch(action.loadingStart());
-    await axiosInstance.post(`/processes/${processId}/abort`).then((response) => {
-      if (response.status === 401) {
-        action.logoutUser();
-        return;
-      }
+    await axiosInstance.post(`/processes/${processId}/abort`).then(() => {
       dispatch(action.abortProcess());
     }).catch((err) => {
-      if (err.response) {
+      if (err.response.status === 401) {
+        action.logoutUser();
+      } else if (err.response) {
         notification(
           'Erro ao realizar a solicitação ao servidor',
           err.message,
@@ -54,13 +50,11 @@ export const abortProcess = (processId) => {
 export const getBlueprint = (workflowId) => {
   return async (dispatch) => {
     await axiosInstance.get(`/workflows/${workflowId}`).then((response) => {
-      if (response.status === 401) {
-        action.logoutUser();
-        return;
-      }
       dispatch(action.getBlueprint(response.data.blueprint_spec.nodes));
     }).catch((err) => {
-      if (err.response) {
+      if (err.response.status === 401) {
+        action.logoutUser();
+      } else if (err.response) {
         notification(
           'Erro ao realizar a solicitação ao servidor',
           err.message,
@@ -74,12 +68,8 @@ export const getBlueprint = (workflowId) => {
 
 export const setState = (processId, process) => {
   return async (dispatch) => {
-    await axiosInstance.post(`/cockpit/processes/${processId}/state/`, process).then((response) => {
+    await axiosInstance.post(`/cockpit/processes/${processId}/state/`, process).then(() => {
       dispatch(action.loadingStart());
-      if (response.status === 401) {
-        action.logoutUser();
-        return;
-      }
       axiosInstance.post(`/cockpit/processes/${processId}/state/run`).catch((err) => notification(
         'Erro ao realizar a solicitação ao servidor',
         err.message,
@@ -88,7 +78,9 @@ export const setState = (processId, process) => {
       ));
       dispatch(action.setState());
     }).catch((err) => {
-      if (err.response) {
+      if (err.response.status === 401) {
+        action.logoutUser();
+      } else if (err.response) {
         notification(
           'Erro ao realizar a solicitação ao servidor',
           err.message,
@@ -107,10 +99,6 @@ export const createProcess = (newWorkflowName, process) => {
     dispatch(action.loadingStart());
     await axiosInstance.post(`/workflows/name/${newWorkflowName}/create`)
       .then(async (response) => {
-        if (response.status === 401) {
-          action.logoutUser();
-          return;
-        }
         await axiosInstance.post(`/cockpit/processes/${response.data.process_id}/state`, process).catch((err) => notification(
           'Erro ao realizar a solicitação ao servidor',
           err.message,
@@ -125,7 +113,9 @@ export const createProcess = (newWorkflowName, process) => {
         ));
         dispatch(action.createProcess());
       }).catch((err) => {
-        if (err.response) {
+        if (err.response.status === 401) {
+          action.logoutUser();
+        } else if (err.response) {
           notification(
             'Erro ao realizar a solicitação ao servidor',
             err.message,
