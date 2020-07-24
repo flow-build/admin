@@ -66,6 +66,29 @@ export const getBlueprint = (workflowId) => {
   };
 };
 
+export const getBlueprintXML = (workflowId) => {
+  // const conversor = new xmlConverter();
+  return async (dispatch) => {
+    const response = await axiosInstance.get(`/workflows/${workflowId}`)
+      .catch((err) => {
+        if (err.response.status === 401) {
+          action.logoutUser();
+        } else if (err.response) {
+          notification(
+            'Erro ao realizar a solicitação ao servidor',
+            err.message,
+            'danger',
+            4000,
+          );
+        }
+      });
+    // conversor.build_graph(response.data.blueprint_spec);
+    // const xmlBpmn = conversor.to_xml();
+    const xmlBpmn = response.data.blueprint_spec;
+    dispatch(action.getBlueprintXML(xmlBpmn));
+  };
+};
+
 export const setState = (processId, process) => {
   return async (dispatch) => {
     await axiosInstance.post(`/cockpit/processes/${processId}/state/`, process).then(() => {

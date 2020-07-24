@@ -24,6 +24,9 @@ export {
   getBlueprint,
 } from './blueprint';
 export {
+  getBlueprintXML,
+} from './blueprintXML';
+export {
   createProcess,
 } from './createProcess';
 export {

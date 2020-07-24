@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable arrow-body-style */
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility';
@@ -6,6 +7,7 @@ const initialState = {
   states: [],
   length: 0,
   stateNodes: [],
+  blueprintSpec: null,
 };
 
 const abortProcess = (state) => updateObject(state, {});
@@ -39,12 +41,17 @@ const getBlueprintWorkflow = (state, action) => {
   return updateObject(state, { stateNodes: newNodes });
 };
 
+const getBlueprintXML = (state, action) => {
+  const blueprintSpec = action.blueprintSpec;
+  return updateObject(state, { blueprintSpec });
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_STATES: return getStates(state, action);
     case actionTypes.ABORT_PROCESS: return abortProcess(state);
     case actionTypes.GET_BLUEPRINT_WORKFLOW: return getBlueprintWorkflow(state, action);
+    case actionTypes.GET_BLUEPRINT_XML: return getBlueprintXML(state, action);
     case actionTypes.CREATE_NEW_PROCESS: return createNewProcess(state, action);
     case actionTypes.SET_STATE_PROCESS_START: return setProcessState(state);
     default: return state;
