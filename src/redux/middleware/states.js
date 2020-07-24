@@ -1,5 +1,8 @@
+/* eslint-disable new-cap */
+/* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
 import notification from '../../utils/notification';
+import xmlConverter from '../../utils/xmlConverter';
 import * as action from '../actions';
 import axiosInstance from '../axios';
 
@@ -67,8 +70,9 @@ export const getBlueprint = (workflowId) => {
 };
 
 export const getBlueprintXML = (workflowId) => {
-  // const conversor = new xmlConverter();
+  const conversor = new xmlConverter();
   return async (dispatch) => {
+    dispatch(action.loadingStart());
     const response = await axiosInstance.get(`/workflows/${workflowId}`)
       .catch((err) => {
         if (err.response.status === 401) {
@@ -82,10 +86,11 @@ export const getBlueprintXML = (workflowId) => {
           );
         }
       });
-    // conversor.build_graph(response.data.blueprint_spec);
-    // const xmlBpmn = conversor.to_xml();
-    const xmlBpmn = response.data.blueprint_spec;
+    conversor.build_graph(response.data.blueprint_spec);
+    const xmlBpmn = await conversor.to_xml();
+    // const xmlBpmn = response.data.blueprint_spec;
     dispatch(action.getBlueprintXML(xmlBpmn));
+    dispatch(action.loadingEnd());
   };
 };
 

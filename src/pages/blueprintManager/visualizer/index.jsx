@@ -6,7 +6,6 @@ import ReactBpmn from 'react-bpmn';
 import { useDispatch, useSelector } from 'react-redux';
 
 import SpinnerLoader from '../../../components/SpinnerLoader';
-// import { getBlueprint } from '../../../redux/middleware/workflow';
 import { getBlueprintXML } from '../../../redux/middleware/states';
 import { fileInput } from './xml';
 
@@ -15,7 +14,7 @@ const BlueprintManagerPage = ({
 }) => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.generic.loading);
-  const blueprintSpec = useSelector((state) => state.states);
+  const blueprintSpec = useSelector((state) => state.states.blueprintSpec);
   const { workflowId } = match.params;
   const { workflowName } = match.params;
 
@@ -45,7 +44,7 @@ const BlueprintManagerPage = ({
         <SpinnerLoader fontSize="1" />
       ) : (
         <ReactBpmn
-          diagramXML={fileInput}
+          diagramXML={blueprintSpec}
           onShown={onShown}
           onLoading={onLoading}
           onError={onError}
