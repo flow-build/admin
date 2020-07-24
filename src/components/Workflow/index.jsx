@@ -25,13 +25,15 @@ const Workflow = ({
             {version}
           </p>
         </div>
-        <div className="workflow-status">
-          <ul>
-            {listStatus.map((status, index) => (
-              mountStatus(status, index)
-            ))}
-          </ul>
-        </div>
+        {listStatus ? (
+          <div className="workflow-status">
+            <ul>
+              {listStatus.map((status, index) => (
+                mountStatus(status, index)
+              ))}
+            </ul>
+          </div>
+        ) : (<div className="workflow-status" />)}
       </div>
       <p className="workflow-name">
         {name}
@@ -43,7 +45,7 @@ const Workflow = ({
       </div>
       <div className="workflow-bottom">
         <p className="workflow-process">
-          {`processos (${totalProcess})`}
+          {listStatus && `processos (${totalProcess})`}
         </p>
         <Button title="Visualizar" onClick={clickHandler} />
       </div>
@@ -57,8 +59,12 @@ Workflow.propTypes = {
   description: PropTypes.string.isRequired,
   listStatus: PropTypes.arrayOf(PropTypes.shape(
     [PropTypes.string, PropTypes.string],
-  )).isRequired,
+  )),
   clickHandler: PropTypes.func.isRequired,
+};
+
+Workflow.defaultProps = {
+  listStatus: null,
 };
 
 export default Workflow;

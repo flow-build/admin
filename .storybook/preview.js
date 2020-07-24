@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-import '../src/index.scss';
-
-=======
 import React, { Suspense } from 'react';
 
 import { addDecorator } from '@storybook/react';
@@ -22,4 +18,3 @@ addDecorator((storyFn, context) => (
         </MemoryRouter>
     </Suspense>
 ));
->>>>>>> Stashed changes
