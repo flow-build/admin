@@ -1,5 +1,6 @@
 import AppPage from '../pages/appPage';
-import BlueprintManager from '../pages/blueprintManager';
+import BlueprintManagerPage from '../pages/blueprintManager';
+import BlueprintManager from '../pages/blueprintManager/visualizer';
 import Insights from '../pages/insights';
 import Settings from '../pages/settings';
 import Toolbox from '../pages/toolbox';
@@ -15,7 +16,12 @@ export default [
   },
   {
     path: '/app/bpmanager',
-    label: 'Blueprint Manager',
+    label: 'BlueprintManagerPage',
+    component: BlueprintManagerPage,
+  },
+  {
+    path: '/app/blueprint/:workflowName/:workflowId',
+    label: 'BlueprintManager',
     component: BlueprintManager,
   },
   {

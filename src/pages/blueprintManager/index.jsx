@@ -13,7 +13,7 @@ import Workflow from '../../components/Workflow';
 import { getWorkflows } from '../../redux/middleware/workflow';
 
 
-const WorkflowMonitoringPage = () => {
+const BlueprintManagerPage = () => {
   const dispatch = useDispatch();
   const workflowsSelector = useSelector((state) => state.workflow.workflows);
   const initialDateArray = [new Date('3/12/2020'), new Date('7/27/2020')];
@@ -23,7 +23,7 @@ const WorkflowMonitoringPage = () => {
   const loading = useSelector((state) => state.generic.loading);
   const history = useHistory();
   const redirectProcesses = (workflowId, workflowName) => {
-    history.push(`/app/processes/${workflowName}/${workflowId}`);
+    history.push(`/app/blueprint/${workflowName}/${workflowId}`);
   };
   useEffect(() => {
     dispatch(getWorkflows());
@@ -64,4 +64,4 @@ const WorkflowMonitoringPage = () => {
   );
 };
 
-export default WorkflowMonitoringPage;
+export default BlueprintManagerPage;
