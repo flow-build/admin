@@ -12,9 +12,12 @@ p, ul, li, ol,
 
 body {
     background-color: lighten($color-grey-1, 1%);
+    height: 100%;
 }
 
 html {
+    height: 100%;
+
     @include respond(desktop-extra-large) {
         // width > 1920px
         font-size: 75%; // 1rem = 12px
