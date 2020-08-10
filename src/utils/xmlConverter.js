@@ -19,6 +19,8 @@
  */
 
 import BpmnModdle from 'bpmn-moddle';
+// import { catch } from 'fetch-mock';
+// import { object } from 'prop-types';
 
 import Grid from './xmlGrid';
 
@@ -254,7 +256,14 @@ class xmlConverter {
     };
 
     const bounds_array = {};
-    nodes.forEach((node) => bounds_array[xmlConverter.std_node_id(node.id)] = bounds_style[node.type](node));
+    nodes.forEach((node) => {
+      try {
+        bounds_array[xmlConverter.std_node_id(node.id)] = bounds_style[node.type](node);
+      } catch (e) {
+        console.log('Error in node ', node.id);
+        console.log(e);
+      }
+    });
 
     const diagram_nodes = nodes.map((node) => {
       const bounds = bounds_array[xmlConverter.std_node_id(node.id)];
@@ -315,7 +324,13 @@ class xmlConverter {
     };
 
     const diagram_edges = xml_sequences.map((seq) => {
-      const waypoint = generate_waypoints(bounds_array[seq.sourceRef.id], bounds_array[seq.targetRef.id]);
+      let waypoint = [];
+      try {
+        waypoint = generate_waypoints(bounds_array[seq.sourceRef.id], bounds_array[seq.targetRef.id]);
+      } catch (e) {
+        console.log('Error parsing edge ', seq);
+        console.log(e);
+      }
       return this.moddle.create('bpmndi:BPMNEdge', {
         id: `${seq.id}_di`,
         bpmnElement: { id: seq.id },
@@ -381,9 +396,10 @@ class xmlConverter {
     const grids = {};
     lanes_ids.forEach((id) => grids[id] = new Grid());
 
+    const start_nodes = nodes.filter((node) => node.type === 'Start');
     const fifo = [];
 
-    fifo.unshift(nodes[0]);
+    fifo.unshift(start_nodes.shift());
 
     grids[nodes[0].lane_id].add_element(xmlConverter.std_node_id(nodes[0].id), [0, 0]);
 
@@ -434,6 +450,38 @@ class xmlConverter {
       });
     }
 
+    while (start_nodes.length !== 0) {
+      let curr_node = start_nodes.shift();
+      const stack = [];
+      stack.push(curr_node);
+      // Stop if we find a finish node or an already seen node
+      while (typeof curr_node !== 'undefined'
+        && !grids[curr_node.lane_id].seen_nodes().includes(xmlConverter.std_node_id(curr_node.id))) {
+        if (typeof curr_node.next === 'object') {
+          throw Error('Unsupported multiple starts and flow node yet!');
+        }
+        stack.push(curr_node);
+        curr_node = id2index[curr_node.next];
+      }
+
+      const base_rank = !grids[curr_node.lane_id].get_node_pos(xmlConverter.std_node_id(curr_node.id));
+      if (base_rank[1] === 0) {
+        grids[curr_node.lane_id].add_row_before(base_rank[1]);
+      } else {
+        grids[curr_node.lane_id].add_row_after(base_rank[1]);
+      }
+
+      while (stack.length !== 0) {
+        curr_node = stack.pop();
+        grids[curr_node.lane_id].add_element(xmlConverter.std_node_id(curr_node.id), base_rank);
+        base_rank[0]--;
+        if (base_rank[0] < 0) {
+          grids[curr_node.lane_id].add_column_before(0);
+          base_rank[0] = 0;
+        }
+      }
+    }
+
     const id2rank = {};
     const y_depth = [];
     Object.keys(grids).forEach((key) => {
@@ -456,6 +504,3 @@ class xmlConverter {
 }
 
 export default xmlConverter;
-// module.exports = {
-// ,
-// };

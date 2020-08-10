@@ -35,9 +35,27 @@ class Grid {
     this.size[0] += 1;
   }
 
+  add_column_before(column) {
+    Object.keys(this.grid).forEach((key) => {
+      if (this.grid[key][0] >= column) {
+        this.grid[key][0] += 1;
+      }
+    });
+    this.size[0] += 1;
+  }
+
   add_row_after(row) {
     Object.keys(this.grid).forEach((key) => {
       if (this.grid[key][1] > row) {
+        this.grid[key][1] += 1;
+      }
+    });
+    this.size[1] += 1;
+  }
+
+  add_row_before(row) {
+    Object.keys(this.grid).forEach((key) => {
+      if (this.grid[key][1] >= row) {
         this.grid[key][1] += 1;
       }
     });
