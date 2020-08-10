@@ -24,3 +24,22 @@ export const getWorkflows = () => {
     });
   };
 };
+
+export const getWorkflow = (workflowId) => {
+  return async (dispatch) => {
+    await axiosInstance.get(`/workflows/${workflowId}`).then((response) => {
+      dispatch(action.getWorkflow(response.data));
+    }).catch((err) => {
+      if (err.response.status === 401) {
+        action.logoutUser();
+      } else if (err.response) {
+        notification(
+          'Erro ao realizar a solicitação ao servidor',
+          err.message,
+          'danger',
+          4000,
+        );
+      }
+    });
+  };
+};

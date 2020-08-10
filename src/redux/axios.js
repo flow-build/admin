@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://ec2co-ecsel-669libzkr7pr-986034389.us-east-1.elb.amazonaws.com:3000',
+  baseURL: process.env.API_URL,
 });
 
 export const tokenSelector = (state) => state.auth.token;

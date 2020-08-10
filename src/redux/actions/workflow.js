@@ -7,3 +7,10 @@ export const getWorkflows = (workflows) => {
     workflows,
   };
 };
+
+export const getWorkflow = (workflow) => {
+  return {
+    type: actionTypes.GET_WORKFLOW,
+    workflow,
+  };
+};

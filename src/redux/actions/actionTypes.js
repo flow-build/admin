@@ -1,6 +1,7 @@
 export const AUTH_START = 'AUTH_START';
 export const LOGOUT_START = 'LOGOUT_START';
 export const GET_WORKFLOWS = 'GET_WORKFLOWS';
+export const GET_WORKFLOW = 'GET_WORKFLOW';
 export const GET_PROCESSES = 'GET_PROCESSES';
 export const GET_STATES = 'GET_STATES';
 export const GET_BLUEPRINT_WORKFLOW = 'GET_BLUEPRINT_WORKFLOW';

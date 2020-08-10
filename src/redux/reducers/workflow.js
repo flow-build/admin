@@ -5,6 +5,7 @@ import { updateObject } from '../utility';
 const initialState = {
   workflows: [],
   workflowNames: [],
+  currentWorkflow: [],
 };
 
 const getWorkflows = (state, action) => {
@@ -30,9 +31,14 @@ const getWorkflows = (state, action) => {
   return updateObject(state, { workflows: newWorkflows, workflowNames: newWorkflowNames });
 };
 
+const getWorkflow = (state, action) => {
+  return updateObject(state, { currentWorkflow: action.workflow });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_WORKFLOWS: return getWorkflows(state, action);
+    case actionTypes.GET_WORKFLOW: return getWorkflow(state, action);
     default: return state;
   }
 };

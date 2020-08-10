@@ -10,6 +10,7 @@ export {
 } from './loading';
 export {
   getWorkflows,
+  getWorkflow,
 } from './workflow';
 export {
   getProcesses,
