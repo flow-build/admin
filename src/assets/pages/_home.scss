@@ -1,6 +1,6 @@
 .home {
   display: flex;
-  height: 100%;
+  height: calc(100% - 44px);
 
   & .sidebar .sidebar-user .sidebar-item {
     margin-bottom: 1rem;
