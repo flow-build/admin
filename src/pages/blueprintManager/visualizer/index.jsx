@@ -52,16 +52,18 @@ const BlueprintManagerPage = ({
       console.log(name);
       const nextWorkflow = workflows
         .find((workflow) => workflow.workflow_name === name);
-      const link = `${window.location.protocol}//${window.location.host}/app/blueprint/${name}/${nextWorkflow.workflow_id}`;
-      console.log(history);
-      console.log(match);
-      overlays.add(id, {
-        position: {
-          bottom: 0,
-          left: 0,
-        },
-        html: `<a target="_blank" href="${link}">Ver</a>`,
-      });
+      if (nextWorkflow) {
+        const link = `${window.location.protocol}//${window.location.host}/app/blueprint/${name}/${nextWorkflow.workflow_id}`;
+        console.log(history);
+        console.log(match);
+        overlays.add(id, {
+          position: {
+            bottom: 0,
+            left: 0,
+          },
+          html: `<a target="_blank" href="${link}">Ver</a>`,
+        });
+      }
     });
   }
 
