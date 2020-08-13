@@ -1,11 +1,8 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-return-assign */
 /* eslint-disable class-methods-use-this */
+/* eslint-disable max-len */
 /* eslint-disable camelcase */
 /**
- * @file xmlConverter.js
+ * @file xml-converter.js
  *
  * @brief Loads a json blueprint and build a bpmn xml representation
  *
@@ -15,16 +12,16 @@
  * Based in the paper Kitzmann, Ingo, et al. 2009
  * "A simple algorithm for automatic layout of bpmn processes."
  *
- * To convert a json blueprint, look at build_graph() and to_xml()
+ * To convert a json blueprint, look at buildGraph() and to_xml()
  */
 
 import BpmnModdle from 'bpmn-moddle';
-// import { catch } from 'fetch-mock';
-// import { object } from 'prop-types';
 
-import Grid from './xmlGrid';
+const debug = require('debug')('flowbuild:xml-builder');
 
-class xmlConverter {
+const { Grid } = require('./xml-grid');
+
+export class XmlConverter {
   constructor() {
     this.moddle = new BpmnModdle();
   }
@@ -36,42 +33,42 @@ class xmlConverter {
     return true;
   }
 
-  static std_lane_id(lane_id) {
+  static stdLaneId(lane_id) {
     return `Lane_${lane_id}`;
   }
 
-  static std_node_id(node_id) {
+  static stdNodeId(node_id) {
     return ['Node', node_id].join('_');
   }
 
-  static std_node_name(node_name) {
+  static stdNodeName(node_name) {
     return node_name.split(' ').join('_');
   }
 
-  static std_flow_id(node_id, node_next) {
+  static stdFlowId(node_id, node_next) {
     return ['Flow', node_id, node_next].join('_');
   }
 
-  parse_node(node, incoming_flows) {
+  parseNode(node, incoming_flows) {
     const params = {
-      id: xmlConverter.std_node_id(node.id),
-      name: xmlConverter.std_node_name(node.name),
+      id: XmlConverter.stdNodeId(node.id),
+      name: XmlConverter.stdNodeName(node.name),
     };
 
     if (node.type === 'Start') {
-      params.outgoing = this.parse_sequence_flow(node);
+      params.outgoing = this.parseSequenceFlow(node);
       return this.moddle.create('bpmn:StartEvent', params);
     } if (node.type === 'Finish') {
-      params.incoming = incoming_flows[xmlConverter.std_node_id(node.id)];
+      params.incoming = incoming_flows[XmlConverter.stdNodeId(node.id)];
       return this.moddle.create('bpmn:EndEvent', params);
     } if (node.type === 'Flow') {
-      params.incoming = incoming_flows[xmlConverter.std_node_id(node.id)];
-      params.outgoing = this.parse_sequence_flow(node);
+      params.incoming = incoming_flows[XmlConverter.stdNodeId(node.id)];
+      params.outgoing = this.parseSequenceFlow(node);
       return this.moddle.create('bpmn:ExclusiveGateway', params);
     }
 
-    params.outgoing = this.parse_sequence_flow(node);
-    params.incoming = incoming_flows[xmlConverter.std_node_id(node.id)];
+    params.outgoing = this.parseSequenceFlow(node);
+    params.incoming = incoming_flows[XmlConverter.stdNodeId(node.id)];
 
     switch (node.type) {
       case 'SystemTask':
@@ -88,39 +85,40 @@ class xmlConverter {
     }
   }
 
-  parse_sequence_flow(node) {
+  parseSequenceFlow(node) {
     if (node.type !== 'Flow' && node.type !== 'Finish') {
       // If node is not a flow node,
       // it has only one outgoing sequence
-      const id = xmlConverter.std_flow_id(node.id, node.next);
-      const sourceRef = { id: xmlConverter.std_node_id(node.id) };
-      const targetRef = { id: xmlConverter.std_node_id(node.next) };
+      const id = XmlConverter.stdFlowId(node.id, node.next);
+      const sourceRef = { id: XmlConverter.stdNodeId(node.id) };
+      const targetRef = { id: XmlConverter.stdNodeId(node.next) };
 
       return [this.moddle.create('bpmn:SequenceFlow', { id, sourceRef, targetRef })];
     } if (node.type === 'Flow') {
-      const sourceRef = { id: xmlConverter.std_node_id(node.id) };
+      const sourceRef = { id: XmlConverter.stdNodeId(node.id) };
       const outgoing = [];
-      for (const value in node.next) {
+      Object.keys(node.next).forEach((value) => {
         const nextId = node.next[value];
-        const id = xmlConverter.std_flow_id(node.id, nextId);
+        const id = XmlConverter.stdFlowId(node.id, nextId);
         if (outgoing.findIndex((el) => el.id === id) === -1) {
-          const targetRef = { id: xmlConverter.std_node_id(nextId) };
+          const targetRef = { id: XmlConverter.stdNodeId(nextId) };
           outgoing.push(this.moddle.create('bpmn:SequenceFlow', { id, sourceRef, targetRef }));
         }
-      }
+      });
       return outgoing;
     }
     return [];
   }
 
-  build_graph(blueprint_spec) {
-    if (!xmlConverter.validate(blueprint_spec)) {
+  buildGraph(blueprint_spec, name = null) {
+    if (!XmlConverter.validate(blueprint_spec)) {
       throw new Error('Invalid spec: no nodes or no lanes.');
     }
 
     this.xml_participant = this.moddle.create('bpmn:Participant', {
       id: 'Global_Actor',
       processRef: { id: 'Global_Process' },
+      name,
     });
 
     this.xml_collab = this.moddle.create('bpmn:Collaboration', {
@@ -133,9 +131,9 @@ class xmlConverter {
     const { incoming_flows, xml_sequences } = this.build_sequence_flows(blueprint_spec.nodes);
 
     this.xml_sequences = xml_sequences;
-    this.xml_nodes = this.build_nodes(blueprint_spec.nodes, incoming_flows);
+    this.xml_nodes = this.buildNodes(blueprint_spec.nodes, incoming_flows);
 
-    this.xml_laneset = this.build_laneset(blueprint_spec.nodes, blueprint_spec.lanes);
+    this.xml_laneset = this.buildLaneset(blueprint_spec.nodes, blueprint_spec.lanes);
 
     const flowElements = this.xml_nodes.concat(this.xml_sequences);
     this.xml_process = this.moddle.create('bpmn:Process', {
@@ -146,10 +144,10 @@ class xmlConverter {
       flowElements,
     });
 
-    const id2index = this.build_nodes_id2index(blueprint_spec.nodes);
-    const { id2rank, y_depth } = this.discover_node_ranks(blueprint_spec, id2index);
+    const id2index = this.buildNodesId2Index(blueprint_spec.nodes);
+    const { id2rank, y_depth } = this.discoverNodeRanks(blueprint_spec, id2index);
 
-    this.xml_diagrams = this.build_diagram(blueprint_spec, this.xml_sequences, id2rank, y_depth);
+    this.xml_diagrams = this.buildDiagram(blueprint_spec, this.xml_sequences, id2rank, y_depth);
 
     const rootElements = [this.xml_process, this.xml_collab, this.xml_diagrams];
     this.root = this.moddle.create('bpmn:Definitions',
@@ -159,14 +157,14 @@ class xmlConverter {
       });
   }
 
-  build_nodes(nodes, incoming_flows) {
-    return nodes.map((node) => this.parse_node(node, incoming_flows));
+  buildNodes(nodes, incoming_flows) {
+    return nodes.map((node) => this.parseNode(node, incoming_flows));
   }
 
   build_sequence_flows(nodes) {
     let xml_sequences = [];
     nodes.forEach((node) => {
-      const parsed = this.parse_sequence_flow(node);
+      const parsed = this.parseSequenceFlow(node);
       xml_sequences = [...xml_sequences, ...parsed];
     });
 
@@ -182,23 +180,23 @@ class xmlConverter {
     return { incoming_flows, xml_sequences };
   }
 
-  parse_lane(nodes, lane) {
-    const id = xmlConverter.std_lane_id(lane.id);
+  parseLane(nodes, lane) {
+    const id = XmlConverter.stdLaneId(lane.id);
     const flowNodeRef = [];
     nodes.forEach((node) => {
       if (node.lane_id === lane.id) {
-        flowNodeRef.push({ id: xmlConverter.std_node_id(node.id) });
+        flowNodeRef.push({ id: XmlConverter.stdNodeId(node.id) });
       }
     });
-    return this.moddle.create('bpmn:Lane', { id, flowNodeRef });
+    return this.moddle.create('bpmn:Lane', { id, flowNodeRef, name: lane.name });
   }
 
-  build_laneset(nodes, lanes) {
-    const xml_lanes = lanes.map((lane) => this.parse_lane(nodes, lane));
+  buildLaneset(nodes, lanes) {
+    const xml_lanes = lanes.map((lane) => this.parseLane(nodes, lane));
     return this.moddle.create('bpmn:LaneSet', { id: 'Global_LaneSet', lanes: xml_lanes });
   }
 
-  build_diagram(spec, xml_sequences, id2rank, y_depth) {
+  buildDiagram(spec, xml_sequences, id2rank, y_depth) {
     const { nodes } = spec;
     const default_height = 80;
     const default_width = 100;
@@ -218,35 +216,35 @@ class xmlConverter {
     const lane_heigth = y_depth.map((el) => el * default_y_spacing);
 
     const lane_heigth_con = [0];
-    for (let i = 1; i < lane_heigth.length; i++) {
+    for (let i = 1; i < lane_heigth.length; i += 1) {
       lane_heigth_con.push(lane_heigth_con[i - 1] + lane_heigth[i - 1]);
     }
 
     const lanes_ids = spec.lanes.map((lane) => lane.id).sort((a, b) => a - b);
 
     const default_style = (node) => this.moddle.create('dc:Bounds', {
-      x: default_padding + default_x_spacing * id2rank[xmlConverter.std_node_id(node.id)][0],
-      y: default_padding + default_y_spacing * id2rank[xmlConverter.std_node_id(node.id)][1] + lane_heigth_con[lanes_ids.findIndex((el) => el === node.lane_id)],
+      x: default_padding + default_x_spacing * id2rank[XmlConverter.stdNodeId(node.id)][0],
+      y: default_padding + default_y_spacing * id2rank[XmlConverter.stdNodeId(node.id)][1] + lane_heigth_con[lanes_ids.findIndex((el) => el === node.lane_id)],
       width: default_width,
       height: default_height,
     });
 
     const bounds_style = {
       Start: (node) => this.moddle.create('dc:Bounds', {
-        x: default_padding + default_x_spacing * id2rank[xmlConverter.std_node_id(node.id)][0] + default_width - start_stop_dim,
-        y: default_padding + default_y_spacing * id2rank[xmlConverter.std_node_id(node.id)][1] + (default_height - start_stop_dim) / 2 + lane_heigth_con[lanes_ids.findIndex((el) => el === node.lane_id)],
+        x: default_padding + default_x_spacing * id2rank[XmlConverter.stdNodeId(node.id)][0] + default_width - start_stop_dim,
+        y: default_padding + default_y_spacing * id2rank[XmlConverter.stdNodeId(node.id)][1] + (default_height - start_stop_dim) / 2 + lane_heigth_con[lanes_ids.findIndex((el) => el === node.lane_id)],
         width: start_stop_dim,
         height: start_stop_dim,
       }),
       Finish: (node) => this.moddle.create('dc:Bounds', {
-        x: default_padding + default_x_spacing * id2rank[xmlConverter.std_node_id(node.id)][0],
-        y: default_padding + default_y_spacing * id2rank[xmlConverter.std_node_id(node.id)][1] + (default_height - start_stop_dim) / 2 + lane_heigth_con[lanes_ids.findIndex((el) => el === node.lane_id)],
+        x: default_padding + default_x_spacing * id2rank[XmlConverter.stdNodeId(node.id)][0],
+        y: default_padding + default_y_spacing * id2rank[XmlConverter.stdNodeId(node.id)][1] + (default_height - start_stop_dim) / 2 + lane_heigth_con[lanes_ids.findIndex((el) => el === node.lane_id)],
         width: start_stop_dim,
         height: start_stop_dim,
       }),
       Flow: (node) => this.moddle.create('dc:Bounds', {
-        x: default_padding + default_x_spacing * id2rank[xmlConverter.std_node_id(node.id)][0] + (default_width - flow_dim) / 2,
-        y: default_padding + default_y_spacing * id2rank[xmlConverter.std_node_id(node.id)][1] + (default_height - flow_dim) / 2 + lane_heigth_con[lanes_ids.findIndex((el) => el === node.lane_id)],
+        x: default_padding + default_x_spacing * id2rank[XmlConverter.stdNodeId(node.id)][0] + (default_width - flow_dim) / 2,
+        y: default_padding + default_y_spacing * id2rank[XmlConverter.stdNodeId(node.id)][1] + (default_height - flow_dim) / 2 + lane_heigth_con[lanes_ids.findIndex((el) => el === node.lane_id)],
         width: flow_dim,
         height: flow_dim,
       }),
@@ -258,19 +256,19 @@ class xmlConverter {
     const bounds_array = {};
     nodes.forEach((node) => {
       try {
-        bounds_array[xmlConverter.std_node_id(node.id)] = bounds_style[node.type](node);
+        bounds_array[XmlConverter.stdNodeId(node.id)] = bounds_style[node.type](node);
       } catch (e) {
-        console.log('Error in node ', node.id);
-        console.log(e);
+        debug('Error in node ', node.id);
+        debug(e);
       }
     });
 
     const diagram_nodes = nodes.map((node) => {
-      const bounds = bounds_array[xmlConverter.std_node_id(node.id)];
+      const bounds = bounds_array[XmlConverter.stdNodeId(node.id)];
 
       return this.moddle.create('bpmndi:BPMNShape', {
-        id: `${xmlConverter.std_node_id(node.id)}_di`,
-        bpmnElement: { id: xmlConverter.std_node_id(node.id) },
+        id: `${XmlConverter.stdNodeId(node.id)}_di`,
+        bpmnElement: { id: XmlConverter.stdNodeId(node.id) },
         bounds,
       });
     });
@@ -328,8 +326,8 @@ class xmlConverter {
       try {
         waypoint = generate_waypoints(bounds_array[seq.sourceRef.id], bounds_array[seq.targetRef.id]);
       } catch (e) {
-        console.log('Error parsing edge ', seq);
-        console.log(e);
+        debug('Error parsing edge ', seq);
+        debug(e);
       }
       return this.moddle.create('bpmndi:BPMNEdge', {
         id: `${seq.id}_di`,
@@ -340,14 +338,6 @@ class xmlConverter {
 
     const planeElement = diagram_nodes.concat(diagram_edges);
 
-    const total_heigth = lane_heigth.reduce((retval, el) => retval + el, 0);
-    const bounds2 = this.moddle.create('dc:Bounds', {
-      x: default_padding,
-      y: default_padding - default_y_margin,
-      width: default_total_width,
-      height: total_heigth,
-    });
-
     lanes_ids.forEach((lane_id, index) => {
       const bounds = this.moddle.create('dc:Bounds', {
         x: default_padding + 30,
@@ -356,16 +346,24 @@ class xmlConverter {
         height: lane_heigth[index],
       });
       planeElement.push(this.moddle.create('bpmndi:BPMNShape', {
-        id: `${xmlConverter.std_lane_id(lane_id)}_di`,
-        bpmnElement: { id: xmlConverter.std_lane_id(lane_id) },
+        id: `${XmlConverter.stdLaneId(lane_id)}_di`,
+        bpmnElement: { id: XmlConverter.stdLaneId(lane_id) },
         bounds,
       }));
+    });
+
+    const total_heigth = lane_heigth.reduce((retval, el) => retval + el, 0);
+    const bounds = this.moddle.create('dc:Bounds', {
+      x: default_padding,
+      y: default_padding - default_y_margin,
+      width: default_total_width,
+      height: total_heigth,
     });
 
     planeElement.push(this.moddle.create('bpmndi:BPMNShape', {
       id: 'Global_Actor_di',
       bpmnElement: { id: 'Global_Actor' },
-      bounds: bounds2,
+      bounds,
     }));
 
     const plane = this.moddle.create('bpmndi:BPMNPlane', {
@@ -380,7 +378,7 @@ class xmlConverter {
     });
   }
 
-  build_nodes_id2index(nodes) {
+  buildNodesId2Index(nodes) {
     const id2index = {};
     nodes.forEach((value, index) => {
       id2index[value.id] = index;
@@ -388,20 +386,20 @@ class xmlConverter {
     return id2index;
   }
 
-  discover_node_ranks(spec, id2index) {
+  discoverNodeRanks(spec, id2index) {
     const { nodes } = spec;
     const { lanes } = spec;
     const lanes_ids = lanes.map((lane) => lane.id);
 
     const grids = {};
-    lanes_ids.forEach((id) => grids[id] = new Grid());
+    lanes_ids.forEach((id) => { grids[id] = new Grid(); });
 
     const start_nodes = nodes.filter((node) => node.type === 'Start');
     const fifo = [];
 
     fifo.unshift(start_nodes.shift());
 
-    grids[nodes[0].lane_id].add_element(xmlConverter.std_node_id(nodes[0].id), [0, 0]);
+    grids[nodes[0].lane_id].addElement(XmlConverter.stdNodeId(nodes[0].id), [0, 0]);
 
     while (fifo.length !== 0) {
       const curr_node = fifo.pop();
@@ -427,23 +425,23 @@ class xmlConverter {
           break;
 
         default:
-          console.log('xml_converter.discover_node_ranks() -> Unsupported type!', typeof curr_node.next);
+          debug('xml-converter.discoverNodeRanks() -> Unsupported type!', typeof curr_node.next);
           break;
       }
 
-      const curr_pos = grids[curr_node.lane_id].get_node_pos(xmlConverter.std_node_id(curr_node.id));
+      const curr_pos = grids[curr_node.lane_id].getNodePos(XmlConverter.stdNodeId(curr_node.id));
       list_childs.forEach((child_id, index) => {
         const child_node = nodes[id2index[child_id]];
-        if (!grids[child_node.lane_id].seen_nodes().includes(xmlConverter.std_node_id(child_id))) {
+        if (!grids[child_node.lane_id].seenNodes().includes(XmlConverter.stdNodeId(child_id))) {
           if (index > 0) {
-            grids[child_node.lane_id].add_row_after(index - 1);
+            grids[child_node.lane_id].addRowAfter(index - 1);
           }
 
           const child_pos = [...curr_pos];
           child_pos[0] += 1;
           child_pos[1] += index;
 
-          grids[child_node.lane_id].add_element(xmlConverter.std_node_id(child_id), child_pos);
+          grids[child_node.lane_id].addElement(XmlConverter.stdNodeId(child_id), child_pos);
 
           fifo.unshift(nodes[id2index[child_id]]);
         }
@@ -456,7 +454,7 @@ class xmlConverter {
       stack.push(curr_node);
       // Stop if we find a finish node or an already seen node
       while (typeof curr_node !== 'undefined'
-        && !grids[curr_node.lane_id].seen_nodes().includes(xmlConverter.std_node_id(curr_node.id))) {
+        && !grids[curr_node.lane_id].seenNodes().includes(XmlConverter.stdNodeId(curr_node.id))) {
         if (typeof curr_node.next === 'object') {
           throw Error('Unsupported multiple starts and flow node yet!');
         }
@@ -464,19 +462,19 @@ class xmlConverter {
         curr_node = id2index[curr_node.next];
       }
 
-      const base_rank = !grids[curr_node.lane_id].get_node_pos(xmlConverter.std_node_id(curr_node.id));
+      const base_rank = !grids[curr_node.lane_id].get_node_pos(XmlConverter.stdNodeId(curr_node.id));
       if (base_rank[1] === 0) {
-        grids[curr_node.lane_id].add_row_before(base_rank[1]);
+        grids[curr_node.lane_id].addRowBefore(base_rank[1]);
       } else {
-        grids[curr_node.lane_id].add_row_after(base_rank[1]);
+        grids[curr_node.lane_id].addRowAfter(base_rank[1]);
       }
 
       while (stack.length !== 0) {
         curr_node = stack.pop();
-        grids[curr_node.lane_id].add_element(xmlConverter.std_node_id(curr_node.id), base_rank);
-        base_rank[0]--;
+        grids[curr_node.lane_id].addElement(XmlConverter.stdNodeId(curr_node.id), base_rank);
+        base_rank[0] -= 1;
         if (base_rank[0] < 0) {
-          grids[curr_node.lane_id].add_column_before(0);
+          grids[curr_node.lane_id].addColumnBefore(0);
           base_rank[0] = 0;
         }
       }
@@ -486,10 +484,10 @@ class xmlConverter {
     const y_depth = [];
     Object.keys(grids).forEach((key) => {
       let max_y = 0;
-      grids[key].seen_nodes().forEach((node_id) => {
+      grids[key].seenNodes().forEach((node_id) => {
         grids[key].simplify();
-        id2rank[node_id] = grids[key].get_node_pos(node_id);
-        max_y = Math.max(max_y, grids[key].get_size()[1]);
+        id2rank[node_id] = grids[key].getNodePos(node_id);
+        max_y = Math.max(max_y, grids[key].getSize()[1]);
       });
       y_depth.push(max_y + 1);
     });
@@ -497,10 +495,8 @@ class xmlConverter {
     return { id2rank, y_depth };
   }
 
-  async to_xml() {
-    const { xml } = await this.moddle.toXML(this.root);
+  async to_xml(format = false) {
+    const { xml } = await this.moddle.toXML(this.root, { format });
     return xml;
   }
 }
-
-export default xmlConverter;

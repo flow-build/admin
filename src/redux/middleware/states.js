@@ -1,8 +1,9 @@
 /* eslint-disable new-cap */
 /* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
+
+import { buildXmlDiagram } from '../../utils/diagram-builder/index';
 import notification from '../../utils/notification';
-import xmlConverter from '../../utils/xmlConverter';
 import * as action from '../actions';
 import axiosInstance from '../axios';
 
@@ -70,7 +71,6 @@ export const getBlueprint = (workflowId) => {
 };
 
 export const getBlueprintXML = (workflowId) => {
-  const conversor = new xmlConverter();
   return async (dispatch) => {
     dispatch(action.loadingStart());
     const response = await axiosInstance.get(`/workflows/${workflowId}`)
@@ -86,11 +86,12 @@ export const getBlueprintXML = (workflowId) => {
           );
         }
       });
-    conversor.build_graph(response.data.blueprint_spec);
-    const xmlBpmn = await conversor.to_xml();
-    // const xmlBpmn = response.data.blueprint_spec;
-    dispatch(action.getBlueprintXML(xmlBpmn));
-    dispatch(action.loadingEnd());
+    buildXmlDiagram(response.data.blueprint_spec, response.data.name, true)
+      .then((xml) => {
+        dispatch(action.getBlueprintXML(xml));
+        dispatch(action.loadingEnd());
+      })
+      .catch((err) => console.error(`xml error: ${err}`));
   };
 };
 
