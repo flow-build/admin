@@ -1,11 +1,9 @@
-/* eslint-disable import/extensions */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React, { useRef, useEffect } from 'react';
 
 import 'bpmn-js/dist/assets/diagram-js.css';
 import 'bpmn-js/dist/assets/bpmn-font/css/bpmn.css';
 import BpmnJS from 'bpmn-js/lib/Modeler';
+import PropTypes from 'prop-types';
 
 export const modeler = new BpmnJS();
 
@@ -16,7 +14,7 @@ const BPMNModeler = ({ url, diagramXML }) => {
   const loadBPMN = async () => {
     modeler.attachTo(ref.current);
 
-    modeler.on('import.done', (event) => {
+    modeler.on('import.done', () => {
       modeler.get('canvas').zoom('fit-viewport');
     });
 
@@ -39,6 +37,16 @@ const BPMNModeler = ({ url, diagramXML }) => {
   return (
     <div className="react-bpmn-modeler--diagram" ref={ref} />
   );
+};
+
+BPMNModeler.propTypes = {
+  url: PropTypes.string,
+  diagramXML: PropTypes.string,
+};
+
+BPMNModeler.defaultProps = {
+  url: '',
+  diagramXML: '',
 };
 
 export default BPMNModeler;
