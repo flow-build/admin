@@ -1,25 +1,21 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import-helpers/order-imports */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+import PropTypes from 'prop-types';
 
 import BPMNModeler, { modeler } from '../../../components/BPMNModeler';
 import SpinnerLoader from '../../../components/SpinnerLoader';
 import { getBlueprintXML } from '../../../redux/middleware/states';
 import { getWorkflow, getWorkflows } from '../../../redux/middleware/workflow';
 
-const BlueprintManagerPage = ({
+const BlueprintVisualizer = ({
   match,
 }) => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.generic.loading);
   const diagramXML = useSelector((state) => state.states.blueprintSpec);
   const { workflowId } = match.params;
-  const { workflowName } = match.params;
   const history = useHistory();
 
   useEffect(() => {
@@ -78,4 +74,13 @@ const BlueprintManagerPage = ({
   );
 };
 
-export default BlueprintManagerPage;
+BlueprintVisualizer.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      workflowId: PropTypes.string,
+      workflowName: PropTypes.string,
+    }),
+  }).isRequired,
+};
+
+export default BlueprintVisualizer;
