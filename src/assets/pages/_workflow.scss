@@ -20,6 +20,7 @@
     justify-content: flex-end;
     align-items: center;
     margin-right: 1rem;
+    height: $details-height;
 
     .btn {
       margin-top: 1.5rem;
@@ -36,6 +37,8 @@
   &-list {
     display: flex;
     flex-wrap: wrap;
+    overflow-y: scroll;
+    height: calc(100vh - #{$headerbar-height} - #{$details-height} - 3px);
   }
 
 }
