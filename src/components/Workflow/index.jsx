@@ -35,7 +35,7 @@ const Workflow = ({
           </div>
         ) : (<div className="workflow-status" />)}
       </div>
-      <p className="workflow-name">
+      <p className="workflow-name" title={name}>
         {name}
       </p>
       <div className="workflow-description">

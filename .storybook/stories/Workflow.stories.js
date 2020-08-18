@@ -9,19 +9,19 @@ export default {
 const listStatus = [
     {
         icon: "Finalizado",
-        value: '27'
+        value: 27
     },
     {
         icon: "Andamento",
-        value: '27'
+        value: 27
     },
     {
         icon: "Atencao",
-        value: '27'
+        value: 27
     },
     {
         icon: "Erro",
-        value: '27'
+        value: 27
     },
 ];
 
@@ -42,6 +42,17 @@ export const Simpler = () => {
             name="Nome"
             version={1}
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
+        />
+    )
+}
+
+export const LongNames = () => {
+    return (
+        <Workflow
+            name="WorkflowWithAReallyReallyReallyReallyLongName"
+            version={1}
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
+            listStatus={listStatus}
         />
     )
 }

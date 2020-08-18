@@ -5,9 +5,10 @@
     background-color: $color-white;
     border-radius: 1rem;
     box-shadow: $main-box-shadow;
-    padding: 1rem;
+    padding: 2rem;
     flex: 0 0 31%;
     margin: 1%;
+    min-width: 200px;
   }
 
   &-version {
@@ -18,14 +19,14 @@
     padding: 1rem;
     color: $color-grey-4;
     font-weight: 700;
-    margin-bottom: 1.2rem;
   }
 
   &-name {
     font-weight: 700;
     color: $color-grey-4;
     font-size: 1.7rem;
-    padding-left: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   &-header {
@@ -34,8 +35,9 @@
 
   &-content {
     display: flex;
-    justify-content: right;
-    padding: 1rem;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    align-items: center;
   }
 
   &-status {
@@ -48,7 +50,7 @@
       & li {
         display: flex;
         align-items: center;
-        margin: .8rem;
+        margin-left: 1.6rem;
         font-weight: 700;
         color: $color-grey-4;
 
@@ -66,8 +68,7 @@
   &-description {
     color: $color-grey-4;
     color: #34495e;
-    padding: 1rem .5rem;
-    text-align: center;
+    padding: 1rem 0rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     height: 4rem;
@@ -81,13 +82,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1rem;
-    padding-top: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
 
     & p {
       font-weight: 700;
       color: $color-grey-4;
-      margin-left: .3rem;
     }
   }
 }
