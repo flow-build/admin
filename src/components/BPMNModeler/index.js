@@ -13,25 +13,25 @@ export const getXML = () => modeler.saveXML({ format: true });
 
 const BPMNModeler = ({ url, diagramXML }) => {
   const ref = useRef(null);
+  const loadBPMN = async () => {
+    modeler.attachTo(ref.current);
+
+    modeler.on('import.done', (event) => {
+      modeler.get('canvas').zoom('fit-viewport');
+    });
+
+    if (url) {
+      fetch(url)
+        .then((res) => res.text())
+        .then((diagram) => modeler.importXML(diagram))
+        .catch((err) => console.log(err));
+    } else if (diagramXML) {
+      modeler.importXML(diagramXML)
+        .then(() => console.log('diagram loaded!'))
+        .catch((err) => console.log(`Loading error: ${err}`));
+    }
+  };
   useEffect(() => {
-    const loadBPMN = async () => {
-      modeler.attachTo(ref.current);
-
-      modeler.on('import.done', (event) => {
-        modeler.get('canvas').zoom('fit-viewport');
-      });
-
-      if (url) {
-        fetch(url)
-          .then((res) => res.text())
-          .then((diagram) => modeler.importXML(diagram))
-          .catch((err) => console.log(err));
-      } else if (diagramXML) {
-        modeler.importXML(diagramXML)
-          .then(() => console.log('diagram loaded!'))
-          .catch((err) => console.log(`Loading error: ${err}`));
-      }
-    };
     loadBPMN();
   }, [ref, url]);
 

@@ -27,7 +27,8 @@ const BlueprintManagerPage = () => {
   };
   useEffect(() => {
     dispatch(getWorkflows());
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const mountWorkflows = (workflow, index) => {
     if (filteredWorkflowNames.indexOf(workflow.workflow_name) > -1) {
       return (
