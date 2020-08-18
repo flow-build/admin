@@ -1,6 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -11,7 +8,6 @@ import Search from '../../components/Search';
 import SpinnerLoader from '../../components/SpinnerLoader';
 import Workflow from '../../components/Workflow';
 import { getWorkflows } from '../../redux/middleware/workflow';
-
 
 const BlueprintManagerPage = () => {
   const dispatch = useDispatch();
@@ -51,13 +47,25 @@ const BlueprintManagerPage = () => {
         <>
           <div className="workflow-page-date-range">
             <div className="workflow-page-filter">
-              <Search initialArray={workflowNames} setFilteredArray={setFilteredWorkflowArray} filteredArray={filteredWorkflowNames} />
+              <Search
+                initialArray={workflowNames}
+                setFilteredArray={setFilteredWorkflowArray}
+                filteredArray={filteredWorkflowNames}
+              />
             </div>
-            <DateRange initialDateArray={initialDateArray} setUpdatedDateArray={setUpdatedDateArray} updatedDateArray={updatedDateArray} />
-            <Button title="Atualizar" onClick={() => dispatch(getWorkflows())} />
+            <DateRange
+              initialDateArray={initialDateArray}
+              setUpdatedDateArray={setUpdatedDateArray}
+              updatedDateArray={updatedDateArray}
+            />
+            <Button
+              title="Atualizar"
+              onClick={() => dispatch(getWorkflows())}
+            />
           </div>
           <div className="workflow-page-list">
-            {filteredWorkflowNames.length > 0 && workflowsSelector.map((workflow, index) => mountWorkflows(workflow, index))}
+            {filteredWorkflowNames.length > 0
+              && workflowsSelector.map((workflow, index) => mountWorkflows(workflow, index))}
           </div>
         </>
       )}
