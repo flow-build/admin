@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 import ReactJson from 'react-json-view';
 
 import IconUtil, { convertIcon } from '../../utils/iconUtil';
@@ -11,8 +11,17 @@ const JsonReader = ({
   const statusName = convertIcon(processObject.status);
   return (
     <div className="json-container">
-      <div className="json-step-number">
-        <p>{processObject.stepNumber}</p>
+      <div className="json-row">
+        <div className="json-row-step-number">
+          <p>{processObject.stepNumber}</p>
+        </div>
+        { processObject.engineId && (
+          <div className="json-row-engine-id">
+            <h2>Engine ID</h2>
+            <p>{processObject.engineId}</p>
+          </div>
+        )}
+
       </div>
       <div className="json-create-status">
         <p>{processObject.createdAt}</p>

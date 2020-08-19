@@ -29,6 +29,7 @@ const ProcessPage = ({
     nodeId: '',
     bag: {},
     result: {},
+    engineId: '',
   });
   useEffect(() => {
     dispatch(actions.getState(match.params.processId));
@@ -60,6 +61,7 @@ const ProcessPage = ({
       status: processItem.status,
       bag: processItem.bag,
       result: processItem.result,
+      engineId: processItem.engineId,
     });
   };
   return (
