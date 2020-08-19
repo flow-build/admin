@@ -43,16 +43,17 @@ const Process = ({
           </tr>
         </thead>
         <tbody>
-          {currentProcess.sort((firstProcess, secondProcess) => firstProcess.lastUpdated - secondProcess.lastUpdated).map((processItem) => (
-            <ProcessItem
-              key={processItem.id}
-              {...processItem}
-              processCheck={processCheck}
-              action={() => processAction(processItem)}
-              workflowId={workflowId}
-              workflowName={workflowName}
-            />
-          ))}
+          {currentProcess.sort((firstProcess, secondProcess) => firstProcess.lastUpdated - secondProcess.lastUpdated)
+            .map((processItem) => (
+              <ProcessItem
+                key={processItem.id}
+                {...processItem}
+                processCheck={processCheck}
+                action={() => processAction(processItem)}
+                workflowId={workflowId}
+                workflowName={workflowName}
+              />
+            ))}
         </tbody>
       </table>
       <Pagination
@@ -66,7 +67,15 @@ const Process = ({
 
 Process.propTypes = {
   listProcessItem: PropTypes.arrayOf(PropTypes.shape(
-    [PropTypes.string, PropTypes.string, PropTypes.string, PropTypes.string, PropTypes.string, PropTypes.string, PropTypes.string],
+    [
+      PropTypes.string,
+      PropTypes.string,
+      PropTypes.string,
+      PropTypes.string,
+      PropTypes.string,
+      PropTypes.string,
+      PropTypes.string,
+    ],
   )).isRequired,
   processCheck: PropTypes.bool,
   processAction: PropTypes.func,
