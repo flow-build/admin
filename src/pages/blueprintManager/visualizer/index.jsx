@@ -4,10 +4,12 @@ import { useHistory } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
-import BPMNModeler, { modeler } from '../../../components/BPMNModeler';
+import BPMNModeler, { modeler, getXML } from '../../../components/BPMNModeler';
+import Button from '../../../components/Button';
 import SpinnerLoader from '../../../components/SpinnerLoader';
 import { getBlueprintXML } from '../../../redux/middleware/states';
 import { getWorkflow, getWorkflows } from '../../../redux/middleware/workflow';
+import { downloadFile } from '../../../utils/downloader';
 
 const BlueprintVisualizer = ({
   match,
@@ -15,7 +17,7 @@ const BlueprintVisualizer = ({
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.generic.loading);
   const diagramXML = useSelector((state) => state.states.blueprintSpec);
-  const { workflowId } = match.params;
+  const { workflowId, workflowName } = match.params;
   const history = useHistory();
 
   useEffect(() => {
@@ -63,12 +65,26 @@ const BlueprintVisualizer = ({
     });
   }
 
+  const exportDiagram = async () => {
+    try {
+      const { xml } = await getXML();
+      downloadFile(xml, `${workflowName}.bpmn`, 'text/xml');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       {loading ? (
         <SpinnerLoader fontSize="1" />
       ) : (
-        <BPMNModeler diagramXML={diagramXML} />
+        <div className="bpmn-modeler-container">
+          <div className="bpmn-modeler-actions">
+            <Button title="Exportar" onClick={exportDiagram} />
+          </div>
+          <BPMNModeler diagramXML={diagramXML} className="bpmn-modeler-diagram" />
+        </div>
       )}
     </>
   );
