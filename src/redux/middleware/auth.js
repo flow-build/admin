@@ -6,14 +6,14 @@ import axiosInstance from '../axios';
 export const auth = () => {
   return async (dispatch) => {
     dispatch(action.loadingStart());
-    await axiosInstance.get('/anonymousToken').then((response) => {
+    await axiosInstance.get(process.env.TOKEN_ROUTE).then((response) => {
       localStorage.setItem('token', response.data.jwtToken);
       localStorage.setItem('expirationDate', new Date(response.data.payload.exp * 1000));
       dispatch(action.authUser(response.data.jwtToken));
     }).catch((err) => {
       if (err.response) {
         notification(
-          'Erro ao realizar o a solicitação ao servidor',
+          'Erro ao realizar a solicitação ao servidor',
           err.message,
           'danger',
           4000,
