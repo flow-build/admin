@@ -26,9 +26,11 @@ The following environment variables must be set in a file such as `.env`:
 
 - `API_URL`: URL for the Cockpit server
 - `TOKEN_ROUTE`: Route to GET the anonymous token. Must start with `/`
+- `GOOGLE_CLIENT_ID`: Client ID gotten from Google Developers Dashboard
 
 Example:
 ```
 API_URL='http://localhost:5000'
 TOKEN_ROUTE='/token'
+GOOGLE_CLIENT_ID='YOUR_ID_HERE.apps.googleusercontent.com'
 ```

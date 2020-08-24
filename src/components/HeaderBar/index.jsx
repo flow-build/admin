@@ -1,4 +1,5 @@
 import React from 'react';
+import { useGoogleLogout } from 'react-google-login';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -11,7 +12,11 @@ const HeaderBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const token = useSelector((state) => state.auth.token);
+  const { signOut } = useGoogleLogout({
+    clientId: process.env.GOOGLE_CLIENT_ID,
+  });
   const logoutUser = () => {
+    signOut();
     dispatch(logout());
     history.push('/login');
   };
