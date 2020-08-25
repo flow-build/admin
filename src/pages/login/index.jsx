@@ -1,65 +1,58 @@
-/* eslint-disable arrow-body-style */
-import React, { useState } from 'react';
+import React from 'react';
+import { GoogleLogin, useGoogleLogout } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import Button from '../../components/Button';
-import Input from '../../components/Input';
 import * as authMiddleware from '../../redux/middleware/auth';
 import notification from '../../utils/notification';
 
+
+const getEmailFromResponse = (responseData) => responseData.rt.$t;
+
+const isAuthorized = async () => {
+  // Implementar aqui a lógica de autorização real
+  const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, 3000);
+  });
+  return promise;
+};
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const onAuth = () => dispatch(authMiddleware.auth());
-  const [userValue, setUserValue] = useState('');
-  const [passValue, setPassValue] = useState('');
-  const [error, setError] = useState(false);
-  const validateLoginUser = (event) => {
-    event.preventDefault();
-    let validation = {
-      message: '',
-      check: true,
-    };
-    if (validation.check && (userValue === '' || passValue === '')) {
-      validation = {
-        message: 'Os campos não podem ser vazios',
-        check: false,
-      };
-    }
-    if (validation.check && (userValue !== 'admin' || passValue !== 'admin')) {
-      validation = {
-        message: 'Usuário e senha inválidos',
-        check: false,
-      };
-    }
-    if (!validation.check) {
-      setError(true);
-      notification(
-        'Erro ao realizar o login',
-        validation.message,
-        'danger',
-        4000,
-      );
-    } else {
+  const { signOut } = useGoogleLogout({
+    clientId: process.env.GOOGLE_CLIENT_ID,
+  });
+
+
+  const onLoginSuccess = async (response) => {
+    const email = getEmailFromResponse(response);
+    const authorizedToLogin = await isAuthorized(email);
+    if (authorizedToLogin) {
       onAuth();
       history.push('/app/wfm');
+    } else {
+      notification('Não autorizado',
+        'Usuário não possui autorização para logar no sistema',
+        'danger',
+        5000);
+      signOut();
     }
   };
+
   return (
     <div className="login-container">
-      <form onSubmit={validateLoginUser}>
-        <div className="login-form">
-          <p className="login-paragraph">Login</p>
-          <Input elementType="input" type="text" placeholder="Usuário" icon="User" value={userValue} onChange={setUserValue} error={error} onFocus={() => setError(false)} />
-          <Input elementType="input" type="password" placeholder="Senha" icon="Password" value={passValue} onChange={setPassValue} error={error} onFocus={() => setError(false)} />
-          <Button title="Entrar" />
-        </div>
-      </form>
+      <div className="login-form">
+        <GoogleLogin
+          clientId={process.env.GOOGLE_CLIENT_ID}
+          onSuccess={onLoginSuccess}
+        />
+      </div>
     </div>
   );
 };
-
 
 export default LoginPage;

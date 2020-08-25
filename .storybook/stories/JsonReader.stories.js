@@ -8,28 +8,26 @@ export default {
 
 export const Default = () => {
   const jsonObject = {
-    "glossary": {
-        "title": "example glossary",
-		"GlossDiv": {
-            "title": "S",
-			"GlossList": {
-                "GlossEntry": {
-                    "ID": "SGML",
-					"SortAs": "SGML",
-					"GlossTerm": "Standard Generalized Markup Language",
-					"Acronym": "SGML",
-					"Abbrev": "ISO 8879:1986",
-					"GlossDef": {
-                        "para": "A meta-markup language, used to create markup languages such as DocBook.",
-						"GlossSeeAlso": ["GML", "XML"]
-                    },
-					"GlossSee": "markup"
-                }
-            }
+    id: '123456',
+    stepNumber: 3,
+    createdAt: new Date().toISOString(),
+    status: 'running',
+    nodeId: '',
+    result: {
+        'age': 30
+    },
+    engineId: '2f724166-1d0c-44b7-8dc4-b03bf4e54087',
+    bag: {
+        'name': {
+            'first': 'John',
+            'last': 'Doe'
         }
-    }
-}
+    },
+  }
+
     return (
-        <JsonReader stepNumber={1} createdAt="2020-05-12T15:17:57.580Z" status="Andamento"  bag={jsonObject} result={jsonObject} />
+        <JsonReader 
+            processObject={jsonObject} 
+        />
     );
 };

@@ -28,6 +28,7 @@ const getStates = (state, action) => {
       nextNodeId: states.next_node_id,
       bag: states.bag,
       result: states.result,
+      engineId: states.engine_id,
     };
   });
   return updateObject(state, { states: newStates, length: newStates.length });

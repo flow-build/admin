@@ -19,3 +19,6 @@ $headerbar-height: 44px;
 
 // DETAILS (like search bars and buttons, at the top of the component)
 $details-height: 65px;
+
+// CONTENT (below the details part)
+$content-height: calc(100vh - #{$headerbar-height} - #{$details-height} - 3px);
