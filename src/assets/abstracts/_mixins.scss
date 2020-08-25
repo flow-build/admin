@@ -1,0 +1,24 @@
+// MEDIA QUERIES CHANGES FONT-SIZE
+@mixin respond($breakpoint) {
+    @if $breakpoint==desktop {
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+            @content
+        };
+    }
+    @if $breakpoint==desktop-medium {
+        @media only screen and (min-width: 1200px) and (max-width: 1439px) {
+            @content
+        };
+    }
+    @if $breakpoint==desktop-large {
+        @media only screen and (min-width: 1440px) and (max-width: 1919px) {
+            @content
+        };
+    }
+    @if $breakpoint==desktop-extra-large {
+        @media only screen and (min-width: 1920px) {
+            @content
+        };
+    }
+}
+

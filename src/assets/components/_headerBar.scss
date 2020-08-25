@@ -1,0 +1,17 @@
+.header-bar {
+    background-color: $main-color;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem;
+    height: $headerbar-height;
+}
+
+.logout {
+    fill: $color-white;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+    margin-right: 0.6rem;
+}

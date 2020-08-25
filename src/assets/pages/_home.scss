@@ -1,0 +1,8 @@
+.home {
+  display: flex;
+  flex: 1 1 auto;
+
+  & .sidebar .sidebar-user .sidebar-item {
+    margin-bottom: 1rem;
+  }
+}
