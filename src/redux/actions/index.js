@@ -33,3 +33,6 @@ export {
 export {
   getState,
 } from './getState';
+export {
+  getParsedNodes,
+} from './nodes';
