@@ -11,6 +11,7 @@ import App from './app';
 import { tokenSelector, setAuthHeader } from './redux/axios';
 import authReducer from './redux/reducers/auth';
 import genericReducer from './redux/reducers/genericReducer';
+import nodesReducer from './redux/reducers/nodes';
 import processesReducer from './redux/reducers/processes';
 import statesReducer from './redux/reducers/states';
 import workflowReducer from './redux/reducers/workflow';
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   processes: processesReducer,
   states: statesReducer,
   workflow: workflowReducer,
+  nodes: nodesReducer,
 });
 
 const store = createStore(rootReducer, composeEnhancers(
