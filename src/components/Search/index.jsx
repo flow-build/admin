@@ -31,5 +31,4 @@ Search.propTypes = {
   setFilteredArray: PropTypes.func.isRequired,
 };
 
-
 export default Search;

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import fdteLogo from '../../assets/img/logo-fdte.png';
 
-
 const Logo = ({
   height, className,
 }) => (

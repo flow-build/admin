@@ -6,6 +6,7 @@ import MdCheckmarkCircle from 'react-ionicons/lib/MdCheckmarkCircle';
 import MdCloseCircle from 'react-ionicons/lib/MdCloseCircle';
 import MdCrop from 'react-ionicons/lib/MdCrop';
 import MdDesktop from 'react-ionicons/lib/MdDesktop';
+import MdFiling from 'react-ionicons/lib/MdFiling';
 import MdLock from 'react-ionicons/lib/MdLock';
 import MdLogOut from 'react-ionicons/lib/MdLogOut';
 import MdPerson from 'react-ionicons/lib/MdPerson';
@@ -34,11 +35,10 @@ const getSelectedIcon = (icon, onClick) => {
     Andamento: <MdPlay className={`${classNameIcon}-play`} />,
     Atencao: <MdWarning className={`${classNameIcon}-warning`} />,
     Erro: <MdCloseCircle className={`${classNameIcon}-close`} />,
-
+    Filing: <MdFiling className={classNameIcon} />,
   };
   return icons[icon];
 };
-
 
 export const convertIcon = (status) => {
   let statusName = '';

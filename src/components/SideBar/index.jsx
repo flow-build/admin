@@ -1,7 +1,6 @@
 import React from 'react';
 import MdContact from 'react-ionicons/lib/MdContact';
 
-
 const SideBar = ({children}) => ( //eslint-disable-line
   <div className="sidebar">
     <div className="sidebar-user">

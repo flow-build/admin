@@ -1,3 +1,4 @@
+import Accounts from '../pages/Accounts';
 import AppPage from '../pages/appPage';
 import BlueprintManagerPage from '../pages/blueprintManager';
 import BlueprintManager from '../pages/blueprintManager/visualizer';
@@ -53,5 +54,10 @@ export default [
     path: '/app/settings',
     label: 'Settings',
     component: Settings,
+  },
+  {
+    path: '/app/accounts',
+    label: 'Accounts',
+    component: Accounts,
   },
 ];

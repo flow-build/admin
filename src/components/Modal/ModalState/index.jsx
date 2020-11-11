@@ -13,7 +13,6 @@ import * as actions from '../../../redux/middleware/states';
 
 import Modal from '..';
 
-
 const ModalState = ({
   children, show, setShow, processObject, workflowIdParam, buttonCheckAction, workflowNameParam,
 }) => {

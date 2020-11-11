@@ -106,5 +106,4 @@ const ProcessPage = ({
   );
 };
 
-
 export default ProcessPage;

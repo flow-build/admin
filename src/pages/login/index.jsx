@@ -8,7 +8,6 @@ import Input from '../../components/Input';
 import * as authMiddleware from '../../redux/middleware/auth';
 import notification from '../../utils/notification';
 
-
 const LoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -60,6 +59,5 @@ const LoginPage = () => {
     </div>
   );
 };
-
 
 export default LoginPage;

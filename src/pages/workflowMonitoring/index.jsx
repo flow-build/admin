@@ -12,7 +12,6 @@ import SpinnerLoader from '../../components/SpinnerLoader';
 import Workflow from '../../components/Workflow';
 import { getWorkflows } from '../../redux/middleware/workflow';
 
-
 const WorkflowMonitoringPage = () => {
   const dispatch = useDispatch();
   const workflowsSelector = useSelector((state) => state.workflow.workflows);

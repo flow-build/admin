@@ -30,7 +30,6 @@ const DateRange = ({
   );
 };
 
-
 DateRange.propTypes = {
   initialDateArray: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
   updatedDateArray: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,

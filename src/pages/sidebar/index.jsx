@@ -9,7 +9,6 @@ import SidebarItem from '../../components/SideBar/SideBarItem';
 import { logout } from '../../redux/middleware/auth';
 import routes from '../../routes';
 
-
 const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -21,6 +20,7 @@ const Home = () => {
     <div className="home">
       <Sidebar>
         <SidebarItem icon="Dashboard" name="Dashboard" to="/app" />
+        <SidebarItem icon="Filing" name="Consultar Accounts" to="/app/accounts" />
         <SidebarItem icon="Blueprint" name="Blueprint Manager" to="/app/bpmanager" />
         <SidebarItem icon="Workflow" name="Workflow Monitoring" to="/app/wfm" />
         <SidebarItem icon="Insights" name="Insights" to="/app/insights" />

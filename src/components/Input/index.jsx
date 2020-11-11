@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import iconUtil from '../../utils/iconUtil';
 
-
 const Input = ({
   placeholder, type, icon, onChange, value, elementType, options, error, onFocus,
 }) => {

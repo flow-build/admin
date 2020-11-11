@@ -6,7 +6,6 @@ import { logout } from '../../redux/middleware/auth';
 import iconUtil from '../../utils/iconUtil';
 import Logo from '../Logo/index';
 
-
 const HeaderBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();

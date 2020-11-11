@@ -38,7 +38,6 @@ const BlueprintVisualizer = ({
         name: node.parameters.workflow_name,
       }));
 
-
   const [importDone, setImportDone] = useState(false);
   modeler.on('import.done', () => {
     setImportDone(true);

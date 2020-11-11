@@ -3,7 +3,6 @@ import React from 'react';
 import IconUtil from '../../utils/iconUtil';
 import Backdrop from '../Backdrop';
 
-
 const Modal = ({ children, title, type, show, setShow, childrenModal }) => { //eslint-disable-line
   return (
     <>

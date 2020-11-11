@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const CenterStorybook = (props) => {
   // eslint-disable-next-line react/prop-types
   const { children } = props;
@@ -10,6 +9,5 @@ const CenterStorybook = (props) => {
     </div>
   );
 };
-
 
 export default CenterStorybook;

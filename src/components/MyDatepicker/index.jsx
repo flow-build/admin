@@ -5,7 +5,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import pt from 'date-fns/locale/pt-BR';
 import PropTypes from 'prop-types';
 
-
 const MyDatePicker = ({
   selected, onChange,
 }) => {
@@ -28,6 +27,5 @@ MyDatePicker.propTypes = {
   selected: PropTypes.PropTypes.instanceOf(Date), //eslint-disable-line
   onChange: PropTypes.func.isRequired,
 };
-
 
 export default MyDatePicker;

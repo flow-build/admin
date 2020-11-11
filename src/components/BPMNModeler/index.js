@@ -33,7 +33,6 @@ const BPMNModeler = ({ url, diagramXML }) => {
     loadBPMN();
   }, [ref, url]);
 
-
   return (
     <div className="react-bpmn-modeler--diagram" ref={ref} />
   );

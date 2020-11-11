@@ -9,7 +9,6 @@ import Process from '../../../components/Process';
 import SpinnerLoader from '../../../components/SpinnerLoader';
 import { getProcesses } from '../../../redux/middleware/processes';
 
-
 const ProcessesPage = ({
   match,
 }) => {
@@ -42,6 +41,5 @@ const ProcessesPage = ({
     </div>
   );
 };
-
 
 export default ProcessesPage;
