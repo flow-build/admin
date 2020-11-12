@@ -2,7 +2,8 @@
 @import './abstracts/mixins.scss';
 @import './abstracts/variables.scss';
 //@BASE
-@import './base//base.scss';
+@import './base/base.scss';
+@import './base/scss/app.scss';
 //@COMPONENTS
 @import './components/button.scss';
 @import './components/centerStorybook.scss';
@@ -20,6 +21,8 @@
 @import './components/dateRange.scss';
 @import './components/jsonRender.scss';
 @import './components/bpmnModeler.scss';
+@import './components/accounts';
+@import './components/ag-theme-blue-custom';
 //@LATOUTS
 @import './layouts/forms.scss';
 //@PAGES

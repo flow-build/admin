@@ -13,51 +13,51 @@ export default [
   {
     path: '/app',
     label: 'App',
-    component: AppPage,
+    Component: AppPage,
   },
   {
     path: '/app/bpmanager',
     label: 'BlueprintManagerPage',
-    component: BlueprintManagerPage,
+    Component: BlueprintManagerPage,
   },
   {
     path: '/app/blueprint/:workflowName/:workflowId',
     label: 'BlueprintManager',
-    component: BlueprintManager,
+    Component: BlueprintManager,
   },
   {
     path: '/app/wfm',
     label: 'WorkflowMonitoring',
-    component: WorkflowMonitoring,
+    Component: WorkflowMonitoring,
   },
   {
     path: '/app/processes/:workflowName/:workflowId',
-    label: 'Processes',
-    component: Processes,
+    label: 'Processos',
+    Component: Processes,
   },
   {
     path: '/app/process/:workflowName/:workflowId/:processId',
     label: 'Process',
-    component: Process,
+    Component: Process,
   },
   {
     path: '/app/insights',
     label: 'Insights',
-    component: Insights,
+    Component: Insights,
   },
   {
     path: '/app/toolbox',
     label: 'Toolbox',
-    component: Toolbox,
+    Component: Toolbox,
   },
   {
     path: '/app/settings',
     label: 'Settings',
-    component: Settings,
+    Component: Settings,
   },
   {
     path: '/app/accounts',
-    label: 'Accounts',
-    component: Accounts,
+    label: 'Consultar Accounts',
+    Component: Accounts,
   },
 ];

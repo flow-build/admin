@@ -12,10 +12,12 @@ import routes from '../../routes';
 const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const logoutUser = () => {
     dispatch(logout());
     history.push('/login');
   };
+
   return (
     <div className="home">
       <Sidebar>
@@ -28,12 +30,12 @@ const Home = () => {
         <SidebarItem icon="Settings" name="Settings" to="/app/settings" />
         <SidebarItem icon="Logout" name="Logout" to="/login" onClick={logoutUser} />
       </Sidebar>
-      {routes.map((route) => (
+      {routes.map(({ path, label, Component }) => (
         <Route
           exact
-          key={route.label}
-          path={route.path}
-          component={route.component}
+          key={label}
+          path={path}
+          render={(props) => <Component {...props} label={label} />}
         />
       ))}
     </div>

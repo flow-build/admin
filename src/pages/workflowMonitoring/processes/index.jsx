@@ -11,6 +11,7 @@ import { getProcesses } from '../../../redux/middleware/processes';
 
 const ProcessesPage = ({
   match,
+  label = '',
 }) => {
   const dispatch = useDispatch();
   const paramWorkflowId = match.params.workflowId;
@@ -33,7 +34,7 @@ const ProcessesPage = ({
             <Button title="atualizar" onClick={() => dispatch(getProcesses(paramWorkflowId))} />
           </div>
           <div className="processes-table">
-            <p className="processes-page-title">Processos</p>
+            <p className="processes-page-title">{label}</p>
             <Process listProcessItem={processesSelector} total={totalProcess} workflowId={match.params.workflowId} workflowName={match.params.workflowName} />
           </div>
         </>

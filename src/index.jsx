@@ -15,6 +15,7 @@ import processesReducer from './redux/reducers/processes';
 import statesReducer from './redux/reducers/states';
 import workflowReducer from './redux/reducers/workflow';
 import './index.scss';
+import './index.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

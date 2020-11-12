@@ -10,6 +10,7 @@ $color-grey-4: #34495e;
 $color-grey-5: #2c3e50;
 $color-white: #fff;
 $color-black: #000;
+$default-dark: #515365;
 
 // BOX-SHADOW
 $main-box-shadow: 0 .5rem 1rem rgba($color-black, .2);
@@ -22,3 +23,6 @@ $details-height: 65px;
 
 // CONTENT (below the details part)
 $content-height: calc(100vh - #{$headerbar-height} - #{$details-height} - 3px);
+
+// 	MISC
+$border-color: #e6ecf5;
