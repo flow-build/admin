@@ -43,8 +43,6 @@ const WorkflowMonitoringPage = ({ label }) => {
         error: workflow.error + workflow.interrupted,
       }));
 
-      console.log(formattedWorkflows);
-
       setRowData(formattedWorkflows);
     }
   }, [workflowsSelector]);
