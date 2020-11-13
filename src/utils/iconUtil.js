@@ -6,6 +6,7 @@ import MdCheckmarkCircle from 'react-ionicons/lib/MdCheckmarkCircle';
 import MdCloseCircle from 'react-ionicons/lib/MdCloseCircle';
 import MdCrop from 'react-ionicons/lib/MdCrop';
 import MdDesktop from 'react-ionicons/lib/MdDesktop';
+import MdEye from 'react-ionicons/lib/MdEye';
 import MdFiling from 'react-ionicons/lib/MdFiling';
 import MdLock from 'react-ionicons/lib/MdLock';
 import MdLogOut from 'react-ionicons/lib/MdLogOut';
@@ -31,11 +32,12 @@ const getSelectedIcon = (icon, onClick) => {
     User: <MdPerson className="input-icon" />,
     Password: <MdLock className="input-icon" />,
     Search: <MdSearch className="input-icon" />,
-    Finalizado: <MdCheckmarkCircle className={`${classNameIcon}-done`} />,
-    Andamento: <MdPlay className={`${classNameIcon}-play`} />,
-    Atencao: <MdWarning className={`${classNameIcon}-warning`} />,
-    Erro: <MdCloseCircle className={`${classNameIcon}-close`} />,
+    Finished: <MdCheckmarkCircle className={`${classNameIcon}-done`} />,
+    InProgress: <MdPlay className={`${classNameIcon}-play`} />,
+    Warning: <MdWarning className={`${classNameIcon}-warning`} />,
+    Error: <MdCloseCircle className={`${classNameIcon}-close`} />,
     Filing: <MdFiling className={classNameIcon} />,
+    Eye: <MdEye className={classNameIcon} />,
   };
   return icons[icon];
 };

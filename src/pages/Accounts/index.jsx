@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import SpinnerLoader from '../../components/SpinnerLoader';
 import tmpAccountsMockData from '../../utils/tmp_accounts-mock-data';
+import RenderActions from './RenderActions';
 
 const Accounts = ({ label }) => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
-    setRowData(tmpAccountsMockData);
+    const formattedData = tmpAccountsMockData.map((account) => (
+      {
+        ...account,
+        created_at: moment(account.created_at).locale('pt-br').format('lll'),
+      }
+    ));
+    setRowData(formattedData);
   }, []);
 
   return (
@@ -29,11 +37,10 @@ const Accounts = ({ label }) => {
               >
                 <AgGridColumn headerName="Id" field="id" sortable resizable flex={1} />
                 <AgGridColumn headerName="Created_at" field="created_at" sortable resizable flex={1} />
+                <AgGridColumn headerName="Status" field="status" sortable resizable flex={1} />
+                <AgGridColumn headerName="Timezone" field="timezone" sortable resizable flex={1} />
                 <AgGridColumn headerName="Name" field="name" sortable resizable flex={1} />
-                <AgGridColumn headerName="Last_name" field="last_name" sortable resizable flex={1} />
-                <AgGridColumn headerName="Email" field="email" sortable resizable flex={1} />
-                <AgGridColumn headerName="Email_confirmed" field="email_confirmed" sortable resizable flex={1} />
-                <AgGridColumn headerName="Hierarchy" field="hierarchy" sortable resizable flex={1} />
+                <AgGridColumn headerName="Ações" sortable resizable minWidth={150} cellRendererFramework={RenderActions} />
               </AgGridReact>
             </div>
           )}

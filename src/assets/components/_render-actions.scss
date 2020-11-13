@@ -1,0 +1,22 @@
+.render-actions {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  &__button-action {
+    cursor: pointer;
+    background: none;
+    border: 0;
+    outline: 0;
+
+    &:hover {
+      opacity: 0.7;
+      transition: 200ms;
+    }
+
+    &-device {
+      margin-left: 1rem;
+    }
+  }
+}

@@ -1,85 +1,89 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
-import Button from '../../components/Button';
-import DateRange from '../../components/DateRange';
-import Search from '../../components/Search';
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import PropTypes from 'prop-types';
+
 import SpinnerLoader from '../../components/SpinnerLoader';
-import Workflow from '../../components/Workflow';
 import { getWorkflows } from '../../redux/middleware/workflow';
+import IconUtil from '../../utils/iconUtil';
+import RenderActions from './RenderActions';
 
-const WorkflowMonitoringPage = () => {
+const WorkflowMonitoringPage = ({ label }) => {
   const dispatch = useDispatch();
   const workflowsSelector = useSelector((state) => state.workflow.workflows);
-  const initialDateArray = [new Date('3/12/2020'), new Date('7/27/2020')];
-  const [updatedDateArray, setUpdatedDateArray] = useState([]);
-  const [filteredWorkflowNames, setFilteredWorkflowArray] = useState([]);
-  const workflowNames = useSelector((state) => state.workflow.workflowNames);
+
   const loading = useSelector((state) => state.generic.loading);
-  const history = useHistory();
-  const redirectProcesses = (workflowId, workflowName) => {
-    history.push(`/app/processes/${workflowName}/${workflowId}`);
-  };
+
+  const [rowData, setRowData] = useState([]);
+
   useEffect(() => {
     dispatch(getWorkflows());
-  }, [dispatch]);
-  const mountWorkflows = (workflow, index) => {
-    const listStatus = [
-      {
-        icon: 'Finalizado',
-        value: workflow.finished,
-      },
-      {
-        icon: 'Andamento',
-        value: workflow.waiting + workflow.running,
-      },
-      {
-        icon: 'Atencao',
-        value: workflow.unstarted + workflow.aborted + workflow.pending,
-      },
-      {
-        icon: 'Erro',
-        value: workflow.error + workflow.interrupted,
-      },
-    ];
-    if (filteredWorkflowNames.indexOf(workflow.workflow_name) > -1) {
-      return (
-        <Workflow
-          key={index}
-          name={workflow.workflow_name}
-          version={workflow.workflow_version}
-          description={workflow.workflow_description}
-          clickHandler={() => redirectProcesses(workflow.workflow_id, workflow.workflow_name)}
-          listStatus={listStatus}
-        />
-      );
+  }, []);
+
+  const renderProcessHeader = (status, headerName) => (
+    <div className="workflow-monitoring__grid-content-header">
+      <span>{IconUtil(status)}</span>
+      <span className="ag-header-cell-text">{headerName || status}</span>
+    </div>
+  );
+
+  useEffect(() => {
+    if (workflowsSelector.length > 0) {
+      const formattedWorkflows = workflowsSelector.map((workflow) => ({
+        ...workflow,
+        totalProcess: [
+          workflow.finished,
+          workflow.waiting + workflow.running,
+          workflow.unstarted + workflow.aborted + workflow.pending,
+          workflow.error + workflow.interrupted,
+        ].reduce((acc, statusValue) => acc + statusValue, 0),
+        inProgress: workflow.waiting + workflow.running,
+        warning: workflow.unstarted + workflow.aborted + workflow.pending,
+        error: workflow.error + workflow.interrupted,
+      }));
+
+      console.log(formattedWorkflows);
+
+      setRowData(formattedWorkflows);
     }
-    return null;
-  };
+  }, [workflowsSelector]);
+
   return (
-    <div className="workflow-page-container">
+    <main className="workflow-monitoring workflow-page-container">
+      <header className="header"><h3>{label}</h3></header>
       {loading ? (
         <SpinnerLoader fontSize="1" />
       ) : (
-        <>
-          <div className="workflow-page-date-range">
-            <div className="workflow-page-filter">
-              <Search initialArray={workflowNames} setFilteredArray={setFilteredWorkflowArray} filteredArray={filteredWorkflowNames} />
-            </div>
-            <DateRange initialDateArray={initialDateArray} setUpdatedDateArray={setUpdatedDateArray} updatedDateArray={updatedDateArray} />
-            <Button title="Atualizar" onClick={() => dispatch(getWorkflows())} />
-          </div>
-          <div className="workflow-page-list">
-            {filteredWorkflowNames.length > 0 && workflowsSelector.map((workflow, index) => mountWorkflows(workflow, index))}
-          </div>
-        </>
+        <section className="workflow-monitoring__grid-container">
+          {!rowData.length ? <SpinnerLoader fontSize="1" />
+            : (
+              <div className="ag-theme-blue workflow-monitoring__grid-content">
+                <AgGridReact
+                  rowData={rowData}
+                  gridOptions={{ rowHeight: 45 }}
+                >
+                  <AgGridColumn headerName="Workflow_id" field="workflow_id" sortable resizable flex={1} />
+                  <AgGridColumn headerName="Workflow_name" field="workflow_name" sortable resizable flex={1} />
+                  <AgGridColumn headerName="Workflow_description" field="workflow_description" sortable resizable flex={1} />
+                  <AgGridColumn headerName="Workflow_version" field="workflow_version" sortable resizable flex={1} />
+                  <AgGridColumn headerName="Total_process" field="totalProcess" sortable resizable flex={1} />
+                  <AgGridColumn headerName="Finished" field="finished" sortable resizable flex={1} headerComponentFramework={() => renderProcessHeader('Finished')} />
+                  <AgGridColumn headerName="In_Progress" field="inProgress" sortable resizable flex={1} headerComponentFramework={() => renderProcessHeader('InProgress', 'In_Progress')} />
+                  <AgGridColumn headerName="Warning" field="warning" sortable resizable flex={1} headerComponentFramework={() => renderProcessHeader('Warning')} />
+                  <AgGridColumn headerName="Error" field="error" sortable resizable flex={1} headerComponentFramework={() => renderProcessHeader('Error')} />
+                  <AgGridColumn headerName="Ações" resizable minWidth={100} cellRendererFramework={RenderActions} />
+                </AgGridReact>
+              </div>
+            )}
+        </section>
       )}
-    </div>
+    </main>
   );
 };
 
 export default WorkflowMonitoringPage;
+
+WorkflowMonitoringPage.propTypes = {
+  label: PropTypes.string.isRequired,
+};

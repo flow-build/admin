@@ -11,24 +11,19 @@
   }
 
   .ag-header {
-    height: 55px !important;
-    min-height: 55px !important;
+    height: 40px !important;
+    min-height: 40px !important;
     background-color: $color-white !important;
     border-bottom-color: $border-color !important;
 
     &-row {
-      top: 15px !important;
-    }
-
-    &-cell {
-      border-right: 1px solid $default-dark !important;
-
-      &-resize {
-        border-color: $default-dark !important;
+      &-column {
+        top: 0 !important;
+        height: 40px !important;
       }
     }
 
-    &-cell-text {
+    &-cell-text, &-group-text {
       font-weight: 700 !important;
       color: $color-grey-4 !important;
       font-size: 14px;
@@ -37,5 +32,10 @@
 
   .ag-cell {
    line-height: 45px !important;
+
+   .ag-react-container {
+     height: 100%;
+     width: 100%;
+   }
   }
 }

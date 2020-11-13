@@ -1,7 +1,9 @@
 import Accounts from '../pages/Accounts';
+import Actors from '../pages/Actors';
 import AppPage from '../pages/appPage';
 import BlueprintManagerPage from '../pages/blueprintManager';
 import BlueprintManager from '../pages/blueprintManager/visualizer';
+import Devices from '../pages/Devices';
 import Insights from '../pages/insights';
 import Settings from '../pages/settings';
 import Toolbox from '../pages/toolbox';
@@ -27,7 +29,7 @@ export default [
   },
   {
     path: '/app/wfm',
-    label: 'WorkflowMonitoring',
+    label: 'Workflow Monitoring',
     Component: WorkflowMonitoring,
   },
   {
@@ -59,5 +61,15 @@ export default [
     path: '/app/accounts',
     label: 'Consultar Accounts',
     Component: Accounts,
+  },
+  {
+    path: '/app/accounts/:id/actors',
+    label: 'Consultar actors de uma account',
+    Component: Actors,
+  },
+  {
+    path: '/app/accounts/:id/devices',
+    label: 'Consultar devices de uma account',
+    Component: Devices,
   },
 ];
