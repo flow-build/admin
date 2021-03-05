@@ -1,20 +1,15 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import App from './app';
-import { tokenSelector, setAuthHeader } from './redux/axios';
-import store from './redux/store';
-import './index.scss';
+import * as serviceWorker from 'utils/initializer/serviceWorker'
 
+import App from './App'
 
-store.subscribe(() => {
-  const token = tokenSelector(store.getState());
-  setAuthHeader(token);
-});
+ReactDOM.render(
+  <>
+    <App />
+  </>,
+  document.getElementById('root')
+)
 
-const Init = () => <Provider store={store}><App /></Provider>;
-
-render(
-  <Init />, document.getElementById('app'),
-);
+serviceWorker.unregister()

@@ -1,4 +1,0 @@
-feature: ["feature/*", "feat/*", "features/*"]
-bug: ["fix/*", "bug/*","bugfix/*",]
-chore: chore/*
-fixed-branch: fixed-branch-name

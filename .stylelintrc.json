@@ -8,7 +8,7 @@
   "rules": {
     "order/order": ["custom-properties", "declarations"],
     "order/properties-alphabetical-order": true,
-    "scss/selector-no-redundant-nesting-selector": true,
+    "scss/selector-no-redundant-nesting-selector": null,
     "indentation": 2,
     "string-quotes": "single",
     "max-nesting-depth": 4,

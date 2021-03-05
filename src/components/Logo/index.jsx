@@ -1,26 +1,37 @@
-import React from 'react';
+import React from 'react'
 
-import PropTypes from 'prop-types';
+import * as S from './styles'
 
-import fdteLogo from '../../assets/img/logo-fdte.png';
+const Logo = () => {
+  return (
+    <S.Wrapper>
+      <S.LogoImage
+        viewBox="0 0 50 50"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          x="3"
+          y="6.5"
+          width="36"
+          height="36"
+          rx="12"
+          stroke="#0062ff"
+          strokeWidth="6"
+        />
+        <rect
+          x="19.5"
+          y="8"
+          width="18"
+          height="18"
+          rx="9"
+          stroke="#0062ff"
+          strokeWidth="6"
+        />
+      </S.LogoImage>
+      <S.LogoText>Logo</S.LogoText>
+    </S.Wrapper>
+  )
+}
 
-
-const Logo = ({
-  height, className,
-}) => (
-  <div className={`logo ${className}`} style={{ height: `${height}rem` }}>
-    <img src={fdteLogo} alt="FDTE" />
-  </div>
-);
-
-Logo.propTypes = {
-  height: PropTypes.string,
-  className: PropTypes.string,
-};
-
-Logo.defaultProps = {
-  height: '3',
-  className: '',
-};
-
-export default Logo;
+export default Logo
