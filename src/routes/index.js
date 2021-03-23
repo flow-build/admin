@@ -7,6 +7,7 @@ const SignIn = lazy(() => import('pages/SignIn'))
 const Dashboard = lazy(() => import('pages/Dashboard'))
 const User = lazy(() => import('pages/User'))
 const Error404 = lazy(() => import('pages/Error404'))
+const ProcessMonitoring = lazy(() => import('pages/ProcessMonitoring'))
 
 const Routes = () => (
   <Suspense fallback={false}>
@@ -16,6 +17,11 @@ const Routes = () => (
 
       <PrivateRoute path="/dashboard" exact component={Dashboard} />
       <PrivateRoute path="/user" exact component={User} />
+      <PrivateRoute
+        path="/monitoring/process"
+        exact
+        component={ProcessMonitoring}
+      />
 
       <Route path="*" component={Error404} />
     </Switch>
