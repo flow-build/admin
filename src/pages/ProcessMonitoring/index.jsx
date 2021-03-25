@@ -10,6 +10,7 @@ import * as S from './styles'
 
 const ProcessMonitoring = ({ className, ...props }) => {
   const [viewerContent, setViewerContent] = useState(undefined)
+  const [gridData, setGridData] = useState('')
 
   const showViewerHandler = (e) => {
     // console.log('[ProcessMonitoring] event: ', e)
@@ -18,17 +19,27 @@ const ProcessMonitoring = ({ className, ...props }) => {
     } else {
       setViewerContent(e.data[e.colDef['field']])
     }
-    // console.log('[ProcessMonitoring] viewerContent: ', viewerContent)
+    console.log('[ProcessMonitoring] viewerContent: ', viewerContent)
   }
 
-  const [gridData, setGridData] = useState('')
+  const stringifyObjects = (arr) => {
+    Object.keys(arr[0]).map((key) => {
+      if (typeof arr[0][key] === 'object') {
+        arr.map((el) => {
+          el[key] = JSON.stringify(el[key], null, 2)
+        })
+      }
+    })
+  }
 
   const getGridData = () => {
     axios
-      .get('https://604a26779251e100177ce0d3.mockapi.io/api/processes')
+      .get('https://jsonplaceholder.typicode.com/users')
       .then((response) => {
         // console.log('[Process Monitoring ] response: ', response)
-        setGridData(response.data.slice(0, 5))
+        stringifyObjects(response.data)
+        // console.log('[Process Monitoring ] modified data: ', response)
+        setGridData(response.data)
       })
       .catch((error) => console.log(error))
   }

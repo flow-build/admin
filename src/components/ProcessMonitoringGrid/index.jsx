@@ -10,15 +10,17 @@ import * as S from './styles'
 const ProcessMonitoringGrid = ({ className, ...props }) => {
   const gridOptions = {
     columnDefs: [
-      { headerName: 'ID', field: 'id' },
-      { headerName: 'Created at', field: 'createdAt' },
-      { headerName: 'Blueprint spec', field: 'blueprintSpec' }
-      // { headerName: 'User ID', field: 'userId' },
       // { headerName: 'ID', field: 'id' },
-      // { headerName: 'Title', field: 'title' },
-      // { headerName: 'Completed', field: 'completed' }
+      // { headerName: 'Created at', field: 'createdAt' },
+      // { headerName: 'Blueprint spec', field: 'blueprintSpec' }
+      { headerName: 'ID', field: 'id' },
+      { headerName: 'Name', field: 'name' },
+      { headerName: 'Username', field: 'username' },
+      { headerName: 'E-mail', field: 'email' },
+      { headerName: 'Address', field: 'address' }
     ]
   }
+
   return (
     <S.Wrapper className={className} {...props}>
       <div className="ag-theme-alpine" style={{ height: 500, flex: 4 }}>

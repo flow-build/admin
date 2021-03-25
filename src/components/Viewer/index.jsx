@@ -7,7 +7,7 @@ import * as S from './styles'
 const Viewer = ({ className, ...props }) => {
   return props.viewerContent ? (
     <S.Wrapper className={className} {...props}>
-      <pre>{props.viewerContent}</pre>
+      <S.Line>{props.viewerContent}</S.Line>
     </S.Wrapper>
   ) : null
 }
