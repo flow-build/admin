@@ -1,22 +1,26 @@
 import React from 'react'
+import Notifications from 'react-notifications-component'
 import { BrowserRouter } from 'react-router-dom'
 
 import GlobalStyles from 'assets/styles/globalStyles'
 import theme from 'assets/styles/theme'
-import { AuthProvider } from 'contexts/AuthContext'
+import * as C from 'components'
+import Providers from 'contexts/Providers'
 import Routes from 'routes'
 import { ThemeProvider } from 'styled-components'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <Providers>
           <GlobalStyles />
+          <Notifications />
 
+          <C.Navigation />
           <Routes />
-        </ThemeProvider>
-      </AuthProvider>
+        </Providers>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }
