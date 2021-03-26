@@ -2,21 +2,21 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
 
-import Spinner from 'components/Spinner'
-import useAuth from 'utils/hooks/useAuth'
+import * as C from 'components'
+import { useAuthContext } from 'contexts/'
 
 const PrivateRoute = ({ component: Component, ...props }) => {
-  const { signed, loading } = useAuth()
+  const { isSignedIn, isLoading } = useAuthContext()
 
-  if (loading) {
-    return <Spinner />
+  if (isLoading) {
+    return <C.UI.Spinner />
   }
 
   return (
     <Route
       {...props}
       render={() =>
-        signed ? <Component {...props} /> : <Redirect to="/signin" />
+        isSignedIn ? <Component {...props} /> : <Redirect to="/signin" />
       }
     />
   )

@@ -53,7 +53,8 @@ export default {
     alwaysOnTop: 50
   },
   border: {
-    radius: '0.4rem'
+    radius: '0.4rem',
+    color: ' #e6ecf5'
   },
   spacings: {
     xxsmall: '0.8rem',
@@ -63,6 +64,21 @@ export default {
     large: '4.0rem',
     xlarge: '4.8rem',
     xxlarge: '5.6rem'
+  },
+  navigation: {
+    transition: '400ms ease',
+    sidebar: {
+      width: '70px',
+      icons: {
+        color: '#888da8'
+      }
+    },
+    headerbar: {
+      height: '70px'
+    }
+  },
+  page: {
+    backgroundColor: '#F6F7FB'
   },
   transition: 'all 250ms cubic-bezier(0.77, 0, 0.175, 1)'
 }

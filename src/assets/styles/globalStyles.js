@@ -12,7 +12,6 @@ export default createGlobalStyle`
 
   html {
     font-size: 62.5%;
-    height: 100%;
     -ms-overflow-style: scrollbar;
   }
 
@@ -20,8 +19,11 @@ export default createGlobalStyle`
     ${({ theme }) => css`
       font-family: ${theme.font.family};
       font-size: ${theme.font.sizes.medium};
-      height: 100%;
     `}
+  }
+
+  html, body, #root {
+    height: 100%;
   }
 
   h1,
@@ -72,5 +74,10 @@ export default createGlobalStyle`
     border: 1px solid #D4DCDF;
     box-shadow: 0 0 0px 1000px transparent inset;
     transition: background-color 5000s ease-in-out 0s;
+  }
+
+  :root {
+    --sidebar-width: 70px;
+    --headerbar-height: 70px;
   }
 `

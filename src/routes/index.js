@@ -3,11 +3,13 @@ import { Route, Switch } from 'react-router-dom'
 
 import PrivateRoute from 'routes/PrivateRoute'
 
-const SignIn = lazy(() => import('pages/SignIn'))
-const Dashboard = lazy(() => import('pages/Dashboard'))
-const User = lazy(() => import('pages/User'))
-const Error404 = lazy(() => import('pages/Error404'))
-const ProcessMonitoring = lazy(() => import('pages/ProcessMonitoring'))
+const SignIn = lazy(() => import('pages/SignIn/SignIn'))
+const Dashboard = lazy(() => import('pages/Dashboard/Dashboard'))
+const User = lazy(() => import('pages/User/User'))
+const Error404 = lazy(() => import('pages/Error404/Error404'))
+const ProcessMonitoring = lazy(() =>
+  import('pages/ProcessMonitoring/ProcessMonitoring')
+)
 
 const Routes = () => (
   <Suspense fallback={false}>

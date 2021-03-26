@@ -1,9 +1,4 @@
-import styled, { css } from 'styled-components'
+import * as PS from 'assets/styles/pages'
+import styled from 'styled-components'
 
-export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    color: ${theme.colors.black};
-    display: flex;
-    flex-direction: row;
-  `}
-`
+export const Container = styled(PS.PageContainer)``

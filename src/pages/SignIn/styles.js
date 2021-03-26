@@ -1,15 +1,10 @@
-import styled, { css } from 'styled-components'
+import * as PS from 'assets/styles/pages'
+import styled from 'styled-components'
 
-export const Wrapper = styled.div`
-  ${({ theme }) => css`
-    align-content: center;
-    align-items: center;
-    color: ${theme.colors.black};
-    color: ${theme.colors.black};
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  `}
+export const Container = styled(PS.PageContainer)`
+  padding: 0;
 `
+
+export const Title = styled(PS.PageTitle)``
 
 export const Form = styled.form``

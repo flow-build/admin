@@ -41,9 +41,11 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^3.11.0",
+    "react-notifications-component": "^3.0.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "4.0.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "uuidv4": "^6.2.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
