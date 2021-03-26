@@ -7,6 +7,7 @@ const SignIn = lazy(() => import('pages/SignIn'))
 const Dashboard = lazy(() => import('pages/Dashboard'))
 const User = lazy(() => import('pages/User'))
 const Error404 = lazy(() => import('pages/Error404'))
+const GeneralStats = lazy(() => import('pages/GeneralStats'))
 const ProcessMonitoring = lazy(() => import('pages/ProcessMonitoring'))
 
 const Routes = () => (
@@ -21,6 +22,11 @@ const Routes = () => (
         path="/monitoring/process"
         exact
         component={ProcessMonitoring}
+      />
+      <PrivateRoute
+        path="/monitoring/general_stats"
+        exact
+        component={GeneralStats}
       />
 
       <Route path="*" component={Error404} />
