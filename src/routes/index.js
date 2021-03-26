@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 
+import { useAuthContext } from 'contexts/AuthProvider/AuthProvider'
 import PrivateRoute from 'routes/PrivateRoute'
 
 const SignIn = lazy(() => import('pages/SignIn/SignIn'))
@@ -11,23 +12,35 @@ const ProcessMonitoring = lazy(() =>
   import('pages/ProcessMonitoring/ProcessMonitoring')
 )
 
-const Routes = () => (
-  <Suspense fallback={false}>
-    <Switch>
-      <Route path="/" exact component={SignIn} />
-      <Route path="/signin" exact component={SignIn} />
+const Routes = () => {
+  const { signOut } = useAuthContext()
 
-      <PrivateRoute path="/dashboard" exact component={Dashboard} />
-      <PrivateRoute path="/user" exact component={User} />
-      <PrivateRoute
-        path="/monitoring/process"
-        exact
-        component={ProcessMonitoring}
-      />
+  return (
+    <Suspense fallback={false}>
+      <Switch>
+        <Route exact path="/" component={SignIn} />
+        <Route exact path="/signin" component={SignIn} />
 
-      <Route path="*" component={Error404} />
-    </Switch>
-  </Suspense>
-)
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/user" component={User} />
+        <PrivateRoute
+          exact
+          path="/monitoring/process"
+          component={ProcessMonitoring}
+        />
+        <Route
+          exact
+          path="/logout"
+          render={() => {
+            signOut()
+            return <Redirect to="/signin" />
+          }}
+        />
+
+        <Route path="*" component={Error404} />
+      </Switch>
+    </Suspense>
+  )
+}
 
 export default Routes

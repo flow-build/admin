@@ -70,7 +70,11 @@ export default {
     sidebar: {
       width: '70px',
       icons: {
-        color: '#888da8'
+        color: {
+          light: lighten(0.1, '#888da8'),
+          base: '#888da8',
+          dark: darken(0.1, '#888da8')
+        }
       }
     },
     headerbar: {
