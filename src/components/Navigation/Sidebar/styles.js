@@ -9,7 +9,6 @@ export const Container = styled.div`
     left: 0;
     max-width: var(--sidebar-width);
     overflow: hidden;
-    padding: 15px;
     position: fixed;
     top: 0;
     transition: max-width ${theme.navigation.transition};
@@ -23,5 +22,6 @@ export const NavItems = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 0 0 0 23px;
   width: 100%;
 `

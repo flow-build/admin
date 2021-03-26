@@ -1,6 +1,9 @@
-export const handleSidebarExpanded = (isSidebarExpanded) => {
+export const handleSidebarExpanded = (
+  isSidebarExpanded,
+  customWidth = '250px'
+) => {
   document.documentElement.style.setProperty(
     '--sidebar-width',
-    isSidebarExpanded ? ' 250px' : '70px'
+    isSidebarExpanded ? customWidth : '70px'
   )
 }

@@ -8,21 +8,28 @@ import Logo from './Logo'
 import NavItem from './NavItem/NavItem'
 import * as S from './styles'
 
-const Sidebar = ({ navItems, isSidebarExpanded, setIsSidebarExpanded }) => {
+const Sidebar = ({
+  navItems,
+  isSidebarExpanded,
+  setIsSidebarExpanded,
+  currentExpandedItem,
+  setCurrentExpandedItem
+}) => {
   useEffect(() => {
     UTIL.Components.handleSidebarExpanded(isSidebarExpanded)
   }, [isSidebarExpanded])
 
   return (
     <S.Container isSidebarExpanded={isSidebarExpanded}>
+      <Logo isSidebarExpanded={isSidebarExpanded} />
       <S.NavItems>
-        <Logo />
-
         {navItems?.map((navItem) => (
           <NavItem
             navItem={navItem}
             isSidebarExpanded={isSidebarExpanded}
             setIsSidebarExpanded={setIsSidebarExpanded}
+            currentExpandedItem={currentExpandedItem}
+            setCurrentExpandedItem={setCurrentExpandedItem}
             key={uuid_v4()}
           />
         ))}
@@ -34,7 +41,9 @@ const Sidebar = ({ navItems, isSidebarExpanded, setIsSidebarExpanded }) => {
 Sidebar.propTypes = {
   navItems: PropTypes.array.isRequired,
   isSidebarExpanded: PropTypes.bool.isRequired,
-  setIsSidebarExpanded: PropTypes.func.isRequired
+  setIsSidebarExpanded: PropTypes.func.isRequired,
+  currentExpandedItem: PropTypes.bool.isRequired,
+  setCurrentExpandedItem: PropTypes.func.isRequired
 }
 
 export default Sidebar

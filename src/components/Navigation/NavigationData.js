@@ -4,108 +4,140 @@ import * as FaIcons from 'react-icons/fa'
 import * as FiIcons from 'react-icons/fi'
 import * as IoIcons from 'react-icons/io'
 
-export const sidebarData = [
+import { v4 as uuid_v4 } from 'uuid'
+
+export const sidebarNotLoggedIn = [
+  {
+    title: 'Login',
+    path: '/login',
+    icon: <BiIcons.BiLogIn />,
+    id: uuid_v4()
+  }
+]
+
+export const sidebarLoggedIn = [
   {
     title: 'Global',
     path: '/global',
-    icon: <BiIcons.BiWorld />
+    icon: <BiIcons.BiWorld />,
+    id: uuid_v4()
   },
   {
     title: 'Blueprint Manager',
-    path: '/blueprint_manager',
     icon: <IoIcons.IoIosPaper />,
+    id: uuid_v4(),
 
-    subNav: [
+    subItems: [
       {
         title: 'Node Manager',
-        path: '/blueprint_manager/node'
+        path: '/blueprint_manager/node',
+        id: uuid_v4()
       },
       {
         title: 'Lanes Manager',
-        path: '/blueprint_manager/lanes'
+        path: '/blueprint_manager/lanes',
+        id: uuid_v4()
       },
       {
         title: 'Builder',
-        path: '/blueprint_manager/builder'
+        path: '/blueprint_manager/builder',
+        id: uuid_v4()
       }
     ]
   },
   {
     title: 'Monitoring',
-    path: '/monitoring',
     icon: <FiIcons.FiMonitor />,
+    id: uuid_v4(),
 
-    subNav: [
+    subItems: [
       {
         title: 'General Stats',
-        path: '/monitoring/general_stats'
+        path: '/monitoring/general_stats',
+        id: uuid_v4()
       },
       {
         title: 'Process Monitoring',
-        path: '/monitoring/process'
+        path: '/monitoring/process',
+        id: uuid_v4()
       },
       {
         title: 'Edit Process',
-        path: '/monitoring/edit_process'
+        path: '/monitoring/edit_process',
+        id: uuid_v4()
       },
       {
         title: 'Auditing',
-        path: '/monitoring/auditing'
+        path: '/monitoring/auditing',
+        id: uuid_v4()
       }
     ]
   },
   {
     title: 'Insights',
-    path: '/insights',
     icon: <CgIcons.CgInsights />,
+    id: uuid_v4(),
 
-    subNav: [
+    subItems: [
       {
         title: 'Task Performance',
-        path: '/insights/task_performance'
+        path: '/insights/task_performance',
+        id: uuid_v4()
       },
       {
         title: 'Process Performance',
-        path: '/insights/process_performance'
+        path: '/insights/process_performance',
+        id: uuid_v4()
       },
       {
         title: 'Process Network',
-        path: '/insights/process_network'
+        path: '/insights/process_network',
+        id: uuid_v4()
       }
     ]
   },
   {
     title: 'Toolbox',
-    path: '/toolbox',
     icon: <FaIcons.FaToolbox />,
+    id: uuid_v4(),
 
-    subNav: [
+    subItems: [
       {
         title: 'Notifications',
-        path: '/toolbox/notifications'
+        path: '/toolbox/notifications',
+        id: uuid_v4()
       },
       {
         title: 'Permissions',
-        path: '/toolbox/permissions'
+        path: '/toolbox/permissions',
+        id: uuid_v4()
       }
     ]
   },
   {
     title: 'Settings',
-    path: '/settings',
     icon: <IoIcons.IoMdSettings />,
+    id: uuid_v4(),
 
-    subNav: [
+    subItems: [
       {
         title: 'Manage Clusters',
-        path: '/settings/manage_clusters'
+        path: '/settings/manage_clusters',
+        id: uuid_v4()
       },
       {
         title: 'Manage Users',
-        path: '/settings/manage_users'
+        path: '/settings/manage_users',
+        id: uuid_v4()
       }
     ]
+  },
+  {
+    title: 'Logout',
+    path: '/logout',
+    icon: <BiIcons.BiLogOut />,
+    id: uuid_v4()
   }
 ]
 
-export const headerbarData = []
+export const headerbar = []

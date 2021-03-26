@@ -1,10 +1,12 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
+
 import * as S from './styles'
 
-const Logo = () => {
+const Logo = ({ isSidebarExpanded }) => {
   return (
-    <S.Container>
+    <S.Container isSidebarExpanded={isSidebarExpanded}>
       <S.Image
         viewBox="0 0 50 50"
         fill="none"
@@ -29,9 +31,13 @@ const Logo = () => {
           strokeWidth="6"
         />
       </S.Image>
-      <S.Text>Logo</S.Text>
+      {isSidebarExpanded && <S.Text>Logo</S.Text>}
     </S.Container>
   )
+}
+
+Logo.propTypes = {
+  isSidebarExpanded: PropTypes.bool.isRequired
 }
 
 export default Logo

@@ -1,14 +1,23 @@
 import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: flex-start;
+  width: 100%;
+`
+
+export const LinkContent = styled.div`
   ${({ theme }) => css`
     align-items: center;
-    color: ${theme.navigation.sidebar.icons.color};
+    color: ${theme.navigation.sidebar.icons.color.base};
     cursor: pointer;
     display: flex;
+    height: 100%;
     height: 60px;
     justify-content: flex-start;
-    padding: 0 0 0 9px;
     width: 100%;
 
     &:hover {
