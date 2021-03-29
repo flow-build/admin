@@ -2,22 +2,23 @@ import React from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { GrClose } from 'react-icons/gr'
 
+import { useNavigationContext } from 'components/Navigation/NavigationProvider'
 import PropTypes from 'prop-types'
 
 import * as S from './styles'
 
-const Headerbar = ({
-  navItems,
-  isSidebarExpanded,
-  setIsSidebarExpanded,
-  setCurrentExpandedItem
-}) => {
+const Headerbar = ({ navItems }) => {
+  const {
+    isSidebarExpanded,
+    setIsSidebarExpanded,
+    setCurrentExpandedSidebarItem
+  } = useNavigationContext()
   console.log('navItems', navItems)
 
   const handleClick = (event) => {
     event.preventDefault()
     setIsSidebarExpanded((prev) => !prev)
-    setCurrentExpandedItem(null)
+    setCurrentExpandedSidebarItem(null)
   }
   return (
     <S.Container>

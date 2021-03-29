@@ -68,7 +68,10 @@ export default {
   navigation: {
     transition: '400ms ease',
     sidebar: {
-      width: '70px',
+      width: {
+        normal: '70px',
+        expanded: '250px'
+      },
       icons: {
         color: {
           light: lighten(0.1, '#888da8'),

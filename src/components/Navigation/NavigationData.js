@@ -9,7 +9,7 @@ import { v4 as uuid_v4 } from 'uuid'
 export const sidebarNotLoggedIn = [
   {
     title: 'Login',
-    path: '/login',
+    path: '/signin',
     icon: <BiIcons.BiLogIn />,
     id: uuid_v4()
   }

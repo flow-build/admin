@@ -12,8 +12,9 @@ const SubItems = ({ subItems = [] }) => {
   useEffect(() => {
     UTIL.Components.handleSidebarExpanded(true, '300px')
 
-    return () => UTIL.Components.handleSidebarExpanded(true)
+    return () => UTIL.Components.handleSidebarExpanded(true, '250px')
   }, [])
+
   return (
     <S.Container>
       {subItems.map((subItem) => (

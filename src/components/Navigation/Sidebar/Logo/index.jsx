@@ -1,10 +1,11 @@
 import React from 'react'
 
-import PropTypes from 'prop-types'
+import { useNavigationContext } from 'components/Navigation/NavigationProvider'
 
 import * as S from './styles'
 
-const Logo = ({ isSidebarExpanded }) => {
+const Logo = () => {
+  const { isSidebarExpanded } = useNavigationContext()
   return (
     <S.Container isSidebarExpanded={isSidebarExpanded}>
       <S.Image
@@ -34,10 +35,6 @@ const Logo = ({ isSidebarExpanded }) => {
       {isSidebarExpanded && <S.Text>Logo</S.Text>}
     </S.Container>
   )
-}
-
-Logo.propTypes = {
-  isSidebarExpanded: PropTypes.bool.isRequired
 }
 
 export default Logo

@@ -4,9 +4,10 @@ export const Container = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  height: auto;
   justify-content: flex-start;
+  overflow: hidden;
   padding: 0 55px;
+  transition: all 700ms ease;
   width: 100%;
 `
 
