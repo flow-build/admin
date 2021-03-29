@@ -1,13 +1,11 @@
 import React from 'react'
 
 import { AgGridReact } from 'ag-grid-react'
-import 'ag-grid-community/dist/styles/ag-grid.css'
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 import PropTypes from 'prop-types'
 
 import * as S from './styles'
 
-const ProcessMonitoringGrid = ({ className, ...props }) => {
+const ProcessMonitoringGrid = ({ rowData, cellClicked }) => {
   const gridOptions = {
     columnDefs: [
       { headerName: 'ID', field: 'id' },
@@ -20,26 +18,21 @@ const ProcessMonitoringGrid = ({ className, ...props }) => {
     ]
   }
   return (
-    <S.Wrapper className={className} {...props}>
+    <S.Container>
       <div className="ag-theme-alpine" style={{ height: 500, flex: 4 }}>
         <AgGridReact
-          rowData={props.rowData}
+          rowData={rowData}
           columnDefs={gridOptions.columnDefs}
-          onCellClicked={(e) => props.cellClicked(e)}
+          onCellClicked={(e) => cellClicked(e)}
         />
       </div>
-    </S.Wrapper>
+    </S.Container>
   )
 }
 
 ProcessMonitoringGrid.propTypes = {
-  className: PropTypes.string,
   rowData: PropTypes.any,
   cellClicked: PropTypes.func
-}
-
-ProcessMonitoringGrid.defaultProps = {
-  className: 'processmonitoringgrid'
 }
 
 export default ProcessMonitoringGrid

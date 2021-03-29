@@ -6,7 +6,7 @@ import PrivateRoute from 'routes/PrivateRoute'
 
 const SignIn = lazy(() => import('pages/SignIn/SignIn'))
 const Dashboard = lazy(() => import('pages/Dashboard/Dashboard'))
-const User = lazy(() => import('pages/User/User'))
+const Home = lazy(() => import('pages/Home/Home'))
 const Error404 = lazy(() => import('pages/Error404/Error404'))
 const ProcessMonitoring = lazy(() =>
   import('pages/ProcessMonitoring/ProcessMonitoring')
@@ -22,7 +22,7 @@ const Routes = () => {
         <Route exact path="/signin" component={SignIn} />
 
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        <PrivateRoute exact path="/user" component={User} />
+        <PrivateRoute exact path="/home" component={Home} />
         <PrivateRoute
           exact
           path="/monitoring/process"

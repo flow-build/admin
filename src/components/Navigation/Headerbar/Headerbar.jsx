@@ -30,10 +30,7 @@ const Headerbar = ({ navItems }) => {
 }
 
 Headerbar.propTypes = {
-  navItems: PropTypes.array.isRequired,
-  isSidebarExpanded: PropTypes.bool.isRequired,
-  setIsSidebarExpanded: PropTypes.func.isRequired,
-  setCurrentExpandedItem: PropTypes.func.isRequired
+  navItems: PropTypes.array.isRequired
 }
 
 export default Headerbar

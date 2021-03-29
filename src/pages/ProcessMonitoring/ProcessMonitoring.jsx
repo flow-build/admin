@@ -36,12 +36,14 @@ const ProcessMonitoring = () => {
     <S.Container>
       <h1>ProcessMonitoring</h1>
 
-      <C.GRID.ProcessMonitoringGrid
-        rowData={gridData}
-        cellClicked={(e) => showViewerHandler(e)}
-      />
+      <S.Content>
+        <C.GRID.ProcessMonitoringGrid
+          rowData={gridData}
+          cellClicked={(e) => showViewerHandler(e)}
+        />
 
-      <C.GRID.Viewer viewerContent={viewerContent} />
+        <C.GRID.Viewer viewerContent={viewerContent} />
+      </S.Content>
     </S.Container>
   )
 }
