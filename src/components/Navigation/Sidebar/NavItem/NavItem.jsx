@@ -24,27 +24,44 @@ const NavItem = ({ navItem }) => {
   }
 
   return (
-    <S.Container>
-      {navItem?.path ? (
-        <C.UI.Link url={navItem.path}>
-          <S.LinkContent>
-            <S.Icon>{navItem?.icon}</S.Icon>
-            {isSidebarExpanded && <S.Title>{navItem?.title || '*'}</S.Title>}
-          </S.LinkContent>
-        </C.UI.Link>
-      ) : (
-        <>
-          <S.LinkContent onClick={handleClick}>
-            <S.Icon>{navItem?.icon}</S.Icon>
-            {isSidebarExpanded && <S.Title>{navItem?.title || '*'}</S.Title>}
-          </S.LinkContent>
+    <>
+      <S.Container>
+        {navItem?.path ? (
+          <C.UI.Link url={navItem.path}>
+            <S.LinkContent>
+              <C.UI.Tooltip
+                title={!isSidebarExpanded ? navItem?.title : ''}
+                placement="right"
+                hasArrow
+              >
+                <S.Icon>{navItem?.icon}</S.Icon>
+              </C.UI.Tooltip>
 
-          {isSidebarExpanded && currentExpandedSidebarItem === navItem?.id && (
-            <SubItems subItems={navItem?.subItems} />
-          )}
-        </>
-      )}
-    </S.Container>
+              {isSidebarExpanded && <S.Title>{navItem?.title || '*'}</S.Title>}
+            </S.LinkContent>
+          </C.UI.Link>
+        ) : (
+          <>
+            <S.LinkContent onClick={handleClick}>
+              <C.UI.Tooltip
+                title={!isSidebarExpanded ? navItem?.title : ''}
+                placement="right"
+                hasArrow
+              >
+                <S.Icon>{navItem?.icon}</S.Icon>
+              </C.UI.Tooltip>
+
+              {isSidebarExpanded && <S.Title>{navItem?.title || '*'}</S.Title>}
+            </S.LinkContent>
+
+            {isSidebarExpanded &&
+              currentExpandedSidebarItem === navItem?.id && (
+                <SubItems subItems={navItem?.subItems} />
+              )}
+          </>
+        )}
+      </S.Container>
+    </>
   )
 }
 

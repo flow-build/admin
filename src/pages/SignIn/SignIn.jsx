@@ -15,29 +15,21 @@ const SignIn = () => {
     signIn()
   }
 
+  if (isSignedIn) return <Redirect to="/home" />
+
   return (
     <S.Container>
-      {isSignedIn ? (
-        <Redirect to="/user" />
-      ) : (
-        <>
-          <S.Title>SignIn</S.Title>
+      <S.Title>SignIn</S.Title>
 
-          <S.Form onSubmit={handleSignIn}>
-            <C.UI.TextField name="name" placeholder="Nome" type="text" />
+      <S.Form onSubmit={handleSignIn}>
+        <C.UI.TextField name="name" placeholder="Nome" type="text" />
 
-            <C.UI.TextField
-              name="password"
-              placeholder="Senha"
-              type="password"
-            />
+        <C.UI.TextField name="password" placeholder="Senha" type="password" />
 
-            <C.UI.Button icon={<RiCheckboxCircleFill />} fullWidth>
-              Sign In
-            </C.UI.Button>
-          </S.Form>
-        </>
-      )}
+        <C.UI.Button icon={<RiCheckboxCircleFill />} fullWidth>
+          Sign In
+        </C.UI.Button>
+      </S.Form>
     </S.Container>
   )
 }

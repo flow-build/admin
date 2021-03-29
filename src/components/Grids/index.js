@@ -1,2 +1,2 @@
-export * from './ProcessMonitoringGrid/ProcessMonitoringGrid'
-export * from './Viewer/Viewer'
+export { default as ProcessMonitoringGrid } from './ProcessMonitoringGrid/ProcessMonitoringGrid'
+export { default as Viewer } from './Viewer/Viewer'

@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
-    flex: 4;
+    flex: 1;
     height: 500px;
   `}
 `
