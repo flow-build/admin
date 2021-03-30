@@ -6,12 +6,16 @@ import Actions from './Actions/Actions'
 import * as S from './styles'
 
 const CellDetails = ({ cellContent, setCellContent }) => {
-  if (!cellContent) return null
+  console.log('cellContent', cellContent?.match(/\n/g) || [])
 
   return (
-    <S.Container>
-      <Actions cellContent={cellContent} setCellContent={setCellContent} />
-      <S.Content>{JSON.stringify(cellContent, undefined, 2)}</S.Content>
+    <S.Container isVisible={!!cellContent}>
+      {cellContent && (
+        <>
+          <Actions cellContent={cellContent} setCellContent={setCellContent} />
+          <S.Content>{JSON.stringify(cellContent, undefined, 2)}</S.Content>
+        </>
+      )}
     </S.Container>
   )
 }

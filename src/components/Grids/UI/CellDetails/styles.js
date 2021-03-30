@@ -1,26 +1,42 @@
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 export const Container = styled.div`
-  ${({ theme }) => css`
+  ${({ theme, isVisible }) => css`
     border: 1px solid #cccccc;
     color: ${theme.colors.black};
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: flex-start;
-    overflow-x: hidden;
-    width: 500px;
+    max-width: ${isVisible ? '500px' : '0'};
+    overflow: hidden;
+    transition: max-width 400ms ease;
+    width: 100%;
 
     @media screen and (max-width: 1200px) {
-      width: 100%;
+      max-width: 100%;
     }
   `}
 `
 
+export const ContentAnimation = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`
+
 export const Content = styled.p`
-  background: #fff;
-  height: 100%;
-  padding: 15px;
-  white-space: pre-line;
-  width: 100%;
+  ${() => css`
+    animation: ${ContentAnimation} 1s ease-in forwards;
+    background: #fff;
+    height: 100%;
+    overflow-y: auto;
+    padding: 15px;
+    white-space: pre-line;
+    width: 100%;
+  `}
 `

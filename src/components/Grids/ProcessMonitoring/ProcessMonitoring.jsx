@@ -11,10 +11,6 @@ const gridOptions = {
     { headerName: 'ID', field: 'id' },
     { headerName: 'Created at', field: 'createdAt' },
     { headerName: 'Blueprint spec', field: 'blueprintSpec' }
-    // { headerName: 'User ID', field: 'userId' },
-    // { headerName: 'ID', field: 'id' },
-    // { headerName: 'Title', field: 'title' },
-    // { headerName: 'Completed', field: 'completed' }
   ]
 }
 const ProcessMonitoring = ({ rowData }) => {
