@@ -48,7 +48,7 @@ const wrapperModifiers = {
       cursor: not-allowed;
       filter: saturate(30%);
     }
-  `
+  `,
 }
 
 export const Wrapper = styled.button`

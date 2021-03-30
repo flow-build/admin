@@ -6,8 +6,6 @@ import Actions from './Actions/Actions'
 import * as S from './styles'
 
 const CellDetails = ({ cellContent, setCellContent }) => {
-  console.log('cellContent', cellContent?.match(/\n/g) || [])
-
   return (
     <S.Container isVisible={!!cellContent}>
       {cellContent && (
@@ -22,7 +20,7 @@ const CellDetails = ({ cellContent, setCellContent }) => {
 
 CellDetails.propTypes = {
   cellContent: PropTypes.any.isRequired,
-  setCellContent: PropTypes.func.isRequired
+  setCellContent: PropTypes.func.isRequired,
 }
 
 export default CellDetails

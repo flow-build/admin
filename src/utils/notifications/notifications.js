@@ -9,8 +9,8 @@ const notification = {
   dismiss: {
     duration: 5000,
     onScreen: true,
-    showIcon: true
-  }
+    showIcon: true,
+  },
 }
 
 export const createDefaultNotification = (newNotification) => {
@@ -22,8 +22,8 @@ export const createDefaultNotification = (newNotification) => {
     message,
     dismiss: {
       ...notification.dismiss,
-      duration: duration || notification.dismiss.duration
-    }
+      duration: duration || notification.dismiss.duration,
+    },
   })
 }
 
@@ -37,8 +37,8 @@ export const createSuccessNotification = (newNotification) => {
     message,
     dismiss: {
       ...notification.dismiss,
-      duration: duration || notification.dismiss.duration
-    }
+      duration: duration || notification.dismiss.duration,
+    },
   })
 }
 
@@ -52,8 +52,8 @@ export const createDangerNotification = (newNotification) => {
     message,
     dismiss: {
       ...notification.dismiss,
-      duration: duration || notification.dismiss.duration
-    }
+      duration: duration || notification.dismiss.duration,
+    },
   })
 }
 
@@ -67,8 +67,8 @@ export const createInfoNotification = (newNotification) => {
     message,
     dismiss: {
       ...notification.dismiss,
-      duration: duration || notification.dismiss.duration
-    }
+      duration: duration || notification.dismiss.duration,
+    },
   })
 }
 
@@ -82,7 +82,7 @@ export const createWarningNotification = (newNotification) => {
     message,
     dismiss: {
       ...notification.dismiss,
-      duration: duration || notification.dismiss.duration
-    }
+      duration: duration || notification.dismiss.duration,
+    },
   })
 }

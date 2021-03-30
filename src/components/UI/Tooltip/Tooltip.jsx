@@ -9,8 +9,8 @@ const Tooltip = ({ children, title = '', placement, hasArrow, style = {} }) => {
   const useStyles = makeStyles(() => ({
     tooltip: {
       fontSize: 13,
-      ...style
-    }
+      ...style,
+    },
   }))
 
   const classes = useStyles()
@@ -32,7 +32,7 @@ Tooltip.propTypes = {
   title: PropTypes.string.isRequired,
   placement: PropTypes.string,
   hasArrow: PropTypes.bool,
-  style: PropTypes.object
+  style: PropTypes.object,
 }
 
 export default Tooltip

@@ -24,7 +24,7 @@ const Actions = ({ cellContent, setCellContent }) => {
 
 Actions.propTypes = {
   cellContent: PropTypes.any.isRequired,
-  setCellContent: PropTypes.func.isRequired
+  setCellContent: PropTypes.func.isRequired,
 }
 
 export default Actions

@@ -8,10 +8,12 @@ import * as S from './styles'
 
 const gridOptions = {
   columnDefs: [
-    { headerName: 'ID', field: 'id' },
-    { headerName: 'Created at', field: 'createdAt' },
-    { headerName: 'Blueprint spec', field: 'blueprintSpec' }
-  ]
+    { headerName: 'about', field: 'about' },
+    { headerName: 'friends', field: 'friends' },
+    { headerName: 'tags', field: 'tags' },
+    { headerName: 'address', field: 'address' },
+    { headerName: 'phone', field: 'phone' },
+  ],
 }
 const ProcessMonitoring = ({ rowData }) => {
   const [cellContent, setCellContent] = useState(undefined)
@@ -43,7 +45,7 @@ const ProcessMonitoring = ({ rowData }) => {
 }
 
 ProcessMonitoring.propTypes = {
-  rowData: PropTypes.any
+  rowData: PropTypes.any,
 }
 
 export default ProcessMonitoring

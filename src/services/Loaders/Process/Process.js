@@ -3,9 +3,9 @@ import * as UTIL from 'utils'
 
 import * as Messages from '../messages'
 
-export const loadAuthData = async (params) => {
+export const loadProcess = async (params) => {
   try {
-    const { data } = await API.getAuthData(params)
+    const { data } = await API.getProcess(params)
     return data || {}
   } catch (err) {
     console.error(err)
