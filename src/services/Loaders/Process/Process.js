@@ -6,7 +6,7 @@ import * as Messages from '../messages'
 export const loadProcess = async (params) => {
   try {
     const { data } = await API.getProcess(params)
-    return data || {}
+    return data || []
   } catch (err) {
     console.error(err)
 
@@ -14,6 +14,6 @@ export const loadProcess = async (params) => {
       message: err?.response?.data?.status_message || Messages.ERROR.DEFAULT,
     })
 
-    return {}
+    return []
   }
 }

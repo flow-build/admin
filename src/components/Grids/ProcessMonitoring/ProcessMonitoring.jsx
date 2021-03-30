@@ -1,46 +1,45 @@
 import React, { useState } from 'react'
 
 import { AgGridReact } from 'ag-grid-react'
-import * as UI from 'components/Grids/UI'
+import * as GridUI from 'components/Grids/GridUI'
 import PropTypes from 'prop-types'
 
-import * as S from './styles'
+import * as S from '../styles'
 
-const gridOptions = {
+const gridColumns = {
   columnDefs: [
-    { headerName: 'about', field: 'about' },
-    { headerName: 'friends', field: 'friends' },
-    { headerName: 'tags', field: 'tags' },
-    { headerName: 'address', field: 'address' },
-    { headerName: 'phone', field: 'phone' },
+    { headerName: 'name', field: 'name' },
+    { headerName: 'abilities', field: 'abilities' },
+    { headerName: 'forms', field: 'forms' },
+    { headerName: 'game_indices', field: 'game_indices' },
+    { headerName: 'held_items', field: 'held_items' },
+    { headerName: 'stats', field: 'stats' },
   ],
 }
 const ProcessMonitoring = ({ rowData }) => {
-  const [cellContent, setCellContent] = useState(undefined)
+  const [currentCell, setCurrentCell] = useState(null)
 
-  const onCellClicked = (e) => {
-    if (cellContent === e.data[e.colDef['field']]) {
-      setCellContent(undefined)
-    } else {
-      setCellContent(e.data[e.colDef['field']])
-    }
+  const onCellClicked = (cell) => {
+    setCurrentCell(cell?.data?.[cell?.colDef?.['field']])
   }
 
+  console.log('rowData', rowData)
+
   return (
-    <UI.GridContainer>
+    <S.GridContainer>
       <S.Grid className="ag-theme-alpine">
         <AgGridReact
           rowData={rowData}
-          columnDefs={gridOptions.columnDefs}
+          columnDefs={gridColumns.columnDefs}
           onCellClicked={onCellClicked}
         />
       </S.Grid>
 
-      <UI.CellDetails
-        cellContent={cellContent}
-        setCellContent={setCellContent}
+      <GridUI.CellDetails
+        currentCell={currentCell}
+        setCurrentCell={setCurrentCell}
       />
-    </UI.GridContainer>
+    </S.GridContainer>
   )
 }
 

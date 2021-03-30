@@ -6,3 +6,7 @@ export const isExternalUrl = (url) => {
 
   return false
 }
+
+export const isString = (value) => {
+  return typeof value === 'string'
+}

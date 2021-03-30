@@ -6,11 +6,11 @@ import * as API from 'services/Loaders'
 import * as S from './styles'
 
 const ProcessMonitoring = () => {
-  const [process, setProcess] = useState('')
+  const [process, setProcess] = useState([])
 
   const loadData = async () => {
     const processResponse = await API.loadProcess()
-    setProcess(processResponse)
+    setProcess([processResponse])
   }
 
   useEffect(() => {

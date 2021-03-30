@@ -1,8 +1,10 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
   ${({ theme, isVisible }) => css`
+    background: #fff;
     border: 1px solid #cccccc;
+    border-left: none;
     color: ${theme.colors.black};
     display: flex;
     flex-direction: column;
@@ -16,27 +18,5 @@ export const Container = styled.div`
     @media screen and (max-width: 1200px) {
       max-width: 100%;
     }
-  `}
-`
-
-export const ContentAnimation = keyframes`
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-`
-
-export const Content = styled.p`
-  ${() => css`
-    animation: ${ContentAnimation} 1s ease-in forwards;
-    background: #fff;
-    height: 100%;
-    overflow-y: auto;
-    padding: 15px;
-    white-space: pre-line;
-    width: 100%;
   `}
 `
