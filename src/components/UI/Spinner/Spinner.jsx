@@ -38,11 +38,11 @@ const Spinner = ({ className, ...props }) => (
 )
 
 Spinner.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 }
 
 Spinner.defaultProps = {
-  className: 'spinner'
+  className: 'spinner',
 }
 
 export default Spinner

@@ -18,7 +18,7 @@ const NavigationProvider = ({ children }) => {
         isSidebarExpanded,
         setIsSidebarExpanded,
         currentExpandedSidebarItem,
-        setCurrentExpandedSidebarItem
+        setCurrentExpandedSidebarItem,
       }}
     >
       {children}
@@ -27,7 +27,7 @@ const NavigationProvider = ({ children }) => {
 }
 
 NavigationProvider.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 }
 
 export default NavigationProvider

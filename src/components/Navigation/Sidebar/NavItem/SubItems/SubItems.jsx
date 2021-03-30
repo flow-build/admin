@@ -29,7 +29,7 @@ const SubItems = ({ subItems = [] }) => {
 }
 
 SubItems.propTypes = {
-  subItems: PropTypes.array.isRequired
+  subItems: PropTypes.array.isRequired,
 }
 
 export default SubItems

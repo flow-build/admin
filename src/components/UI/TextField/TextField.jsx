@@ -50,7 +50,7 @@ TextField.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.string,
   onBlur: PropTypes.func,
-  onInput: PropTypes.func
+  onInput: PropTypes.func,
 }
 
 TextField.defaultProps = {
@@ -61,7 +61,7 @@ TextField.defaultProps = {
   error: '',
   disabled: false,
   onInput: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
 }
 
 export default TextField

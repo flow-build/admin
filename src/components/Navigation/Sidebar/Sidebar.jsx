@@ -29,7 +29,7 @@ const Sidebar = ({ navItems }) => {
 }
 
 Sidebar.propTypes = {
-  navItems: PropTypes.array.isRequired
+  navItems: PropTypes.array.isRequired,
 }
 
 export default Sidebar
