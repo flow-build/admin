@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
 import * as C from 'components'
@@ -6,18 +6,6 @@ import * as C from 'components'
 import * as S from './styles'
 
 const ProcessMonitoring = () => {
-  const [viewerContent, setViewerContent] = useState(undefined)
-
-  const showViewerHandler = (e) => {
-    // console.log('[ProcessMonitoring] event: ', e)
-    if (viewerContent === e.data[e.colDef['field']]) {
-      setViewerContent(undefined)
-    } else {
-      setViewerContent(e.data[e.colDef['field']])
-    }
-    // console.log('[ProcessMonitoring] viewerContent: ', viewerContent)
-  }
-
   const [gridData, setGridData] = useState('')
 
   const getGridData = () => {
@@ -36,14 +24,7 @@ const ProcessMonitoring = () => {
     <S.Container>
       <h1>ProcessMonitoring</h1>
 
-      <S.Content>
-        <C.GRID.ProcessMonitoringGrid
-          rowData={gridData}
-          cellClicked={(e) => showViewerHandler(e)}
-        />
-
-        <C.GRID.Viewer viewerContent={viewerContent} />
-      </S.Content>
+      <C.GRID.ProcessMonitoring rowData={gridData} />
     </S.Container>
   )
 }
