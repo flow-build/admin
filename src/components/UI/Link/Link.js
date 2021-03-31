@@ -18,7 +18,7 @@ const Link = ({
   padding,
   width,
   height,
-  setHasClicked
+  setHasClicked,
 }) => {
   return (
     <S.Container
@@ -63,7 +63,7 @@ Link.propTypes = {
   padding: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
-  setHasClicked: PropTypes.func
+  setHasClicked: PropTypes.func,
 }
 
 export default Link

@@ -34,7 +34,7 @@ Button.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.elementType]),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   variant: PropTypes.oneOf(['primary', 'secondary']),
-  fullWidth: PropTypes.bool
+  fullWidth: PropTypes.bool,
 }
 
 Button.defaultProps = {
@@ -43,7 +43,7 @@ Button.defaultProps = {
   children: '',
   size: 'medium',
   variant: 'primary',
-  fullWidth: false
+  fullWidth: false,
 }
 
 export default Button

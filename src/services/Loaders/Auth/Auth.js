@@ -11,7 +11,7 @@ export const loadAuthData = async (params) => {
     console.error(err)
 
     UTIL.Notifications.createDangerNotification({
-      message: err?.response?.data?.status_message || Messages.ERROR.DEFAULT
+      message: err?.response?.data?.status_message || Messages.ERROR.DEFAULT,
     })
 
     return {}

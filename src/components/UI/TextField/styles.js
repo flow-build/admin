@@ -63,7 +63,7 @@ const wrapperModifiers = {
         color: currentColor;
       }
     }
-  `
+  `,
 }
 
 export const Wrapper = styled.div`
