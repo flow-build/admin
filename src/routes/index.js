@@ -11,6 +11,8 @@ const Error404 = lazy(() => import('pages/Error404/Error404'))
 const ProcessMonitoring = lazy(() =>
   import('pages/ProcessMonitoring/ProcessMonitoring')
 )
+const GeneralStats = lazy(() => import('pages/GeneralStats/GeneralStats'))
+const EditProcess = lazy(() => import('pages/EditProcess/EditProcess'))
 
 const Routes = () => {
   const { signOut } = useAuthContext()
@@ -27,6 +29,16 @@ const Routes = () => {
           exact
           path="/monitoring/process"
           component={ProcessMonitoring}
+        />
+        <PrivateRoute
+          exact
+          path="/monitoring/general_stats"
+          component={GeneralStats}
+        />
+        <PrivateRoute
+          exact
+          path="/monitoring/edit_process"
+          component={EditProcess}
         />
         <Route
           exact
