@@ -13,7 +13,10 @@ const Content = ({ content, currentCell }) => {
   return (
     <S.Container>
       <S.Pre>
-        <S.Text style={contentStyle}>{content}</S.Text>
+        <S.Text
+          style={contentStyle}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
       </S.Pre>
     </S.Container>
   )

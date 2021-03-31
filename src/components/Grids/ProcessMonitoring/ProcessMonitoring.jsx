@@ -23,8 +23,6 @@ const ProcessMonitoring = ({ rowData }) => {
     setCurrentCell(cell?.data?.[cell?.colDef?.['field']])
   }
 
-  console.log('rowData', rowData)
-
   return (
     <S.GridContainer>
       <S.Grid className="ag-theme-alpine">

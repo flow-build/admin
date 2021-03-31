@@ -6,5 +6,5 @@ export const Container = styled.div`
   display: flex;
   font-size: 22px;
   justify-content: center;
-  margin-left: auto;
+  margin: 0 0 0 auto;
 `

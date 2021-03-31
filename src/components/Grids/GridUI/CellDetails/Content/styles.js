@@ -20,4 +20,8 @@ export const Pre = styled.pre`
 
 export const Text = styled.p`
   font-size: 14px;
+
+  & > span {
+    color: tomato;
+  }
 `

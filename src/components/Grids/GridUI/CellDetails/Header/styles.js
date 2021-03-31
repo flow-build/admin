@@ -7,6 +7,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   min-height: 48px;
-  padding: 0 10px;
+  padding: 0 5px 0 10px;
   width: 100%;
 `

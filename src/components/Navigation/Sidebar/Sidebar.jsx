@@ -13,7 +13,7 @@ const Sidebar = ({ navItems }) => {
   const { isSidebarExpanded } = useNavigationContext()
 
   useEffect(() => {
-    UTIL.Components.handleSidebarExpanded(isSidebarExpanded)
+    UTIL.Components.Navigation.handleSidebarExpanded(isSidebarExpanded)
   }, [isSidebarExpanded])
 
   return (

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { VscCaseSensitive, VscWholeWord } from 'react-icons/vsc'
+import React, { useCallback, useEffect, useState } from 'react'
+import { VscCaseSensitive, VscWholeWord, VscKey } from 'react-icons/vsc'
 
 import * as C from 'components'
 import PropTypes from 'prop-types'
@@ -7,89 +7,53 @@ import * as UTIL from 'utils'
 
 import * as S from './styles'
 
-const Search = ({ setContent, currentCell }) => {
-  const [keyword, setKeyword] = useState('')
+const Search = ({ currentCell, setContent }) => {
+  const [searched, setSearched] = useState('')
+  const [isSearchedByKey, setIsSearchedByKey] = useState(false)
   const [isCaseSensitive, setIsCaseSensitive] = useState(false)
   const [isWholeWord, setIsWholeWord] = useState(false)
 
-  const filterByWholeWord = (keyword, isCaseSensitive, content) => {
-    console.log('content', content)
-    return []
-  }
+  const handleSearch = useCallback(
+    (content, setContent) => {
+      let searchedContent = UTIL.isString(content)
+        ? content
+        : UTIL.Components.CellDetails.formatJsonToString(content)
 
-  const filterBySubstring = (keyword, isCaseSensitive, content) => {
-    const contentFormatted = JSON.stringify(content, undefined, 2)
-    const Contentlines = contentFormatted.match(/[^\r\n]+/g)
-
-    return Contentlines?.filter((line) => {
-      if (isCaseSensitive) {
-        return line?.includes(keyword)
+      if (searched && !UTIL.isString(content)) {
+        searchedContent = UTIL.Components.CellDetails.filterContent(
+          searched,
+          isSearchedByKey,
+          isCaseSensitive,
+          isWholeWord,
+          content
+        )
       }
 
-      return line?.toLowerCase()?.includes(keyword?.toLowerCase())
-    })
-  }
-
-  const filterContent = (keyword, isCaseSensitive, isWholeWord, content) => {
-    let filteredContent = []
-
-    switch (isWholeWord) {
-      case true:
-        filteredContent = filterByWholeWord(keyword, isCaseSensitive, content)
-        break
-      default:
-        filteredContent = filterBySubstring(keyword, isCaseSensitive, content)
-        break
-    }
-
-    let result = filteredContent?.length
-      ? ''
-      : 'Nenhuma combinação foi encontrada'
-
-    filteredContent?.forEach((line) => {
-      result += `${line?.replace(/,\s*$/, '')?.trim()}\n`
-    })
-
-    return result
-  }
-
-  const handleSearch = (
-    keyword,
-    isCaseSensitive,
-    isWholeWord,
-    setContent,
-    content
-  ) => {
-    let searchedContent = UTIL.isString(content)
-      ? content
-      : JSON.stringify(content, undefined, 2)
-
-    if (keyword && !UTIL.isString(content)) {
-      searchedContent = filterContent(
-        keyword,
-        isCaseSensitive,
-        isWholeWord,
-        content
-      )
-    }
-
-    setContent(searchedContent)
-  }
+      setContent(searchedContent)
+    },
+    [searched, isSearchedByKey, isCaseSensitive, isWholeWord]
+  )
 
   useEffect(() => {
-    handleSearch(keyword, isCaseSensitive, isWholeWord, setContent, currentCell)
-  }, [keyword, isCaseSensitive, isWholeWord, setContent, currentCell])
-
-  console.log('isCaseSensitive', isCaseSensitive)
-  console.log('isWholeWord', isWholeWord)
+    handleSearch(currentCell, setContent)
+  }, [handleSearch, setContent, currentCell])
 
   return (
     <S.Container>
       <S.Input
         type="text"
         placeholder="Pesquisar..."
-        onChange={(e) => setKeyword(e.target.value)}
+        onChange={(e) => setSearched(e.target.value)}
       />
+
+      <C.UI.Tooltip title="Procurar apenas pela chave" placement="top" hasArrow>
+        <S.SearchByKeyToggle
+          isActive={isSearchedByKey}
+          onClick={() => setIsSearchedByKey((prev) => !prev)}
+        >
+          <VscKey />
+        </S.SearchByKeyToggle>
+      </C.UI.Tooltip>
 
       <C.UI.Tooltip title="Case sensitive" placement="top" hasArrow>
         <S.CaseSensitiveToggle
