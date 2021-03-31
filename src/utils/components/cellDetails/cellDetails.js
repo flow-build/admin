@@ -1,3 +1,12 @@
+export const SEARCH_PARAMS = {
+  isSearchedByKey: 'isSearchedByKey',
+  isCaseSensitive: 'isCaseSensitive',
+  isWholeWord: 'isWholeWord',
+}
+
+export const SEARCHED_ID = 'json-searched-word'
+export const SEARCHED_ON_FOCUS_CLASS = 'json-searched-word-focused'
+
 export const formatJsonToString = (content) => {
   return JSON.stringify(content, undefined, 2)?.replace(/"/g, '') || ''
 }
@@ -35,15 +44,10 @@ const removeLastComma = (string) => {
   return string?.replace(/,$/g, '') || ''
 }
 
-export const filterContent = (
-  searched,
-  isSearchedByKey,
-  isCaseSensitive,
-  isWholeWord,
-  content
-) => {
+export const filterContent = (searched, searchParams, content) => {
   const contentArray = formatContentToArray(content)
   const contentHTML = contentArray.map(({ leftSpace, key, value }) => {
+    const { isSearchedByKey, isCaseSensitive, isWholeWord } = searchParams
     let line = leftSpace
 
     const searchedCase = isCaseSensitive ? searched : searched?.toLowerCase()
@@ -56,8 +60,8 @@ export const filterContent = (
 
     const keyNotFound = key || ''
     const valueNotFound = value ? `: ${value}` : ''
-    const keyFound = `<span className="searched-word">${key}</span>`
-    const valueFound = `: <span className="searched-word">${value}</span>`
+    const keyFound = `<span id="${SEARCHED_ID}">${key}</span>`
+    const valueFound = `: <span id="${SEARCHED_ID}">${value}</span>`
 
     switch (true) {
       case isSearchedByKey && isWholeWord:
@@ -84,4 +88,16 @@ export const filterContent = (
   const result = contentHTML?.join('\n')
 
   return result
+}
+
+export const handleOnFocusID = (currentOnFocus) => {
+  const elements = document.querySelectorAll(`#${SEARCHED_ID}`)
+
+  elements?.forEach((element, index) => {
+    if (currentOnFocus === index) {
+      element.classList.add(SEARCHED_ON_FOCUS_CLASS)
+    } else {
+      element.classList.remove(SEARCHED_ON_FOCUS_CLASS)
+    }
+  })
 }

@@ -10,7 +10,6 @@ const Header = ({ setContent, currentCell, setCurrentCell }) => {
   return (
     <S.Container>
       <Search setContent={setContent} currentCell={currentCell} />
-
       <CloseButton setCurrentCell={setCurrentCell} />
     </S.Container>
   )

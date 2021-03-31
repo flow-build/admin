@@ -1,4 +1,8 @@
 import styled, { keyframes } from 'styled-components'
+import {
+  SEARCHED_ID,
+  SEARCHED_ON_FOCUS_CLASS,
+} from 'utils/components/cellDetails/cellDetails'
 
 export const Container = styled.div`
   overflow-y: auto;
@@ -21,7 +25,12 @@ export const Pre = styled.pre`
 export const Text = styled.p`
   font-size: 14px;
 
-  & > span {
-    color: tomato;
+  & #${SEARCHED_ID} {
+    color: #2200a5;
+  }
+
+  & .${SEARCHED_ON_FOCUS_CLASS} {
+    background: #cecece;
+    color: #333 !important;
   }
 `
