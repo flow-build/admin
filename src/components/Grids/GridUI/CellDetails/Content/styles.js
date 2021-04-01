@@ -5,6 +5,7 @@ import {
 } from 'utils/components/cellDetails/cellDetails'
 
 export const Container = styled.div`
+  height: 100%;
   overflow-y: auto;
   padding: 15px;
 `

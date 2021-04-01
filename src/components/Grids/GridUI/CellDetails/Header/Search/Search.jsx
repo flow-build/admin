@@ -18,7 +18,7 @@ const Search = ({ currentCell, setContent }) => {
         ? content
         : UTIL.Components.CellDetails.formatJsonToString(content)
 
-      if (searched && !UTIL.isString(content)) {
+      if (searched) {
         searchedContent = UTIL.Components.CellDetails.filterContent(
           searched,
           searchParams,

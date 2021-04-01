@@ -10,9 +10,9 @@ import * as S from './styles'
 
 const SubItems = ({ subItems = [] }) => {
   useEffect(() => {
-    UTIL.Components.handleSidebarExpanded(true, '300px')
+    UTIL.Components.Navigation.handleSidebarExpanded(true, '300px')
 
-    return () => UTIL.Components.handleSidebarExpanded(true, '250px')
+    return () => UTIL.Components.Navigation.handleSidebarExpanded(true, '250px')
   }, [])
 
   return (
