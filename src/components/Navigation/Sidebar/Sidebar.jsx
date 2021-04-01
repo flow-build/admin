@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { useNavigationContext } from 'components/Navigation/NavigationProvider'
 import PropTypes from 'prop-types'
-import * as UTIL from 'utils'
+import * as UTIL from 'utils/components'
 import { v4 as uuid_v4 } from 'uuid'
 
 import Logo from './Logo'
@@ -13,7 +13,7 @@ const Sidebar = ({ navItems }) => {
   const { isSidebarExpanded } = useNavigationContext()
 
   useEffect(() => {
-    UTIL.Components.Navigation.handleSidebarExpanded(isSidebarExpanded)
+    UTIL.Navigation.handleSidebarExpanded(isSidebarExpanded)
   }, [isSidebarExpanded])
 
   return (
