@@ -10,7 +10,7 @@ export const Input = styled.input`
   border: 1px solid #e6ecf5;
   border-radius: 3px;
   flex: 1;
-  padding: 9px 100px 9px 7px;
+  padding: 9px 102px 9px 7px;
 `
 
 export const Icon = styled.div`
@@ -21,7 +21,7 @@ export const Icon = styled.div`
     color: #333;
     cursor: pointer;
     display: flex;
-    font-size: 17px;
+    font-size: 15px;
     justify-content: center;
     padding: 2px 5px;
     position: absolute;
@@ -29,13 +29,13 @@ export const Icon = styled.div`
 `
 
 export const SearchByKeyToggle = styled(Icon)`
-  right: 80px;
+  right: 70px;
 `
 
 export const CaseSensitiveToggle = styled(Icon)`
-  right: 45px;
+  right: 38px;
 `
 
 export const WholeWordToggle = styled(Icon)`
-  right: 10px;
+  right: 6px;
 `

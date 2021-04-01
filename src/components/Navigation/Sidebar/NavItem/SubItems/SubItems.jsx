@@ -3,16 +3,16 @@ import { VscCircleFilled } from 'react-icons/vsc'
 
 import * as C from 'components'
 import PropTypes from 'prop-types'
-import * as UTIL from 'utils'
+import * as UTIL from 'utils/components'
 import { v4 as uuid_v4 } from 'uuid'
 
 import * as S from './styles'
 
 const SubItems = ({ subItems = [] }) => {
   useEffect(() => {
-    UTIL.Components.Navigation.handleSidebarExpanded(true, '300px')
+    UTIL.Navigation.handleSidebarExpanded(true, '300px')
 
-    return () => UTIL.Components.Navigation.handleSidebarExpanded(true, '250px')
+    return () => UTIL.Navigation.handleSidebarExpanded(true, '250px')
   }, [])
 
   return (

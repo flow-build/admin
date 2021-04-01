@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
 import PropTypes from 'prop-types'
-import * as UTIL from 'utils'
+import * as UTIL from 'utils/components'
 
 import Input from './Input/Input'
 import Result from './Result/Result'
@@ -16,10 +16,10 @@ const Search = ({ currentCell, setContent }) => {
     (content, setContent) => {
       let searchedContent = UTIL.isString(content)
         ? content
-        : UTIL.Components.CellDetails.formatJsonToString(content)
+        : UTIL.CellDetails.formatJsonToString(content)
 
       if (searched) {
-        searchedContent = UTIL.Components.CellDetails.filterContent(
+        searchedContent = UTIL.CellDetails.filterContent(
           searched,
           searchParams,
           content
