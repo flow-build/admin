@@ -9,6 +9,7 @@ import * as S from '../styles'
 const gridColumns = {
   columnDefs: [
     { headerName: 'name', field: 'name' },
+    { headerName: 'location', field: 'location_area_encounters' },
     { headerName: 'abilities', field: 'abilities' },
     { headerName: 'forms', field: 'forms' },
     { headerName: 'game_indices', field: 'game_indices' },
