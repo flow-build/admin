@@ -46,6 +46,7 @@ const Search = ({ currentCell, setContent }) => {
         searchParams={searchParams}
         setSearchParams={setSearchParams}
       />
+
       <Result hasSearchReloaded={hasSearchReloaded} />
     </S.Container>
   )
