@@ -15,7 +15,8 @@ const GeneralStatsGrid = ({ className, ...props }) => {
       { headerName: 'Name', field: 'name' },
       { headerName: 'Username', field: 'username' },
       { headerName: 'E-mail', field: 'email' },
-      { headerName: 'Address', field: 'address' }
+      { headerName: 'Address', field: 'address' },
+      { headerName: 'Created at', field: 'createdAt' }
     ]
   }
 

@@ -16,3 +16,16 @@ export const stringifyObjects = (arr) => {
     }
   })
 }
+
+export const isDateBetweenDays = (first, last, date) =>
+  first.getFullYear() <= date.getFullYear() &&
+  date.getFullYear() <= last.getFullYear() &&
+  first.getMonth() <= date.getMonth() &&
+  date.getMonth() <= last.getMonth() &&
+  first.getDate() <= date.getDate() &&
+  date.getDate() <= last.getDate()
+
+export const areDatesOnSameDay = (first, second) =>
+  first.getFullYear() === second.getFullYear() &&
+  first.getMonth() === second.getMonth() &&
+  first.getDate() === second.getDate()
