@@ -1,10 +1,24 @@
-## 1.0.0 (2020-03-30)
+# Changelog
 
+## [0.0.1] - 2021-01-01 - Example CHANGELOG
 
-### ⚠ BREAKING CHANGES
+### Author
+  - Name
 
-* reset version for flowbuild
+### Added
+- Better explanation of the difference between the file ("CHANGELOG")
+and its function "the change log".
 
-### Bug Fixes
+### Changed
+- Refer to a "change log" instead of a "CHANGELOG" throughout the site
+to differentiate between the file and the purpose of the file - the
+logging of changes.
 
-* reset version for flowbuild ([d43e16f](https://github.com/flow-build/admin/commit/d43e16f87e704263dec47373c06cf01ea95783f3))
+### Removed
+- Remove empty sections from CHANGELOG, they occupy too much space and
+create too much noise in the file. People will have to assume that the
+missing sections were intentionally left out because they contained no
+notable changes.
+
+### Fixed
+- Fix Markdown links to tag comparison URL with footnote-style links.

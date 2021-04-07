@@ -1,0 +1,21 @@
+import React from 'react'
+
+import { renderWithTheme } from 'utils/tests/helpers'
+
+import { screen } from '@testing-library/react'
+
+import {{pascalCase name}} from './index'
+
+describe('<{{pascalCase name}} />', () => {
+  it('should render the heading', () => {
+    renderWithTheme(<{{pascalCase name}} />)
+
+    expect(screen.getByRole('heading', { name: /{{pascalCase name}}/i })).toBeInTheDocument()
+  })
+
+  it('should render the colors correctly', () => {
+    const { container } = renderWithTheme(<{{pascalCase name}} />)
+
+    expect(container.firstChild).toHaveStyle({ color: '#222222' })
+  })
+})

@@ -1,24 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "allowSyntheticDefaultImports": false,
-    "baseUrl": "./",
-    "module": "commonjs",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@components/*": ["./src/components/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@services/*": ["./src/services/*"],
-      "@routes/*": ["./src/routes/*"],
-      "@redux/*": ["./src/redux/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@config/*": ["./src/config/*"],
-    }
+    "baseUrl": "src"
   },
-  "exclude": [
-    "build",
-    "node_modules",
-    "public"
-  ],
+  "include": ["src"]
 }

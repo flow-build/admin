@@ -7,48 +7,26 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    "dynamic-import-webpack",
-    "css-modules-transform",
     [
-      "module-resolver", {
-        "root": ["./src/"],
-        "alias": {
-          "@utils": "./src/utils",
-          "@components": "./src/components",
-          "@pages": "./src/pages",
-          "@services": "./src/services",
-          "@routes": "./src/routes",
-          "@redux": "./src/redux",
-          "@assets": "./src/assets",
-          "@config": "./src/config"
-        }
-      }
-    ],
-    "babel-plugin-styled-components",
-    [
-      "@babel/plugin-proposal-class-properties",
+      "babel-plugin-styled-components",
       {
-        "loose": true
-      }
-    ],
-    [
-      "@babel/plugin-proposal-object-rest-spread",
-      {
-        "loose": true
-      }
-    ],
-    "@babel/plugin-transform-object-assign",
-    "@babel/plugin-transform-runtime",
-    "@babel/plugin-proposal-optional-chaining",
-    "transform-dev-warning",
-    "transform-react-constant-elements",
-    "react-remove-properties",
-    [
-      "transform-react-remove-prop-types",
-      {
-        "mode": "unsafe-wrap"
+        "ssr": false,
+        "displayName": true
       }
     ]
   ],
+  "env": {
+    "test": {
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          {
+            "ssr": false,
+            "displayName": false
+          }
+        ]
+      ]
+    }
+  },
   "comments": true
 }

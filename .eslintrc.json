@@ -1,34 +1,37 @@
 {
   "env": {
     "browser": true,
+    "es2020": true,
     "jest": true,
-    "es6": true
+    "node": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2018,
+    "ecmaVersion": 11,
     "sourceType": "module"
   },
   "plugins": [
     "react",
     "react-hooks",
-    "jsx-a11y",
-    "import",
     "babel",
     "better-styled-components",
     "eslint-plugin-import-helpers"
   ],
-  "extends": ["plugin:react/recommended", "airbnb"],
   "rules": {
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        "extensions": [".js", ".jsx"]
-      }
-    ],
+    "react/jsx-filename-extension": [0],
     "react/jsx-props-no-spreading": "off",
     "react/jsx-one-expression-per-line": "off",
     "better-styled-components/sort-declarations-alphabetically": 2,
@@ -40,19 +43,15 @@
     "no-alert": 0,
     "react/button-has-type": 0,
     "max-len": "off",
-    "no-unused-expressions": [
-      "error",
-      {
-        "allowTaggedTemplates": true
-      }
-    ],
+    "no-unused-expressions": "off",
     "import-helpers/order-imports": [
       "warn",
       {
         "newlinesBetween": "always",
-        "groups": ["/^react/", "module", "/^@material/", "/^@utils/", "/^@/", ["parent", "sibling", "index"]],
+        "groups": ["/^react/", "module", "/^@/", ["parent", "sibling", "index"]],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
-    ]
+    ],
+    "react/react-in-jsx-scope": "off"
   }
 }

@@ -1,1 +1,2 @@
-export { default as history } from './history';
+export * as Components from './components'
+export * as Notifications from './notifications/notifications'
