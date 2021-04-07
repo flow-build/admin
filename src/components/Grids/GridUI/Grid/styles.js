@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const GridContainer = styled.div`
+export const Container = styled.div`
   align-items: flex-start;
   display: flex;
   flex-wrap: wrap;

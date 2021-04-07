@@ -10,7 +10,7 @@ const ProcessMonitoring = () => {
 
   const loadData = async () => {
     const processResponse = await API.loadProcess()
-    setProcess([processResponse])
+    setProcess([processResponse, processResponse])
   }
 
   useEffect(() => {

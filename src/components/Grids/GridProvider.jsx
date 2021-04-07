@@ -9,6 +9,8 @@ export const useGridContext = () => useContext(GridContext)
 const GridProvider = ({ children }) => {
   const [gridRow, setGridRow] = useState([])
   const [gridColumns, setGridColumns] = useState([])
+  const [currentField, setCurrentField] = useState(null)
+  const [hasNewColumn, setHasNewColumn] = useState(false)
 
   return (
     <GridContext.Provider
@@ -17,6 +19,10 @@ const GridProvider = ({ children }) => {
         setGridRow,
         gridColumns,
         setGridColumns,
+        currentField,
+        setCurrentField,
+        hasNewColumn,
+        setHasNewColumn,
       }}
     >
       {children}

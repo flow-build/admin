@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
   align-items: center;
@@ -17,4 +17,14 @@ export const Icon = styled.div`
   padding: 0 0 0 15px;
 `
 
-export const Dropdown = styled.div``
+export const Dropdown = styled.div`
+  ${({ isVisible }) => css`
+    display: ${isVisible ? 'flex' : 'none'};
+    height: 500px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 500px;
+    z-index: 10;
+  `}
+`
