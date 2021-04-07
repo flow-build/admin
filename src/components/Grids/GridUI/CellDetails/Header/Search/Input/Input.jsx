@@ -23,7 +23,11 @@ const Input = ({ setSearched, searchParams, setSearchParams }) => {
         onChange={(e) => setSearched(e.target.value)}
       />
 
-      <C.UI.Tooltip title="Procurar apenas pela chave" placement="top" hasArrow>
+      <C.UI.Tooltip
+        title="Pesquisar apenas pela chave"
+        placement="top"
+        hasArrow
+      >
         <S.SearchByKeyToggle
           isActive={searchParams[SEARCH_PARAMS.isSearchedByKey]}
           onClick={(e) => toggleParamsUpdate(e, SEARCH_PARAMS.isSearchedByKey)}

@@ -37,13 +37,9 @@ const Result = ({ hasSearchReloaded }) => {
   }
 
   useEffect(() => {
-    const delay = setTimeout(() => {
-      const searchedElements = document.querySelectorAll(`#${SEARCHED_ID}`)
-      setSearchedElements(searchedElements)
-      setCurrentOnFocus(0)
-    }, 500)
-
-    return () => clearTimeout(delay)
+    const searchedElements = document.querySelectorAll(`#${SEARCHED_ID}`)
+    setSearchedElements(searchedElements)
+    setCurrentOnFocus(0)
   }, [hasSearchReloaded])
 
   useEffect(() => {

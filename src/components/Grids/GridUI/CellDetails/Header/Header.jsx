@@ -1,8 +1,8 @@
 import React from 'react'
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 import PropTypes from 'prop-types'
 
-import CloseButton from './CloseButton/CloseButton'
 import Search from './Search/Search'
 import * as S from './styles'
 
@@ -10,7 +10,10 @@ const Header = ({ setContent, currentCell, setCurrentCell }) => {
   return (
     <S.Container>
       <Search setContent={setContent} currentCell={currentCell} />
-      <CloseButton setCurrentCell={setCurrentCell} />
+
+      <S.CloseButton onClick={() => setCurrentCell(null)}>
+        <AiOutlineCloseCircle />
+      </S.CloseButton>
     </S.Container>
   )
 }
