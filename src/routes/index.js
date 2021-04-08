@@ -11,6 +11,9 @@ const Error404 = lazy(() => import('pages/Error404/Error404'))
 const ProcessMonitoring = lazy(() =>
   import('pages/ProcessMonitoring/ProcessMonitoring')
 )
+const BlueprintManager = lazy(() =>
+  import('pages/BlueprintManager/BlueprintManager')
+)
 
 const Routes = () => {
   const { signOut } = useAuthContext()
@@ -27,6 +30,11 @@ const Routes = () => {
           exact
           path="/monitoring/process"
           component={ProcessMonitoring}
+        />
+        <PrivateRoute
+          exact
+          path="/blueprint_manager"
+          component={BlueprintManager}
         />
         <Route
           exact
