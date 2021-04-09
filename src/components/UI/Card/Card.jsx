@@ -6,9 +6,7 @@ import * as API from 'services/Loaders'
 
 import * as S from './styles'
 
-const Card = (...rest) => {
-  console.log('rest: ', rest)
-  const { className, type, ...props } = rest
+const Card = ({ type }) => {
   console.log('[Card] type: ', type)
 
   const [cardData, setCardData] = useState(null)
@@ -35,20 +33,19 @@ const Card = (...rest) => {
     case 'P':
       card = (
         <S.CardP>
-          <p>Ícone: {dictionary.apiName.icon}</p>
-          <p>Título: {dictionary.apiName.label}</p>
+          <S.CardContent>{dictionary.apiName.icon}</S.CardContent>
+          <S.CardContent>Título: {dictionary.apiName.label}</S.CardContent>
         </S.CardP>
       )
       break
     case 'M':
       card = (
         <S.CardM>
-          <p>Ícone: {dictionary.apiName.icon}</p>
-          <p>Título: {dictionary.apiName.label}</p>
-          {/* <p>
+          <S.CardContent>{dictionary.apiName.icon}</S.CardContent>
+          <S.CardContent>Título: {dictionary.apiName.label}</S.CardContent>
+          <S.CardContent>
             Descrição: {cardData ? cardData[0].body : dictionary.apiName.label}
-          </p> */}
-          <p>Description: anything</p>
+          </S.CardContent>
         </S.CardM>
       )
       break
@@ -61,15 +58,10 @@ const Card = (...rest) => {
       )
   }
 
-  return (
-    <S.Container className={className} {...props}>
-      {card}
-    </S.Container>
-  )
+  return <S.Container>{card}</S.Container>
 }
 
 Card.propTypes = {
-  className: PropTypes.string,
   type: PropTypes.string,
 }
 
