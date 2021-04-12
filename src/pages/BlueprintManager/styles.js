@@ -6,6 +6,7 @@ export const Container = styled(PS.PageContainer)``
 export const Card = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
-    margin-top: 80px;
+    margin-top: 30px;
+    padding: 0 10px 0 10px;
   `}
 `
