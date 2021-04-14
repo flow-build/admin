@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 import { DateRangePicker, SingleDatePicker } from 'react-dates'
+import { useHistory } from 'react-router'
 
 import * as C from 'components'
 import PropTypes from 'prop-types'
@@ -13,7 +14,6 @@ import * as S from './styles'
 const GeneralStats = ({ className, ...props }) => {
   const [generalStatsData, setGeneralStatsData] = useState('')
   const [searchString, setSearchString] = useState('')
-  const [generalStatsDataDefault, setGeneralStatsDataDefault] = useState('')
 
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
@@ -27,82 +27,69 @@ const GeneralStats = ({ className, ...props }) => {
     { value: '2', text: 'Delphine' }
   ]
 
-  const loadData = async () => {
-    const generalStatsResponse = await API.loadGeneralStats()
+  const history = useHistory()
+
+  const loadData = async (URLSearchParam) => {
+    const generalStatsResponse = await API.loadGeneralStats(URLSearchParam)
     UTIL.stringifyObjects(generalStatsResponse)
+    console.log('[GeneralStats] generalStatsResponse: ', generalStatsResponse)
     setGeneralStatsData(generalStatsResponse)
-    setGeneralStatsDataDefault(generalStatsResponse)
-    generalStatsResponse.map((el) => (el.createdAt = new Date()))
   }
 
   const onSearchbarChangeHandler = (enteredText) => {
     setSearchString(enteredText)
-    const searchStringRegex = new RegExp(enteredText, 'i')
-    const keys = Object.keys(generalStatsDataDefault[0])
 
     if (enteredText !== '') {
-      setGeneralStatsData(
-        [...generalStatsDataDefault].filter(
-          (el) =>
-            searchStringRegex.test(keys.map((key) => el[key])) ||
-            searchStringRegex.test(JSON.stringify(el.createdAt))
-        )
-      )
-    } else {
-      setGeneralStatsData(generalStatsDataDefault)
+      console.log('Searchbar')
+      const paramsString = `search=${enteredText}`
+      const searchParams = new URLSearchParams(paramsString)
+      loadData(searchParams)
+      history.push(`general_stats?${paramsString}`)
     }
   }
 
   const onDropdownChangeHandler = (value) => {
-    const searchStringRegex = new RegExp(options[value - 1]?.text, 'i')
-    const keys = Object.keys(generalStatsDataDefault[0])
     if (options[value - 1]) {
-      setGeneralStatsData(
-        [...generalStatsDataDefault].filter((el) =>
-          searchStringRegex.test(keys.map((key) => el[key]))
-        )
-      )
-    } else {
-      setGeneralStatsData(generalStatsDataDefault)
+      const paramsString = `username=${options[value - 1].text}`
+      const searchParams = new URLSearchParams(paramsString)
+      loadData(searchParams)
+      history.push(`general_stats?${paramsString}`)
     }
   }
 
   const onDatesChangeHandler = (dates) => {
     setStartDate(dates.startDate)
     setEndDate(dates.endDate)
-    if (dates.endDate) {
-      setGeneralStatsData(
-        [...generalStatsDataDefault].filter((el) => {
-          return UTIL.isDateBetweenDays(
-            dates.startDate?._d,
-            dates.endDate?._d,
-            el.createdAt
-          )
-        })
-      )
+    const paramsString = `createdAt?start=${JSON.stringify(
+      dates.startDate?._d
+    )}&end=${JSON.stringify(dates.endDate?._d)}`
+    const searchParams = new URLSearchParams(paramsString)
+    loadData(searchParams)
+
+    if (dates.startDate?._d && dates.endDate?._d) {
+      history.push(`general_stats?${paramsString}`)
     }
   }
 
   const onSingleDateChangeHandler = (date) => {
     setSingleDate(date.date)
-
-    if (date.date) {
-      setGeneralStatsData(
-        [...generalStatsDataDefault].filter((el) => {
-          return UTIL.areDatesOnSameDay(date.date?._d, el.createdAt)
-        })
-      )
-    }
+    const paramsString = `createdAt=${JSON.stringify(date.date._d)}`
+    const searchParams = new URLSearchParams(paramsString)
+    loadData(searchParams)
+    history.push(`general_stats?${paramsString}`)
   }
 
-  useEffect(() => loadData(), [])
+  useEffect(() => {
+    loadData()
+    history.replace('/monitoring/general_stats', null)
+  }, [])
 
   return (
     <S.Container>
       <h1>General Stats</h1>
       <C.UI.TextField
         name="name"
-        placeholder="Numero"
+        placeholder="Searchbar"
         type="text"
         onChange={(e) => onSearchbarChangeHandler(e.target.value)}
         value={searchString}

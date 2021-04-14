@@ -8,13 +8,15 @@ export const isExternalUrl = (url) => {
 }
 
 export const stringifyObjects = (arr) => {
-  Object.keys(arr[0]).map((key) => {
-    if (typeof arr[0][key] === 'object') {
-      arr.map((el) => {
-        el[key] = JSON.stringify(el[key], null, 2)
-      })
-    }
-  })
+  if (arr[0]) {
+    Object.keys(arr[0]).map((key) => {
+      if (typeof arr[0][key] === 'object') {
+        arr.map((el) => {
+          el[key] = JSON.stringify(el[key], null, 2)
+        })
+      }
+    })
+  }
 }
 
 export const isDateBetweenDays = (first, last, date) =>
