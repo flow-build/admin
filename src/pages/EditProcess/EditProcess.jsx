@@ -26,7 +26,6 @@ const EditProcess = ({ className, ...props }) => {
 
   useEffect(() => {
     loadData(props)
-    // history.replace('/monitoring/edit_process', null)
     history.replace(history.location, null)
   }, [])
 
