@@ -19,15 +19,16 @@ const EditProcess = ({ className, ...props }) => {
     )
     UTIL.stringifyObjects(editProcessResponse)
     setProcessData(editProcessResponse)
-    history.replace('/monitoring/edit_process', null)
   }
   console.log('[EditProcess] props: ', props)
-  useEffect(() => loadData(props), [])
 
-  // console.log(
-  //   '[EditProcess] props.location.state.data.id: ',
-  //   props.location.state.data.id
-  // )
+  loadData(props)
+
+  useEffect(() => {
+    loadData(props)
+    // history.replace('/monitoring/edit_process', null)
+    history.replace(history.location, null)
+  }, [])
 
   return (
     <S.Container className={className} {...props}>

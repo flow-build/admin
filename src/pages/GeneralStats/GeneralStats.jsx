@@ -32,7 +32,6 @@ const GeneralStats = ({ className, ...props }) => {
   const loadData = async (URLSearchParam) => {
     const generalStatsResponse = await API.loadGeneralStats(URLSearchParam)
     UTIL.stringifyObjects(generalStatsResponse)
-    console.log('[GeneralStats] generalStatsResponse: ', generalStatsResponse)
     setGeneralStatsData(generalStatsResponse)
   }
 
@@ -40,7 +39,6 @@ const GeneralStats = ({ className, ...props }) => {
     setSearchString(enteredText)
 
     if (enteredText !== '') {
-      console.log('Searchbar')
       const paramsString = `search=${enteredText}`
       const searchParams = new URLSearchParams(paramsString)
       loadData(searchParams)

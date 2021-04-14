@@ -23,8 +23,8 @@ const GeneralStatsGrid = ({ className, ...props }) => {
   const history = useHistory()
 
   const onCellClickedHandler = (event) => {
-    console.log('[GeneralStatsGrid] event: ', event)
-    history.push('edit_process', { data: event.data })
+    const paramsString = `id=${event.data.id}`
+    history.push(`edit_process?${paramsString}`, { data: event.data })
   }
 
   return (
