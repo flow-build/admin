@@ -12,7 +12,7 @@ const NavItem = ({ navItem }) => {
     isSidebarExpanded,
     setIsSidebarExpanded,
     currentExpandedSidebarItem,
-    setCurrentExpandedSidebarItem
+    setCurrentExpandedSidebarItem,
   } = useNavigationContext()
 
   const handleClick = (event) => {
@@ -66,7 +66,7 @@ const NavItem = ({ navItem }) => {
 }
 
 NavItem.propTypes = {
-  navItem: PropTypes.object
+  navItem: PropTypes.object,
 }
 
 export default NavItem

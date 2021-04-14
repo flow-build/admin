@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { GrClose } from 'react-icons/gr'
 
@@ -11,9 +11,10 @@ const Headerbar = ({ navItems }) => {
   const {
     isSidebarExpanded,
     setIsSidebarExpanded,
-    setCurrentExpandedSidebarItem
+    setCurrentExpandedSidebarItem,
   } = useNavigationContext()
-  console.log('navItems', navItems)
+
+  useEffect(() => {}, [navItems])
 
   const handleClick = (event) => {
     event.preventDefault()
@@ -30,7 +31,7 @@ const Headerbar = ({ navItems }) => {
 }
 
 Headerbar.propTypes = {
-  navItems: PropTypes.array.isRequired
+  navItems: PropTypes.array.isRequired,
 }
 
 export default Headerbar

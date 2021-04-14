@@ -3,7 +3,7 @@ import React, {
   useContext,
   useState,
   useEffect,
-  useCallback
+  useCallback,
 } from 'react'
 
 import PropTypes from 'prop-types'
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
         user,
         signIn,
         signOut,
-        isLoading
+        isLoading,
       }}
     >
       {children}
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
 }
 
 AuthProvider.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 }
 
 export default AuthProvider

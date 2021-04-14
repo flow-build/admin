@@ -11,7 +11,7 @@ export const Container = styled.div`
     color,
     fontSize,
     fontWeight,
-    colorOnHover
+    colorOnHover,
   }) => css`
     width: ${width || 'auto'};
     & a {

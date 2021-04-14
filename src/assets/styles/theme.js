@@ -8,12 +8,12 @@ export default {
     primary: {
       light: lighten(0.1, primaryColor),
       base: primaryColor,
-      dark: darken(0.1, primaryColor)
+      dark: darken(0.1, primaryColor),
     },
     secondary: {
       light: lighten(0.1, secondaryColor),
       base: secondaryColor,
-      dark: darken(0.1, secondaryColor)
+      dark: darken(0.1, secondaryColor),
     },
     yellow: '#ffe58f',
     red: '#ffa39e',
@@ -22,7 +22,7 @@ export default {
     light: '#fafafa',
     gray: '#8E8E8E',
     white: '#ffffff',
-    black: '#222222'
+    black: '#222222',
   },
   font: {
     family:
@@ -33,28 +33,28 @@ export default {
       medium: '1.6rem',
       large: '1.8rem',
       xlarge: '2.0rem',
-      xxlarge: '2.8rem'
+      xxlarge: '2.8rem',
     },
     weight: {
       light: 300,
       normal: 400,
-      bold: 700
+      bold: 700,
     },
     height: {
       medium: 1.4,
-      heading: 1.2
-    }
+      heading: 1.2,
+    },
   },
   layers: {
     base: 10,
     menu: 20,
     overlay: 30,
     modal: 40,
-    alwaysOnTop: 50
+    alwaysOnTop: 50,
   },
   border: {
     radius: '0.4rem',
-    color: ' #e6ecf5'
+    color: ' #e6ecf5',
   },
   spacings: {
     xxsmall: '0.8rem',
@@ -63,29 +63,29 @@ export default {
     medium: '3.2rem',
     large: '4.0rem',
     xlarge: '4.8rem',
-    xxlarge: '5.6rem'
+    xxlarge: '5.6rem',
   },
   navigation: {
     transition: '400ms ease',
     sidebar: {
       width: {
         normal: '70px',
-        expanded: '250px'
+        expanded: '250px',
       },
       icons: {
         color: {
           light: lighten(0.1, '#888da8'),
           base: '#888da8',
-          dark: darken(0.1, '#888da8')
-        }
-      }
+          dark: darken(0.1, '#888da8'),
+        },
+      },
     },
     headerbar: {
-      height: '70px'
-    }
+      height: '70px',
+    },
   },
   page: {
-    backgroundColor: '#F6F7FB'
+    backgroundColor: '#F6F7FB',
   },
-  transition: 'all 250ms cubic-bezier(0.77, 0, 0.175, 1)'
+  transition: 'all 250ms cubic-bezier(0.77, 0, 0.175, 1)',
 }

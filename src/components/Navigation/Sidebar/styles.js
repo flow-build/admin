@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.aside`
   ${({ theme }) => css`
     background: ${theme.colors.white};
     border-right: 1px solid ${theme.border.color};

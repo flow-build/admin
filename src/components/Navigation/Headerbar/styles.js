@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.header`
   ${({ theme }) => css`
     align-items: center;
     background: ${theme.colors.white};
@@ -24,7 +24,7 @@ export const Toggle = styled.div`
   font-size: 22px;
 `
 
-export const NavItems = styled.div`
+export const NavItems = styled.nav`
   align-items: center;
   display: flex;
   justify-content: flex-end;

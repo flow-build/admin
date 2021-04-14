@@ -2,7 +2,7 @@ import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
 import PropTypes from 'prop-types'
-import * as UTIL from 'utils'
+import * as UTIL from 'utils/components'
 
 import * as S from './styles'
 
@@ -18,7 +18,7 @@ const Link = ({
   padding,
   width,
   height,
-  setHasClicked
+  setHasClicked,
 }) => {
   return (
     <S.Container
@@ -63,7 +63,7 @@ Link.propTypes = {
   padding: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
-  setHasClicked: PropTypes.func
+  setHasClicked: PropTypes.func,
 }
 
 export default Link
