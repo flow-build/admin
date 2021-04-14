@@ -4,7 +4,7 @@ import { useHistory } from 'react-router'
 import * as C from 'components'
 import PropTypes from 'prop-types'
 import * as API from 'services/Loaders'
-import * as UTIL from 'utils'
+import * as UTIL from 'utils/components/utils'
 
 import * as S from './styles'
 
@@ -42,11 +42,11 @@ const EditProcess = ({ className, ...props }) => {
 EditProcess.propTypes = {
   className: PropTypes.string,
   location: PropTypes.object,
-  state: PropTypes.object
+  state: PropTypes.object,
 }
 
 EditProcess.defaultProps = {
-  className: 'editprocess'
+  className: 'editprocess',
 }
 
 export default EditProcess

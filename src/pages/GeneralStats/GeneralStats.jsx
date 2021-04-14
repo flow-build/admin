@@ -7,7 +7,7 @@ import { useHistory } from 'react-router'
 import * as C from 'components'
 import PropTypes from 'prop-types'
 import * as API from 'services/Loaders'
-import * as UTIL from 'utils'
+import * as UTIL from 'utils/components/utils'
 
 import * as S from './styles'
 
@@ -24,7 +24,7 @@ const GeneralStats = ({ className, ...props }) => {
 
   const options = [
     { value: '1', text: 'Bret' },
-    { value: '2', text: 'Delphine' }
+    { value: '2', text: 'Delphine' },
   ]
 
   const history = useHistory()
@@ -125,11 +125,11 @@ const GeneralStats = ({ className, ...props }) => {
 }
 
 GeneralStats.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 }
 
 GeneralStats.defaultProps = {
-  className: 'generalstats'
+  className: 'generalstats',
 }
 
 export default GeneralStats
