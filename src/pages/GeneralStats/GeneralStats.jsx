@@ -11,15 +11,15 @@ import * as UTIL from 'utils/components/utils'
 import * as S from './styles'
 
 const GeneralStats = () => {
-  const [generalStatsData, setGeneralStatsData] = useState('')
-  const [searchString, setSearchString] = useState('')
-
-  const [startDate, setStartDate] = useState(null)
-  const [endDate, setEndDate] = useState(null)
-  const [focusedInput, setFocusedInput] = useState(null)
-
-  const [singleDate, setSingleDate] = useState(null)
-  const [focused, setFocused] = useState(false)
+  const [state, setState] = useState({
+    generalStatsData: [],
+    searchString: '',
+    startDate: null,
+    endDate: null,
+    focusedInput: null,
+    singleDate: null,
+    focused: false,
+  })
 
   const options = [
     { value: '1', text: 'Bret' },
@@ -31,11 +31,21 @@ const GeneralStats = () => {
   const loadData = async (URLSearchParam) => {
     const generalStatsResponse = await API.loadGeneralStats(URLSearchParam)
     UTIL.stringifyObjects(generalStatsResponse)
-    setGeneralStatsData(generalStatsResponse)
+    setState((prevState) => {
+      return {
+        ...prevState,
+        generalStatsData: generalStatsResponse,
+      }
+    })
   }
 
   const onSearchbarChangeHandler = (enteredText) => {
-    setSearchString(enteredText)
+    setState((prevState) => {
+      return {
+        ...prevState,
+        searchString: enteredText,
+      }
+    })
 
     if (enteredText !== '') {
       const paramsString = `search=${enteredText}`
@@ -55,8 +65,14 @@ const GeneralStats = () => {
   }
 
   const onDatesChangeHandler = (dates) => {
-    setStartDate(dates.startDate)
-    setEndDate(dates.endDate)
+    setState((prevState) => {
+      return {
+        ...prevState,
+        startDate: dates.startDate,
+        endDate: dates.endDate,
+      }
+    })
+
     const paramsString = `createdAt?start=${JSON.stringify(
       dates.startDate?._d
     )}&end=${JSON.stringify(dates.endDate?._d)}`
@@ -69,7 +85,12 @@ const GeneralStats = () => {
   }
 
   const onSingleDateChangeHandler = (date) => {
-    setSingleDate(date.date)
+    setState((prevState) => {
+      return {
+        ...prevState,
+        singleDate: date.date,
+      }
+    })
     const paramsString = `createdAt=${JSON.stringify(date.date._d)}`
     const searchParams = new URLSearchParams(paramsString)
     loadData(searchParams)
@@ -88,7 +109,7 @@ const GeneralStats = () => {
         placeholder="Searchbar"
         type="text"
         onChange={(e) => onSearchbarChangeHandler(e.target.value)}
-        value={searchString}
+        value={state.searchString}
       />
       <C.UI.Dropdown
         label={'Dropdown menu'}
@@ -98,25 +119,39 @@ const GeneralStats = () => {
       <DateRangePicker
         startDateId="startDate"
         endDateId="endDate"
-        startDate={startDate}
-        endDate={endDate}
+        startDate={state.startDate}
+        endDate={state.endDate}
         onDatesChange={({ startDate, endDate }) => {
           onDatesChangeHandler({ startDate, endDate })
         }}
-        focusedInput={focusedInput}
-        onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
+        focusedInput={state.focusedInput}
+        onFocusChange={(focusedInput) =>
+          setState((prevState) => {
+            return {
+              ...prevState,
+              focusedInput: focusedInput,
+            }
+          })
+        }
         isOutsideRange={() => false}
       />
       <SingleDatePicker
-        date={singleDate}
+        date={state.singleDate}
         onDateChange={(date) => onSingleDateChangeHandler({ date })}
-        focused={focused}
-        onFocusChange={({ focused }) => setFocused(focused)}
+        focused={state.focused}
+        onFocusChange={({ focused }) =>
+          setState((prevState) => {
+            return {
+              ...prevState,
+              focused: focused,
+            }
+          })
+        }
         id="unique_id"
         isOutsideRange={() => false}
       />
       <S.Content>
-        <C.GRID.GeneralStatsGrid rowData={generalStatsData} />
+        <C.GRID.GeneralStatsGrid rowData={state.generalStatsData} />
       </S.Content>
     </S.Container>
   )
