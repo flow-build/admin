@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 
 import * as S from './styles'
 
-const GeneralStatsGrid = ({ className, ...props }) => {
+const GeneralStatsGrid = ({ rowData }) => {
   const gridOptions = {
     columnDefs: [
       { headerName: 'ID', field: 'id' },
@@ -16,8 +16,8 @@ const GeneralStatsGrid = ({ className, ...props }) => {
       { headerName: 'Username', field: 'username' },
       { headerName: 'E-mail', field: 'email' },
       { headerName: 'Address', field: 'address' },
-      { headerName: 'Created at', field: 'createdAt' }
-    ]
+      { headerName: 'Created at', field: 'createdAt' },
+    ],
   }
 
   const history = useHistory()
@@ -28,10 +28,10 @@ const GeneralStatsGrid = ({ className, ...props }) => {
   }
 
   return (
-    <S.Container className={className} {...props}>
+    <S.Container>
       <div className="ag-theme-alpine" style={{ height: 500, flex: 4 }}>
         <AgGridReact
-          rowData={props.rowData}
+          rowData={rowData}
           columnDefs={gridOptions.columnDefs}
           onCellClicked={(event) => onCellClickedHandler(event)}
         />
@@ -41,12 +41,7 @@ const GeneralStatsGrid = ({ className, ...props }) => {
 }
 
 GeneralStatsGrid.propTypes = {
-  className: PropTypes.string,
-  rowData: PropTypes.any
-}
-
-GeneralStatsGrid.defaultProps = {
-  className: 'generalstatsgrid'
+  rowData: PropTypes.any,
 }
 
 export default GeneralStatsGrid

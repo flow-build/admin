@@ -5,13 +5,12 @@ import { DateRangePicker, SingleDatePicker } from 'react-dates'
 import { useHistory } from 'react-router'
 
 import * as C from 'components'
-import PropTypes from 'prop-types'
 import * as API from 'services/Loaders'
 import * as UTIL from 'utils/components/utils'
 
 import * as S from './styles'
 
-const GeneralStats = ({ className, ...props }) => {
+const GeneralStats = () => {
   const [generalStatsData, setGeneralStatsData] = useState('')
   const [searchString, setSearchString] = useState('')
 
@@ -79,7 +78,6 @@ const GeneralStats = ({ className, ...props }) => {
 
   useEffect(() => {
     loadData()
-    history.replace('/monitoring/general_stats', null)
   }, [])
 
   return (
@@ -117,19 +115,11 @@ const GeneralStats = ({ className, ...props }) => {
         id="unique_id"
         isOutsideRange={() => false}
       />
-      <S.Content className={className} {...props}>
+      <S.Content>
         <C.GRID.GeneralStatsGrid rowData={generalStatsData} />
       </S.Content>
     </S.Container>
   )
-}
-
-GeneralStats.propTypes = {
-  className: PropTypes.string,
-}
-
-GeneralStats.defaultProps = {
-  className: 'generalstats',
 }
 
 export default GeneralStats

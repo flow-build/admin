@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router'
 
 import * as C from 'components'
 import PropTypes from 'prop-types'
@@ -8,29 +7,21 @@ import * as UTIL from 'utils/components/utils'
 
 import * as S from './styles'
 
-const EditProcess = ({ className, ...props }) => {
+const EditProcess = ({ location }) => {
   const [processData, setProcessData] = useState('')
 
-  const history = useHistory()
-
-  const loadData = async (props) => {
-    const editProcessResponse = await API.loadEditProcess(
-      props?.location?.state
-    )
+  const loadData = async (location) => {
+    const editProcessResponse = await API.loadEditProcess(location?.state)
     UTIL.stringifyObjects(editProcessResponse)
     setProcessData(editProcessResponse)
   }
-  console.log('[EditProcess] props: ', props)
-
-  loadData(props)
 
   useEffect(() => {
-    loadData(props)
-    history.replace(history.location, null)
-  }, [])
+    loadData(location)
+  }, [location])
 
   return (
-    <S.Container className={className} {...props}>
+    <S.Container>
       <h1>Edit Process</h1>
       <S.Content>
         <C.GRID.GeneralStatsGrid rowData={processData} />
@@ -40,13 +31,7 @@ const EditProcess = ({ className, ...props }) => {
 }
 
 EditProcess.propTypes = {
-  className: PropTypes.string,
   location: PropTypes.object,
-  state: PropTypes.object,
-}
-
-EditProcess.defaultProps = {
-  className: 'editprocess',
 }
 
 export default EditProcess
