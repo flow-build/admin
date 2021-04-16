@@ -1,4 +1,5 @@
 export { default as Button } from './Button/Button'
+export { default as Dropdown } from './Dropdown/Dropdown'
 export { default as Link } from './Link/Link'
 export { default as Modal } from './Modal/Modal'
 export { default as Select } from './Select/Select'
