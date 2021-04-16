@@ -28,8 +28,18 @@ const GeneralStats = () => {
 
   const history = useHistory()
 
-  const loadData = async (URLSearchParam) => {
-    const generalStatsResponse = await API.loadGeneralStats(URLSearchParam)
+  const addQueryParam = (key, value) => {
+    const pathname = location.pathname
+    const searchParams = new URLSearchParams(location.search)
+    searchParams.set(key, value)
+    history.push({
+      pathname: pathname,
+      search: searchParams.toString(),
+    })
+  }
+
+  const loadData = async (searchParam) => {
+    const generalStatsResponse = await API.loadGeneralStats(searchParam)
     UTIL.stringifyObjects(generalStatsResponse)
     setState((prevState) => {
       return {
@@ -48,19 +58,13 @@ const GeneralStats = () => {
     })
 
     if (enteredText !== '') {
-      const paramsString = `search=${enteredText}`
-      const searchParams = new URLSearchParams(paramsString)
-      loadData(searchParams)
-      history.push(`general_stats?${paramsString}`)
+      addQueryParam('search', enteredText)
     }
   }
 
   const onDropdownChangeHandler = (value) => {
     if (options[value - 1]) {
-      const paramsString = `username=${options[value - 1].text}`
-      const searchParams = new URLSearchParams(paramsString)
-      loadData(searchParams)
-      history.push(`general_stats?${paramsString}`)
+      addQueryParam('username', options[value - 1].text)
     }
   }
 
@@ -73,14 +77,9 @@ const GeneralStats = () => {
       }
     })
 
-    const paramsString = `createdAt?start=${JSON.stringify(
-      dates.startDate?._d
-    )}&end=${JSON.stringify(dates.endDate?._d)}`
-    const searchParams = new URLSearchParams(paramsString)
-    loadData(searchParams)
-
     if (dates.startDate?._d && dates.endDate?._d) {
-      history.push(`general_stats?${paramsString}`)
+      addQueryParam('start', JSON.stringify(dates.startDate?._d))
+      addQueryParam('end', JSON.stringify(dates.endDate?._d))
     }
   }
 
@@ -91,15 +90,13 @@ const GeneralStats = () => {
         singleDate: date.date,
       }
     })
-    const paramsString = `createdAt=${JSON.stringify(date.date._d)}`
-    const searchParams = new URLSearchParams(paramsString)
-    loadData(searchParams)
-    history.push(`general_stats?${paramsString}`)
+
+    addQueryParam('createdAt', JSON.stringify(date.date._d))
   }
 
   useEffect(() => {
-    loadData()
-  }, [])
+    loadData(location.search)
+  }, [location.search])
 
   return (
     <S.Container>
