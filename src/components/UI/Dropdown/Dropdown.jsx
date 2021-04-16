@@ -29,11 +29,11 @@ const Dropdown = ({ className, label, options, ...props }) => {
 Dropdown.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string,
-  options: PropTypes.array
+  options: PropTypes.array,
 }
 
 Dropdown.defaultProps = {
-  className: 'dropdown'
+  className: 'dropdown',
 }
 
 export default Dropdown
