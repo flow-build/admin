@@ -131,7 +131,7 @@
     "ag-grid-community": "^23.2.1",
     "ag-grid-react": "^23.2.1",
     "animate.css": "^3.7.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.2",
     "bpmn-js": "^7.3.0",
     "bpmn-moddle": "^7.0.3",
     "classnames": "^2.2.6",
